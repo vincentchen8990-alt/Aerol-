@@ -1,0 +1,6 @@
+# The measured-ISS handoff files are verified byte-for-byte against the SHA256s in
+# real_spacecraft_measurements/CORE_TRANSFER_MANIFEST.json before use. Never convert their
+# line endings (core.autocrlf would otherwise check them out as CRLF on Windows and the
+# measured models would correctly report "unavailable" due to hash mismatch).
+real_spacecraft_measurements/** -text
+outputs/measured_iss/** -text
