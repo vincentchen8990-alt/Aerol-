@@ -1,0 +1,10 @@
+{
+  "data_type": "SYNTHETIC_PHYSICS_NOT_MEDICAL",
+  "samples": 600,
+  "mean_abs_error_g": 0.014345688170342466,
+  "max_abs_error_g": 0.1405758693528183,
+  "files": [
+    "mission_1200s.csv",
+    "gravity_tracking.png"
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "kind": "core_integration_handoff",
+  "complete_original_archive": "real_iss_gravity_training_2026-11-14.zip",
+  "included": "Frozen models, reports, scripts, metadata, original source manifests, inference test vectors and small measured RPM replay clips.",
+  "large_data_not_in_this_transfer": "Raw source archives, NASA binary/header pairs, full processed CSV, full prediction CSV, plots and joblib objects are available in the full original ZIP. Source URLs/checksums and pims_acquire.py can restore measurements.",
+  "files": [
+    {
+      "path": "pims_train.py",
+      "bytes": 25726,
+      "sha256": "d256adf961dac90b39db3ee7f530785fa003bafec3c0e75c757e387f4ba5719a"
+    },
+    {
+      "path": "hardware_profiles.json",
+      "bytes": 3302,
+      "sha256": "3bb7901bd35610ae56d5883c24c0083535ff9019d9549623017e0d6658a685d2"
+    },
+    {
+      "path": "SOURCES_AND_ATTRIBUTION.txt",
+      "bytes": 3367,
+      "sha256": "3c3fd757a7bd404d4b9d26d5b7b5ceb95a309b00eca96d25fde0a00ccae7a52c"
+    },
+    {
+      "path": "requirements-training.txt",
+      "bytes": 170,
+      "sha256": "97a600b67833cb3b315eeea9e4474d82e2b220b2feee25ccefa324cde446fcba"
+    },
+    {
+      "path": "rpm_predict.py",
+      "bytes": 4357,
+      "sha256": "0accf386fc6ed251167162614d2b05ff2d3e6674e6b8788a67d4fe647e1ef54e"
+    },
+    {
+      "path": "rpm_train.py",
+      "bytes": 25184,
+      "sha256": "37ad94793fb6684dc0add5b83052492e547f52513c42496e8f6b78e788f89831"
+    },
+    {
+      "path": "pims_acquire.py",
+      "bytes": 18182,
+      "sha256": "ab6cb0bf992d4c819726785a268e3b0c4a046abebba3c2bf1f57e50205826a59"
+    },
+    {
+      "path": "CLAUDE_INTEGRATION_PROMPT.txt",
+      "bytes": 4812,
+      "sha256": "7d82973637141d5278370a387bd2a6e880db5579e003362b3052217652861879"
+    },
+    {
+      "path": "export_rpm_replay.py",
+      "bytes": 3741,
+      "sha256": "2d3ce70e99a0a37d47345c2595d9973baa70bbd154836d57ab0215ff3b88b99a"
+    },
+    {
+      "path": "requirements-inference.txt",
+      "bytes": 86,
+      "sha256": "2134a4e2dd51910ec15f429341f9634af09254ee250a46c580d54910f9fe31bb"
+    },
+    {
+      "path": "README.md",
+      "bytes": 12850,
+      "sha256": "16617f36f8a9dc09cbbba6afc2da87938f39b84a973cfea9782d6b620cabfc66"
+    },
+    {
+      "path": "data/processed/iss_mams_split_manifest.json",
+      "bytes": 727,
+      "sha256": "b3849f89c62861a0cd6e53a05b37d5eedffe89b0e91c94a1803e06842ebf17fd"
+    },
+    {
+      "path": "data/raw/pims/source_manifest.json",
+      "bytes": 353397,
+      "sha256": "70fa20ee00b705a8021976e5a21a0408d4ea6b21473a474eccbb73188a4323fd"
+    },
+    {
+      "path": "data/raw/mhu/raw_data_inspection.json",
+      "bytes": 6507,
+      "sha256": "bed790f00825790a8cd92dc9459cf24a74b1212aae53e552e7922b0bb6b0a6a5"
+    },
+    {
+      "path": "data/raw/mhu/download_manifest.json",
+      "bytes": 4219,
+      "sha256": "80d7cee6fac61a2972bbff2a2b78b1d16ec3f0343a2ec7f21f03ac3a57971e9a"
+    },
+    {
+      "path": "data/raw/mhu/measurement_metadata.json",
+      "bytes": 5120,
+      "sha256": "a5ae003b07a813df52e8351153e92b4908febb7bb91ce7e3c1373d0061114e41"
+    },
+    {
+      "path": "outputs/rpm/moving_mean_8.json",
+      "bytes": 1119,
+      "sha256": "2037e78a13794f805fb38d8c271f36fe3ccee676128bbf6ac478b6e4a87f2737"
+    },
+    {
+      "path": "outputs/rpm/example_history_rpm.json",
+      "bytes": 179,
+      "sha256": "decb97958a6611be1402f45a6efe879f5e157b26325a78a568d1507c7382e472"
+    },
+    {
+      "path": "outputs/rpm/selected_model_with_usage_notes.json",
+      "bytes": 43609,
+      "sha256": "108ac89abfee65e24df6ef39296b3f89cbbf0a844c1cdd01911ebbf8276780f8"
+    },
+    {
+      "path": "outputs/rpm/persistence.json",
+      "bytes": 1117,
+      "sha256": "07d18d04d035dcc37883f0c0a877f1ecdbd74a2779919db98c0fbf1dd7db54f8"
+    },
+    {
+      "path": "outputs/rpm/replay_mhu2.json",
+      "bytes": 262618,
+      "sha256": "e4f720b42f48962586c553b6be5201c3b98402b5c2e57db46635af3d46f50f2f"
+    },
+    {
+      "path": "outputs/rpm/mlp_residual.json",
+      "bytes": 42958,
+      "sha256": "32dcaae3dfb3ec0b0963a740253975e5e986d4d514886094f2d2672b3703150f"
+    },
+    {
+      "path": "outputs/rpm/selection_frozen_before_test.json",
+      "bytes": 2112,
+      "sha256": "b24ecefc73ade4a62ac5d55be6e898053b1b54c1612ba963eaa7645c63e16abb"
+    },
+    {
+      "path": "outputs/rpm/ridge_alpha_1.json",
+      "bytes": 1895,
+      "sha256": "4fe5c4ef94175765e6207ddf4a106f4f10c54bf84af079905a469b8b36e12676"
+    },
+    {
+      "path": "outputs/rpm/mlp_training_history.csv",
+      "bytes": 1748,
+      "sha256": "0ef182e1b2c420338943b5f0a19ded8be50703b9b3a8039293c062c21887a3d1"
+    },
+    {
+      "path": "outputs/rpm/selected_model.json",
+      "bytes": 42958,
+      "sha256": "32dcaae3dfb3ec0b0963a740253975e5e986d4d514886094f2d2672b3703150f"
+    },
+    {
+      "path": "outputs/rpm/training_plan.json",
+      "bytes": 1233,
+      "sha256": "530b4bff0aeefe93b08fbbbd1e98494fd268819b309eac422dbb2050843681bd"
+    },
+    {
+      "path": "outputs/rpm/inference_test_vectors.json",
+      "bytes": 823,
+      "sha256": "3bde6a33baa63744f6981182c0c8e73e12f5e1ed1505183e4573e26556488e78"
+    },
+    {
+      "path": "outputs/rpm/ridge_alpha_100.json",
+      "bytes": 1896,
+      "sha256": "e0165236f5cea7cde006c28e50ac1dfdf3bcf17b51377d368aa599f5ce8b6050"
+    },
+    {
+      "path": "outputs/rpm/training_report.json",
+      "bytes": 29230,
+      "sha256": "7f3e5ea34a4d3bba02623a0a6c651ab6945e2c1e4dae8130a25346a3e8c8b2ca"
+    },
+    {
+      "path": "outputs/pims/persistence.json",
+      "bytes": 1708,
+      "sha256": "919d357072350fa96f92fedab604c92ff61804e0de8d6a3caa9a2ca3d4252079"
+    },
+    {
+      "path": "outputs/pims/mlp_residual.json",
+      "bytes": 48325,
+      "sha256": "2ad61d494374f7e6c00f02dd935b89a80dd46857bd4367c5aaca4de20ff5d517"
+    },
+    {
+      "path": "outputs/pims/selection_frozen_before_test.json",
+      "bytes": 4022,
+      "sha256": "220e544ba8fa8fb3846509609d62185c820f14fd2ec49e2b85353de60f7866c2"
+    },
+    {
+      "path": "outputs/pims/ridge_residual.json",
+      "bytes": 5631,
+      "sha256": "947b4c768dc6b99a9875bc250a50dbef651ca9c1d911ad4124d70b05534e9ec7"
+    },
+    {
+      "path": "outputs/pims/example_history_g.json",
+      "bytes": 734,
+      "sha256": "f8e1e4c0e395488775b1b51d7893589597a49abe1166f7025c134818e6d8eeea"
+    },
+    {
+      "path": "outputs/pims/mlp_training_history.csv",
+      "bytes": 3446,
+      "sha256": "a614f575ca2ffa95f9c587e0408b1f4b78e6289c5cfa0698b2fb512cedfd06e0"
+    },
+    {
+      "path": "outputs/pims/inference.py",
+      "bytes": 3801,
+      "sha256": "774117e43b7c1d6266fbfe9a57d723fa1482638db61c12732f5ba69f95d74285"
+    },
+    {
+      "path": "outputs/pims/selected_model.json",
+      "bytes": 48325,
+      "sha256": "2ad61d494374f7e6c00f02dd935b89a80dd46857bd4367c5aaca4de20ff5d517"
+    },
+    {
+      "path": "outputs/pims/README.txt",
+      "bytes": 1077,
+      "sha256": "e35adc4c749950294bf8704224a155f3900e5f8fe9b15a0cecb257fe9fc4e144"
+    },
+    {
+      "path": "outputs/pims/inference_test_vectors.json",
+      "bytes": 9281,
+      "sha256": "d9d748889ffcd103f124589983c74a1cd3daeb95d4eb3120e94001d4e31dd4d5"
+    },
+    {
+      "path": "outputs/pims/training_report.json",
+      "bytes": 22532,
+      "sha256": "f8f84cd2523574706bf6de6606cdf3b3343e9a6a7372bd661d6abd48733e4702"
+    }
+  ]
+}

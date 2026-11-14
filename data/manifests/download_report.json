@@ -1,0 +1,8 @@
+[
+  {
+    "id": "MMASH",
+    "status": "failed",
+    "reason": "HTTPSConnectionPool(host='physionet.org', port=443): Max retries exceeded with url: /files/mmash/1.0.0/MMASH.zip (Caused by NameResolutionError(\"HTTPSConnection(host='physionet.org', port=443): Failed to resolve 'physionet.org' ([Errno -3] Temporary failure in name resolution)\"))",
+    "source_url": "https://physionet.org/content/mmash/1.0.0/"
+  }
+]

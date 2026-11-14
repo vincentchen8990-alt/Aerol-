@@ -1,0 +1,43 @@
+# Spacecraft dynamics predictor: SIMULATED spacecraft data only (not a human or medical model).
+# Read by gravity_ai.simulation.generate (data), gravity_ai.train.dynamics (train, model) and
+# gravity_ai.evaluate_dynamics (evaluation). Precedence: built-in defaults < this file < command line.
+# Unknown keys or invalid values are rejected with an error.
+
+data:
+  output_dir: data/synthetic/dynamics_v2     # frozen benchmark; the generator refuses to overwrite it
+  seed: 49                                    # episode i uses its own stream [seed, 0, i, attempt]
+  episodes: 500                               # per time step, blocks of 20 episodes: 14 train / 3 val / 3 test
+  steps_per_episode: 120
+  dt_values_s: [0.5, 1.0, 2.0, 5.0]           # episode i uses dt_values_s[i % 4]; API default is 2.0 s
+  scenario_mix: {mission_pid: 0.35, setpoint_steps: 0.35, random_torque: 0.30}
+  max_crew_gravity_g: 3.0                     # episodes exceeding this are rejected and resampled
+  ranges:                                     # log-uniform sampling; API/app defaults lie inside
+    radius_m: [40.0, 400.0]
+    ring_inertia_kg_m2: [1.0e+9, 1.0e+10]
+    hub_inertia_kg_m2: [2.0e+9, 3.0e+10]
+    bearing_drag_nms: [1.0e+4, 1.5e+6]
+    motor_torque_limit_nm: [2.0e+6, 2.0e+7]
+    motor_power_limit_w: [1.0e+6, 1.0e+7]
+    motor_slew_nm_s: [2.0e+5, 4.0e+6]
+
+train:
+  dataset_dir: data/synthetic/dynamics_v2
+  output_root: outputs/runs                   # each run writes outputs/runs/<run_id>/
+  seed: 17
+  epochs: 50                                  # upper limit; early stopping may end sooner
+  batch_size: 256
+  learning_rate: 0.0015
+  weight_decay: 0.0001
+  early_stopping_patience: 8                  # epochs without validation improvement
+  device: auto                                # auto | cpu | cuda (auto = cuda if available)
+  num_threads: 0                              # 0 = PyTorch default
+  target_mode: residual                       # residual (predict change) | absolute (archived formulation)
+
+model:                                        # archived architecture: 3 x 64 SiLU MLP
+  hidden_width: 64
+  hidden_layers: 3
+  activation: silu
+
+evaluation:
+  rollout_horizons_s: [10, 30, 60]
+  rollout_start_stride_steps: 10

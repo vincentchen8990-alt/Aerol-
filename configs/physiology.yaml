@@ -1,0 +1,7 @@
+input: data/processed/wearable/e4_windows.csv
+predict: next_window_hr_mean
+baseline_models: [ridge, boosting]
+sequence_models: [gru, lstm, transformer]
+subject_holdout: 0.25
+seed: 42
+# Never train on the CSV source catalogs themselves.

@@ -1,0 +1,4497 @@
+{
+  "run_id": "dyn-v2-residual-e50",
+  "evaluated": "2026-11-14T02:38:15",
+  "data_type": "SIMULATED_SPACECRAFT_DYNAMICS",
+  "ground_truth": "analytical simulator gravity_ai.simulation.physics.step (synthetic, clean, no sensor noise)",
+  "checkpoint": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-residual-e50\\checkpoint_best.pt",
+  "checkpoint_epoch": 29,
+  "loaded_from_disk": true,
+  "target_mode": "residual",
+  "dataset_fingerprint_sha256": "9694a9ca3449d13aa4d96ad5971d9ec1ffa09cb9438bbd7f96db32f6dea7f902",
+  "split_manifest_sha256": "f757c1ef81c1e25f092adb0cda941876d2cfeca1237890ee516ff0e1c13ab6f9",
+  "baselines": {
+    "persistence": "next speeds = current speeds; radial = r*omega^2 of current speed; tangential = 0; axial = -known thrust acceleration",
+    "ridge_baseline": "ridge regression (alpha=1) on the same standardised features, residual targets, fitted on training episodes only"
+  },
+  "one_step": {
+    "val": {
+      "rows": 9120,
+      "episodes": 76,
+      "rows_outside_training_envelope": 360,
+      "models": {
+        "learned_model": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0002292584289984129,
+            "rmse": 0.00043570199974331085,
+            "unit": "rad/s",
+            "mae_rpm": 0.002189256733234784,
+            "rmse_rpm": 0.004160647618450298
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0001343544615764973,
+            "rmse": 0.0003181830210900644,
+            "unit": "rad/s",
+            "mae_rpm": 0.00128299060118098,
+            "rmse_rpm": 0.0030384240368637925
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.01652379302544369,
+            "rmse": 0.02923820059360389,
+            "unit": "m/s^2",
+            "mae_g": 0.0016849579647936544,
+            "rmse_g": 0.0029814667183598775
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.0163385539673423,
+            "rmse": 0.04667880223802928,
+            "unit": "m/s^2",
+            "mae_g": 0.0016660688377113796,
+            "rmse_g": 0.004759913144450886
+          },
+          "crew_axial_m_s2": {
+            "mae": 7.493560757379065e-05,
+            "rmse": 8.656670009831347e-05,
+            "unit": "m/s^2",
+            "mae_g": 7.641305397234596e-06,
+            "rmse_g": 8.827346759424826e-06
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.014789573393086286,
+            "rmse": 0.027454295927716296,
+            "unit": "m/s^2",
+            "mae_g": 0.0015081167771957076,
+            "rmse_g": 0.002799559067338622,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.025997124776188135,
+            "rmse": 0.05507985517521294,
+            "unit": "m/s^2",
+            "mean_g": 0.0026509689625089238,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "persistence": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0010815138333647972,
+            "rmse": 0.002298733939143601,
+            "unit": "rad/s",
+            "mae_rpm": 0.010327696356136314,
+            "rmse_rpm": 0.021951292156068492
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0005998312844744829,
+            "rmse": 0.0013585556480501099,
+            "unit": "rad/s",
+            "mae_rpm": 0.005727966836716489,
+            "rmse_rpm": 0.012973250811155294
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.07321856354676966,
+            "rmse": 0.15720992758649346,
+            "unit": "m/s^2",
+            "mae_g": 0.007466215633959575,
+            "rmse_g": 0.016030951200103345
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.10145358789696574,
+            "rmse": 0.22525690382540653,
+            "unit": "m/s^2",
+            "mae_g": 0.010345386844331728,
+            "rmse_g": 0.022969811691597695
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.06710011364883701,
+            "rmse": 0.14736566287266256,
+            "unit": "m/s^2",
+            "mae_g": 0.006842307378038068,
+            "rmse_g": 0.015027115566749356,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.13398321573123229,
+            "rmse": 0.2746918893101123,
+            "unit": "m/s^2",
+            "mean_g": 0.013662485734805697,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "ridge_baseline": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0010149551508733705,
+            "rmse": 0.001855540648632115,
+            "unit": "rad/s",
+            "mae_rpm": 0.00969210775668464,
+            "rmse_rpm": 0.01771910798026457
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0005717322182250258,
+            "rmse": 0.0010612717665617081,
+            "unit": "rad/s",
+            "mae_rpm": 0.005459640519324425,
+            "rmse_rpm": 0.010134398856729832
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.06436043308278384,
+            "rmse": 0.12833711509201304,
+            "unit": "m/s^2",
+            "mae_g": 0.006562937708879571,
+            "rmse_g": 0.013086743698614007
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.08065664045304212,
+            "rmse": 0.17903770934281757,
+            "unit": "m/s^2",
+            "mae_g": 0.008224688395429848,
+            "rmse_g": 0.018256765495130098
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.059684054035950354,
+            "rmse": 0.12215198767553685,
+            "unit": "m/s^2",
+            "mae_g": 0.006086079755670933,
+            "rmse_g": 0.0124560362280225,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.11234744904774734,
+            "rmse": 0.22028371813836772,
+            "unit": "m/s^2",
+            "mean_g": 0.011456251528069967,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        }
+      }
+    },
+    "test": {
+      "rows": 9000,
+      "episodes": 75,
+      "rows_outside_training_envelope": 417,
+      "models": {
+        "learned_model": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0002688484026387686,
+            "rmse": 0.0005551105218677888,
+            "unit": "rad/s",
+            "mae_rpm": 0.002567313133339211,
+            "rmse_rpm": 0.005300915011054815
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.00013393145218582885,
+            "rmse": 0.00026491168603037866,
+            "unit": "rad/s",
+            "mae_rpm": 0.0012789511590510295,
+            "rmse_rpm": 0.0025297202588725775
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.017599773061662657,
+            "rmse": 0.04379067313420411,
+            "unit": "m/s^2",
+            "mae_g": 0.0017946773935709603,
+            "rmse_g": 0.004465405937216492
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.017434726316535375,
+            "rmse": 0.04384447419343291,
+            "unit": "m/s^2",
+            "mae_g": 0.0017778473093804077,
+            "rmse_g": 0.004470892118453591
+          },
+          "crew_axial_m_s2": {
+            "mae": 8.496470126354122e-05,
+            "rmse": 9.901532212324195e-05,
+            "unit": "m/s^2",
+            "mae_g": 8.663988340925926e-06,
+            "rmse_g": 1.0096752930230197e-05
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.01589465591128866,
+            "rmse": 0.04044352372116639,
+            "unit": "m/s^2",
+            "mae_g": 0.0016208038332446513,
+            "rmse_g": 0.0041240916848430806,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.027403056692406544,
+            "rmse": 0.06196749772969153,
+            "unit": "m/s^2",
+            "mean_g": 0.0027943341194400276,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "persistence": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0012609339882792454,
+            "rmse": 0.002509298669208836,
+            "unit": "rad/s",
+            "mae_rpm": 0.012041032628833196,
+            "rmse_rpm": 0.023962037213910062
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0005351001616474157,
+            "rmse": 0.0013833217522383054,
+            "unit": "rad/s",
+            "mae_rpm": 0.005109830146527506,
+            "rmse_rpm": 0.013209749685316106
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.08548898775525964,
+            "rmse": 0.18828329484114079,
+            "unit": "m/s^2",
+            "mae_g": 0.008717450684510984,
+            "rmse_g": 0.019199552838241478
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.09117792176116607,
+            "rmse": 0.21298649163382488,
+            "unit": "m/s^2",
+            "mae_g": 0.00929756050854941,
+            "rmse_g": 0.021718577866429913
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.07937126462255713,
+            "rmse": 0.17528391453555137,
+            "unit": "m/s^2",
+            "mae_g": 0.008093616538018296,
+            "rmse_g": 0.017873984952613928,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.1340235906689431,
+            "rmse": 0.28427775983133347,
+            "unit": "m/s^2",
+            "mean_g": 0.013666602832663867,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "ridge_baseline": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0009539713714207948,
+            "rmse": 0.001961884875209151,
+            "unit": "rad/s",
+            "mae_rpm": 0.009109755559786437,
+            "rmse_rpm": 0.018734620540005756
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0005508000893632707,
+            "rmse": 0.0011712389911351982,
+            "unit": "rad/s",
+            "mae_rpm": 0.0052597534126573335,
+            "rmse_rpm": 0.011184508498867882
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.0720201595017784,
+            "rmse": 0.15659734586790755,
+            "unit": "m/s^2",
+            "mae_g": 0.007344012430521982,
+            "rmse_g": 0.015968485249081753
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.06705777498944086,
+            "rmse": 0.16463187964002055,
+            "unit": "m/s^2",
+            "mae_g": 0.006837990036295867,
+            "rmse_g": 0.016787779684195984
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.06495430146133281,
+            "rmse": 0.14476928321121238,
+            "unit": "m/s^2",
+            "mae_g": 0.006623495430277701,
+            "rmse_g": 0.014762358523166666,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.10806930627155624,
+            "rmse": 0.22721440211104416,
+            "unit": "m/s^2",
+            "mean_g": 0.01102000237303832,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        }
+      }
+    }
+  },
+  "one_step_test_by_dt_s": {
+    "0.5": {
+      "rows": 2160,
+      "models": {
+        "learned_model": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.00010231761892354955,
+            "rmse": 0.0001431289242918155,
+            "unit": "rad/s",
+            "mae_rpm": 0.0009770612890245458,
+            "rmse_rpm": 0.0013667805480280855
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 6.007284896955125e-05,
+            "rmse": 7.818399503744128e-05,
+            "unit": "rad/s",
+            "mae_rpm": 0.0005736534515470173,
+            "rmse_rpm": 0.0007466021568528598
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.005284942070782683,
+            "rmse": 0.0071991349511610235,
+            "unit": "m/s^2",
+            "mae_g": 0.0005389141114226247,
+            "rmse_g": 0.0007341074629114961
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.013307613854569347,
+            "rmse": 0.018791715704606,
+            "unit": "m/s^2",
+            "mae_g": 0.0013569989603554066,
+            "rmse_g": 0.001916221717365869
+          },
+          "crew_axial_m_s2": {
+            "mae": 5.589020012040338e-05,
+            "rmse": 6.133372932181235e-05,
+            "unit": "m/s^2",
+            "mae_g": 5.699214320935628e-06,
+            "rmse_g": 6.254299819185181e-06
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.004500770776831971,
+            "rmse": 0.006379817246890329,
+            "unit": "m/s^2",
+            "mae_g": 0.00045895089320328257,
+            "rmse_g": 0.0006505603082490279,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.015467917766429497,
+            "rmse": 0.02012361510748296,
+            "unit": "m/s^2",
+            "mean_g": 0.0015772886527437502,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "persistence": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0002638295978221871,
+            "rmse": 0.00044804296523070006,
+            "unit": "rad/s",
+            "mae_rpm": 0.0025193870776408695,
+            "rmse_rpm": 0.004278495158040967
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.00012497958362411908,
+            "rmse": 0.00020397405003894848,
+            "unit": "rad/s",
+            "mae_rpm": 0.0011934671111607268,
+            "rmse_rpm": 0.0019478086995703353
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.013937136943800086,
+            "rmse": 0.022542592313363426,
+            "unit": "m/s^2",
+            "mae_g": 0.0014211924504086602,
+            "rmse_g": 0.002298704686448831
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.05600754311826335,
+            "rmse": 0.10412962687971025,
+            "unit": "m/s^2",
+            "mae_g": 0.005711179976675354,
+            "rmse_g": 0.010618266878058284
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.013770862760177272,
+            "rmse": 0.02376327602329955,
+            "unit": "m/s^2",
+            "mae_g": 0.0014042372023246748,
+            "rmse_g": 0.002423179783442822,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.05811658266613721,
+            "rmse": 0.10654176487328425,
+            "unit": "m/s^2",
+            "mean_g": 0.0059262421587532145,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "ridge_baseline": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0006798236787419636,
+            "rmse": 0.0010487628403440079,
+            "unit": "rad/s",
+            "mae_rpm": 0.00649183793416201,
+            "rmse_rpm": 0.010014947410310705
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0004213565604558487,
+            "rmse": 0.0006308472908087114,
+            "unit": "rad/s",
+            "mae_rpm": 0.0040236587640448416,
+            "rmse_rpm": 0.006024147880100209
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.04437343886815645,
+            "rmse": 0.06866571735137951,
+            "unit": "m/s^2",
+            "mae_g": 0.0045248315039444105,
+            "rmse_g": 0.007001954525896153
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.05192340946936215,
+            "rmse": 0.08333503024846384,
+            "unit": "m/s^2",
+            "mae_g": 0.005294714246900027,
+            "rmse_g": 0.008497808145336464
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.03681560571071385,
+            "rmse": 0.05933721689536944,
+            "unit": "m/s^2",
+            "mae_g": 0.0037541470033817716,
+            "rmse_g": 0.006050712210119607,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.07287705417975948,
+            "rmse": 0.10798012782865153,
+            "unit": "m/s^2",
+            "mean_g": 0.007431391370117164,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        }
+      }
+    },
+    "1": {
+      "rows": 2280,
+      "models": {
+        "learned_model": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.00028899131001582795,
+            "rmse": 0.0007532725616644176,
+            "unit": "rad/s",
+            "mae_rpm": 0.002759663729977283,
+            "rmse_rpm": 0.007193223101063196
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.00012163473117111208,
+            "rmse": 0.00021695385487241042,
+            "unit": "rad/s",
+            "mae_rpm": 0.0011615261230521797,
+            "rmse_rpm": 0.002071756705547148
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.017719664039175582,
+            "rmse": 0.05528583475733819,
+            "unit": "m/s^2",
+            "mae_g": 0.0018069028709269306,
+            "rmse_g": 0.005637586205007642
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.02678227795610092,
+            "rmse": 0.07754569796568955,
+            "unit": "m/s^2",
+            "mae_g": 0.0027310323052317483,
+            "rmse_g": 0.00790746054623032
+          },
+          "crew_axial_m_s2": {
+            "mae": 8.373652277728788e-05,
+            "rmse": 0.00010163855625705289,
+            "unit": "m/s^2",
+            "mae_g": 8.538748989439602e-06,
+            "rmse_g": 1.036424836789861e-05
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.016595187892852466,
+            "rmse": 0.051530539184196755,
+            "unit": "m/s^2",
+            "mae_g": 0.0016922382151756683,
+            "rmse_g": 0.005254652626961986,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.03427051896976751,
+            "rmse": 0.0952358605158675,
+            "unit": "m/s^2",
+            "mean_g": 0.0034946203820639577,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "persistence": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0009691200683704547,
+            "rmse": 0.0016585320805961154,
+            "unit": "rad/s",
+            "mae_rpm": 0.009254414959842805,
+            "rmse_rpm": 0.015837814734201452
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0003125025599334294,
+            "rmse": 0.0005566475531001699,
+            "unit": "rad/s",
+            "mae_rpm": 0.0029841796285365943,
+            "rmse_rpm": 0.0053155925781540195
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.06631910361738139,
+            "rmse": 0.1453135861571762,
+            "unit": "m/s^2",
+            "mae_g": 0.006762666518880698,
+            "rmse_g": 0.014817861977043763
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.1508625035527348,
+            "rmse": 0.35708267388533727,
+            "unit": "m/s^2",
+            "mae_g": 0.0153836940803164,
+            "rmse_g": 0.03641229919343887
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.06144324585335006,
+            "rmse": 0.13265824024636746,
+            "unit": "m/s^2",
+            "mae_g": 0.006265467397464992,
+            "rmse_g": 0.013527375836434203,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.16595961515484028,
+            "rmse": 0.38551792994744255,
+            "unit": "m/s^2",
+            "mean_g": 0.016923171027296815,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "ridge_baseline": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0005922959653052834,
+            "rmse": 0.0010979676423504775,
+            "unit": "rad/s",
+            "mae_rpm": 0.0056560098391032956,
+            "rmse_rpm": 0.010484818658101965
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0004410267360506924,
+            "rmse": 0.0007870391676927022,
+            "unit": "rad/s",
+            "mae_rpm": 0.004211495104689138,
+            "rmse_rpm": 0.007515670436713482
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.05269377692687724,
+            "rmse": 0.10741888654381233,
+            "unit": "m/s^2",
+            "mae_g": 0.005373269865537899,
+            "rmse_g": 0.010953678018876206
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.11114109547423633,
+            "rmse": 0.28284579223125644,
+            "unit": "m/s^2",
+            "mae_g": 0.011333237698320663,
+            "rmse_g": 0.028842244011079876
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.04800991033266464,
+            "rmse": 0.09974257754587283,
+            "unit": "m/s^2",
+            "mae_g": 0.00489564839498347,
+            "rmse_g": 0.01017091234477348,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.1287917311385798,
+            "rmse": 0.30255670438653237,
+            "unit": "m/s^2",
+            "mean_g": 0.013133101633950412,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        }
+      }
+    },
+    "2": {
+      "rows": 2400,
+      "models": {
+        "learned_model": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.00022299122276144353,
+            "rmse": 0.0003530111498158091,
+            "unit": "rad/s",
+            "mae_rpm": 0.002129409322115382,
+            "rmse_rpm": 0.0033710081675843782
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 9.78176966296491e-05,
+            "rmse": 0.00016827141318022308,
+            "unit": "rad/s",
+            "mae_rpm": 0.000934090196428325,
+            "rmse_rpm": 0.001606873631321473
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.01610446074498862,
+            "rmse": 0.024443425422478383,
+            "unit": "m/s^2",
+            "mae_g": 0.0016421979722931503,
+            "rmse_g": 0.0024925357204018074
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.012279742347495383,
+            "rmse": 0.018868292064615145,
+            "unit": "m/s^2",
+            "mae_g": 0.0012521852362932686,
+            "rmse_g": 0.0019240303329490852
+          },
+          "crew_axial_m_s2": {
+            "mae": 9.359499709565474e-05,
+            "rmse": 0.00010101681859749878,
+            "unit": "m/s^2",
+            "mae_g": 9.544033599206125e-06,
+            "rmse_g": 1.0300848770731982e-05
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.01496680217536553,
+            "rmse": 0.02293230542919629,
+            "unit": "m/s^2",
+            "mae_g": 0.0015261890834653558,
+            "rmse_g": 0.0023384443647113226,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.021772353894979297,
+            "rmse": 0.03087885516364752,
+            "unit": "m/s^2",
+            "mean_g": 0.0022201622261403538,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "persistence": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0013491987679126972,
+            "rmse": 0.0022023792196134468,
+            "unit": "rad/s",
+            "mae_rpm": 0.012883899187608037,
+            "rmse_rpm": 0.02103117236186106
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.000543135065224018,
+            "rmse": 0.0012459264912850286,
+            "unit": "rad/s",
+            "mae_rpm": 0.005186557823816487,
+            "rmse_rpm": 0.011897721589029214
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.08445737923334137,
+            "rmse": 0.14536992359240877,
+            "unit": "m/s^2",
+            "mae_g": 0.008612255890986359,
+            "rmse_g": 0.014823606796654187
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.07366257863701849,
+            "rmse": 0.1318000059998471,
+            "unit": "m/s^2",
+            "mae_g": 0.007511492572592934,
+            "rmse_g": 0.01343986029886323
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.07908362493440789,
+            "rmse": 0.1363649266070808,
+            "unit": "m/s^2",
+            "mae_g": 0.008064285452668128,
+            "rmse_g": 0.013905352654278556,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.11384174723744493,
+            "rmse": 0.1962234855128776,
+            "unit": "m/s^2",
+            "mean_g": 0.011608627537175788,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "ridge_baseline": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0006026846274643329,
+            "rmse": 0.001100515859388903,
+            "unit": "rad/s",
+            "mae_rpm": 0.005755214255186763,
+            "rmse_rpm": 0.010509152338366148
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.00045117856091894605,
+            "rmse": 0.0008868418321211095,
+            "unit": "rad/s",
+            "mae_rpm": 0.004308437891240286,
+            "rmse_rpm": 0.008468715679364844
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.04438675295116101,
+            "rmse": 0.08676218690380678,
+            "unit": "m/s^2",
+            "mae_g": 0.004526189162574479,
+            "rmse_g": 0.008847280865923306
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.042790406173924087,
+            "rmse": 0.07800983545209103,
+            "unit": "m/s^2",
+            "mae_g": 0.004363407093546123,
+            "rmse_g": 0.00795478939822376
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.040898706211612595,
+            "rmse": 0.07978218516189821,
+            "unit": "m/s^2",
+            "mae_g": 0.004170507381380247,
+            "rmse_g": 0.00813551877163947,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.06577413680773984,
+            "rmse": 0.11667566800148786,
+            "unit": "m/s^2",
+            "mean_g": 0.0067070953697480635,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        }
+      }
+    },
+    "5": {
+      "rows": 2160,
+      "models": {
+        "learned_model": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.0004650696506530083,
+            "rmse": 0.0007252977140199162,
+            "unit": "rad/s",
+            "mae_rpm": 0.004441088027006831,
+            "rmse_rpm": 0.0069260829839712925
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0002608963226467294,
+            "rmse": 0.0004529360967687332,
+            "unit": "rad/s",
+            "mae_rpm": 0.002491376363023499,
+            "rmse_rpm": 0.004325221122329576
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.031449510594805684,
+            "rmse": 0.06362444731216349,
+            "unit": "m/s^2",
+            "mae_g": 0.0032069575843744484,
+            "rmse_g": 0.006487888046597308
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.017422738680115544,
+            "rmse": 0.030226377624831678,
+            "unit": "m/s^2",
+            "mae_g": 0.001776624910659149,
+            "rmse_g": 0.0030822327323634146
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.00010574639543982037,
+            "rmse": 0.00012184329593529703,
+            "unit": "m/s^2",
+            "mae_g": 1.078313138939601e-05,
+            "rmse_g": 1.2424558430789008e-05
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.027580039216231467,
+            "rmse": 0.058201237600600794,
+            "unit": "m/s^2",
+            "mae_g": 0.00281238131433583,
+            "rmse_g": 0.005934874559671325,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.03834554410053285,
+            "rmse": 0.07043947079504471,
+            "unit": "m/s^2",
+            "mean_g": 0.003910157301477349,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "persistence": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.00246799220571397,
+            "rmse": 0.004212130575597224,
+            "unit": "rad/s",
+            "mae_rpm": 0.023567589543098892,
+            "rmse_rpm": 0.04022288412328852
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0011712572041725838,
+            "rmse": 0.002424820760017059,
+            "unit": "rad/s",
+            "mae_rpm": 0.011184682420563601,
+            "rmse_rpm": 0.023155332604113687
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.1784219479588332,
+            "rmse": 0.3184855551817244,
+            "unit": "m/s^2",
+            "mae_g": 0.01819397530847264,
+            "rmse_g": 0.0324764884218081
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.0828094008731324,
+            "rmse": 0.15581190235314857,
+            "unit": "m/s^2",
+            "mae_g": 0.008444208865732173,
+            "rmse_g": 0.015888392300443942
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.16421528595037693,
+            "rmse": 0.29701248508872363,
+            "unit": "m/s^2",
+            "mae_g": 0.016745298950240597,
+            "rmse_g": 0.030286844650183668,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.19864462108274417,
+            "rmse": 0.354556621393986,
+            "unit": "m/s^2",
+            "mean_g": 0.02025611407389314,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        },
+        "ridge_baseline": {
+          "next_ring_omega_rad_s": {
+            "mae": 0.002000206152728734,
+            "rmse": 0.0035098933806873484,
+            "unit": "rad/s",
+            "mae_rpm": 0.019100561784576038,
+            "rmse_rpm": 0.0335170128757149
+          },
+          "next_hub_omega_rad_s": {
+            "mae": 0.0009068060783721087,
+            "rmse": 0.0019468304371281974,
+            "unit": "rad/s",
+            "mae_rpm": 0.008659360187921865,
+            "rmse_rpm": 0.01859086124584248
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.15077073568737087,
+            "rmse": 0.2773429418998645,
+            "unit": "m/s^2",
+            "mae_g": 0.015374336362302201,
+            "rmse_g": 0.028281109441028743
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.06262348979280963,
+            "rmse": 0.12156966537691288,
+            "unit": "m/s^2",
+            "mae_g": 0.006385818785498578,
+            "rmse_g": 0.012396655879113958
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "unit": "m/s^2",
+            "mae_g": 0.0,
+            "rmse_g": 0.0
+          },
+          "crew_gravity_magnitude": {
+            "mae": 0.1377071825696795,
+            "rmse": 0.2573538000748178,
+            "unit": "m/s^2",
+            "mae_g": 0.014042224670981377,
+            "rmse_g": 0.02624278424077721,
+            "definition": "| |a_pred| - |a_true| | (total apparent gravity)"
+          },
+          "crew_gravity_vector_error": {
+            "mean": 0.16838252040795743,
+            "rmse": 0.30281725671025783,
+            "unit": "m/s^2",
+            "mean_g": 0.017170238604208108,
+            "definition": "|a_pred - a_true| (3-component vector error)"
+          }
+        }
+      }
+    }
+  },
+  "rollout_assumptions": [
+    "initial ring/hub speed and applied torque taken from the simulator at the start point",
+    "known planned torque commands and axial thrust schedule supplied for every step (recorded commands replayed open-loop; closed-loop feedback is not simulated)",
+    "fixed spacecraft parameters and dt supplied",
+    "velocities fed back from the previous prediction; no future simulator state used",
+    "applied (actuator) torque advanced by the explicit motor model (clamp, slew, power limit)"
+  ],
+  "rollout_start_stride_steps": 10,
+  "rollouts": {
+    "dt=0.5s,horizon=10s": {
+      "dt_s": 0.5,
+      "horizon_s": 10,
+      "steps": 20,
+      "rollouts": 198,
+      "episodes": 18,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.0018510027653760633,
+            "rmse": 0.002565925716925082
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.001099679854253222,
+            "rmse": 0.0013655355381642946
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.0952535773174177,
+            "rmse": 0.12868153362664866
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.012449519202056865,
+            "rmse": 0.01761752048384916
+          },
+          "crew_axial_m_s2": {
+            "mae": 5.680153016227349e-05,
+            "rmse": 6.205812402690318e-05
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.08397948690437623,
+            "rmse": 0.11759980534318767
+          },
+          "ring_omega_rpm": {
+            "mae": 0.017675774387182097,
+            "rmse": 0.024502785687314527
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.008563524435396005,
+            "rmse": 0.011991842815149688
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 1744.7321375905808,
+            "rmse": 7123.47311813453
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.004948809463021557,
+            "rmse": 0.008573302007934016
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.0023085251807247304,
+            "rmse": 0.0037816282270627458
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.2576957983273532,
+            "rmse": 0.4225388154517429
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.0564602504776008,
+            "rmse": 0.10739996805695852
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.2371758449561287,
+            "rmse": 0.3991274845577082
+          },
+          "ring_omega_rpm": {
+            "mae": 0.04725764930758974,
+            "rmse": 0.08186900359094222
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.024185205442850383,
+            "rmse": 0.04069967670485927
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.011744047226928957,
+            "rmse": 0.01820262484313386
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.007580004347246759,
+            "rmse": 0.011427039137153304
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.5694609997678134,
+            "rmse": 0.8152757216095365
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.053463659449737536,
+            "rmse": 0.08648521857833229
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.49832989408673817,
+            "rmse": 0.7304370223582067
+          },
+          "ring_omega_rpm": {
+            "mae": 0.11214739008422457,
+            "rmse": 0.17382226326192537
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.05081550724118208,
+            "rmse": 0.07448384742579849
+          }
+        }
+      }
+    },
+    "dt=0.5s,horizon=30s": {
+      "dt_s": 0.5,
+      "horizon_s": 30,
+      "steps": 60,
+      "rollouts": 126,
+      "episodes": 18,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.004652008805709812,
+            "rmse": 0.006540042791173032
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.0027694508849633237,
+            "rmse": 0.003499773912592524
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.2571097262369541,
+            "rmse": 0.36358442893219833
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.0124963197475959,
+            "rmse": 0.018151638946703484
+          },
+          "crew_axial_m_s2": {
+            "mae": 5.756483848912582e-05,
+            "rmse": 6.313620473822414e-05
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.2337036424458411,
+            "rmse": 0.346577676447382
+          },
+          "ring_omega_rpm": {
+            "mae": 0.04442341180414447,
+            "rmse": 0.06245280829486226
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.02383113932340209,
+            "rmse": 0.035341087572961415
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 1878.142177282001,
+            "rmse": 8541.570977322017
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.012480311418596651,
+            "rmse": 0.02182665329696728
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.005615118344339239,
+            "rmse": 0.00883289386264109
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.6117636139686927,
+            "rmse": 0.9838114707955526
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.062133668526055154,
+            "rmse": 0.12407922223061672
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.5569916972171167,
+            "rmse": 0.9468366157736225
+          },
+          "ring_omega_rpm": {
+            "mae": 0.1191781952157529,
+            "rmse": 0.20842918580192143
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.05679734641463872,
+            "rmse": 0.09655046481455161
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.025255662832769393,
+            "rmse": 0.035817008667013754
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.017726942486080706,
+            "rmse": 0.025445612836784533
+          },
+          "crew_radial_m_s2": {
+            "mae": 1.1702659866183527,
+            "rmse": 1.5500049271767753
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.05950545092440962,
+            "rmse": 0.09627506196806725
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 1.0263149303428667,
+            "rmse": 1.41008688980368
+          },
+          "ring_omega_rpm": {
+            "mae": 0.24117381485385056,
+            "rmse": 0.3420272385672298
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.10465499740919343,
+            "rmse": 0.1437888463240434
+          }
+        }
+      }
+    },
+    "dt=0.5s,horizon=60s": {
+      "dt_s": 0.5,
+      "horizon_s": 60,
+      "steps": 120,
+      "rollouts": 18,
+      "episodes": 18,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.009199067028203303,
+            "rmse": 0.012021990782012644
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.00571207140920325,
+            "rmse": 0.0071015614449251915
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.5208950850066907,
+            "rmse": 0.7034785507493405
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.012421957345110153,
+            "rmse": 0.014411834911395574
+          },
+          "crew_axial_m_s2": {
+            "mae": 5.846410951764685e-05,
+            "rmse": 6.154842275670422e-05
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.4976543570289388,
+            "rmse": 0.687522745181275
+          },
+          "ring_omega_rpm": {
+            "mae": 0.08784461936233365,
+            "rmse": 0.11480155552575076
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.05074662163215153,
+            "rmse": 0.0701078090052439
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 11134.580101079748,
+            "rmse": 34381.7708894099
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.02213522754181667,
+            "rmse": 0.03681198201455465
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.009097746026716527,
+            "rmse": 0.014359738162192433
+          },
+          "crew_radial_m_s2": {
+            "mae": 1.1043304531308376,
+            "rmse": 1.7156718584294892
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.04898933854093884,
+            "rmse": 0.08913095364010991
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 1.048695480875187,
+            "rmse": 1.6843888634178468
+          },
+          "ring_omega_rpm": {
+            "mae": 0.21137585278463916,
+            "rmse": 0.35152853415757923
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.10693717843251131,
+            "rmse": 0.17175986329866436
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.046652416553309366,
+            "rmse": 0.07992140863016642
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.0386942344941014,
+            "rmse": 0.06275876861802426
+          },
+          "crew_radial_m_s2": {
+            "mae": 2.0615832611535247,
+            "rmse": 3.0733139239917993
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.07978592707810774,
+            "rmse": 0.13687179130323304
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 1.9118326899947131,
+            "rmse": 2.785300637158146
+          },
+          "ring_omega_rpm": {
+            "mae": 0.4454977620984809,
+            "rmse": 0.7631932345414949
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.19495267904888144,
+            "rmse": 0.28402162177279155
+          }
+        }
+      }
+    },
+    "dt=1s,horizon=10s": {
+      "dt_s": 1.0,
+      "horizon_s": 10,
+      "steps": 10,
+      "rollouts": 228,
+      "episodes": 19,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.0023082261218299407,
+            "rmse": 0.005369135623669992
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.0011178596733103566,
+            "rmse": 0.0018594648423212493
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.15654808011256155,
+            "rmse": 0.4245973961463793
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.024068536741194062,
+            "rmse": 0.0642084725497629
+          },
+          "crew_axial_m_s2": {
+            "mae": 8.434306847336477e-05,
+            "rmse": 0.00010301848926263034
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.13941600492046421,
+            "rmse": 0.3515353490823374
+          },
+          "ring_omega_rpm": {
+            "mae": 0.02204193582378423,
+            "rmse": 0.05127146847827194
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.0142164760566008,
+            "rmse": 0.035846629489411516
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 2811.279651191161,
+            "rmse": 18071.279764699062
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.008857271350679067,
+            "rmse": 0.014406288448731024
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.002955762847970671,
+            "rmse": 0.005169513681116727
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.5953980784635746,
+            "rmse": 1.2418462785128601
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.15376787144785173,
+            "rmse": 0.3640987054080527
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.5547891896499634,
+            "rmse": 1.1338995560043457
+          },
+          "ring_omega_rpm": {
+            "mae": 0.08458071106600812,
+            "rmse": 0.13756992109339294
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.05657275314709543,
+            "rmse": 0.11562557611461056
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.005464997687771647,
+            "rmse": 0.010136714848149968
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.004194206168474711,
+            "rmse": 0.007414302666520091
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.3588554968671065,
+            "rmse": 0.6834916256397862
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.11345797544574747,
+            "rmse": 0.2887875248667424
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.33552028862941746,
+            "rmse": 0.6369590806433025
+          },
+          "ring_omega_rpm": {
+            "mae": 0.05218688375967817,
+            "rmse": 0.09679849648776473
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.034213547809845105,
+            "rmse": 0.06495175015354913
+          }
+        }
+      }
+    },
+    "dt=1s,horizon=30s": {
+      "dt_s": 1.0,
+      "horizon_s": 30,
+      "steps": 30,
+      "rollouts": 190,
+      "episodes": 19,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.005382511825634757,
+            "rmse": 0.010513044728274527
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.003004185988381061,
+            "rmse": 0.004647929905949492
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.3412600445029604,
+            "rmse": 0.7202724026415163
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.023981766967653508,
+            "rmse": 0.06656753309726218
+          },
+          "crew_axial_m_s2": {
+            "mae": 8.434697454887149e-05,
+            "rmse": 0.00010126077019699208
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.30304648113286703,
+            "rmse": 0.5944276764367324
+          },
+          "ring_omega_rpm": {
+            "mae": 0.0513992017980212,
+            "rmse": 0.10039218212706497
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.030902141009709436,
+            "rmse": 0.06061475391053341
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 13668.137130577323,
+            "rmse": 70841.24124945459
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.021540792364580324,
+            "rmse": 0.03261298486068054
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.007434698815771255,
+            "rmse": 0.013050743438749226
+          },
+          "crew_radial_m_s2": {
+            "mae": 1.443556195607047,
+            "rmse": 2.6013995692362166
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.14514687929415898,
+            "rmse": 0.34498064334790884
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 1.345234147171046,
+            "rmse": 2.394420764871805
+          },
+          "ring_omega_rpm": {
+            "mae": 0.2056994149763469,
+            "rmse": 0.3114310649735073
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.1371757070121852,
+            "rmse": 0.24416296746307917
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.014190424824513069,
+            "rmse": 0.02678491493520551
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.011498064288347825,
+            "rmse": 0.020198999255483956
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.9783067610432885,
+            "rmse": 1.944553280163877
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.10590410549944251,
+            "rmse": 0.2709067043471108
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.9301538688826662,
+            "rmse": 1.8829654589247706
+          },
+          "ring_omega_rpm": {
+            "mae": 0.13550857532371177,
+            "rmse": 0.2557770967340334
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.09484929806638008,
+            "rmse": 0.19200904069430139
+          }
+        }
+      }
+    },
+    "dt=1s,horizon=60s": {
+      "dt_s": 1.0,
+      "horizon_s": 60,
+      "steps": 60,
+      "rollouts": 133,
+      "episodes": 19,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.008691816495578543,
+            "rmse": 0.014992474174942875
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.005196447458048763,
+            "rmse": 0.007597784231957039
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.5934990608974915,
+            "rmse": 1.1971735450162044
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.02612874603420955,
+            "rmse": 0.07563990252482342
+          },
+          "crew_axial_m_s2": {
+            "mae": 8.425844484884153e-05,
+            "rmse": 0.00010210273380451955
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.53113646445028,
+            "rmse": 1.0520894255802784
+          },
+          "ring_omega_rpm": {
+            "mae": 0.08300073358314002,
+            "rmse": 0.14316758244718464
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.054160846410372554,
+            "rmse": 0.10728326447668454
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 36602.73732054821,
+            "rmse": 173091.4663208063
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.0309796092530107,
+            "rmse": 0.04660179867325081
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.011372798566841771,
+            "rmse": 0.019918212795399435
+          },
+          "crew_radial_m_s2": {
+            "mae": 2.015902855191784,
+            "rmse": 3.249832403394193
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.14113375196820938,
+            "rmse": 0.3547839538469429
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 1.8665728023433832,
+            "rmse": 3.068042056421682
+          },
+          "ring_omega_rpm": {
+            "mae": 0.29583347686032435,
+            "rmse": 0.4450143969492718
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.19033745492531937,
+            "rmse": 0.3128532227031333
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.025777057538388586,
+            "rmse": 0.047496933162936586
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.021441597933654667,
+            "rmse": 0.03770741566310191
+          },
+          "crew_radial_m_s2": {
+            "mae": 1.9251125669805358,
+            "rmse": 3.894413499092697
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.10595903979282224,
+            "rmse": 0.28016154797943094
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 1.849995284484763,
+            "rmse": 3.831828691686115
+          },
+          "ring_omega_rpm": {
+            "mae": 0.24615276753592483,
+            "rmse": 0.4535623016752037
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.18864701855218274,
+            "rmse": 0.39073778422663347
+          }
+        }
+      }
+    },
+    "dt=2s,horizon=10s": {
+      "dt_s": 2.0,
+      "horizon_s": 10,
+      "steps": 5,
+      "rollouts": 240,
+      "episodes": 20,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.000998057323838747,
+            "rmse": 0.001580189370475801
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.00043218203284763626,
+            "rmse": 0.0006910675297457133
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.06301549384773505,
+            "rmse": 0.10697189537560642
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.012032212542193062,
+            "rmse": 0.019949141448209935
+          },
+          "crew_axial_m_s2": {
+            "mae": 9.243691527747918e-05,
+            "rmse": 9.945251985702874e-05
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.059098398172197406,
+            "rmse": 0.1008517021632133
+          },
+          "ring_omega_rpm": {
+            "mae": 0.009530745394680308,
+            "rmse": 0.01508969695994964
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.006026359477721486,
+            "rmse": 0.010284011580224982
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 140.49213187774876,
+            "rmse": 1179.2561229132418
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.006326809391592175,
+            "rmse": 0.010369285160902962
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.002618119146723713,
+            "rmse": 0.0059027634435025395
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.3924978528783754,
+            "rmse": 0.6764301728326593
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.07374009379100806,
+            "rmse": 0.13698123778310686
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.3680249350422345,
+            "rmse": 0.6371372380433196
+          },
+          "ring_omega_rpm": {
+            "mae": 0.0604165793203273,
+            "rmse": 0.09901937938122875
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.03752809930427154,
+            "rmse": 0.06496991715247506
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.002774764714831496,
+            "rmse": 0.0050899094080201
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.0021365062296750366,
+            "rmse": 0.004199010537000969
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.1825369510530094,
+            "rmse": 0.3599070695477955
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.04597412641365121,
+            "rmse": 0.08924545014285273
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.16742853733434107,
+            "rmse": 0.3311624496232063
+          },
+          "ring_omega_rpm": {
+            "mae": 0.026497051216944355,
+            "rmse": 0.048605054530580505
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.017072959403500797,
+            "rmse": 0.03376917190102699
+          }
+        }
+      }
+    },
+    "dt=2s,horizon=30s": {
+      "dt_s": 2.0,
+      "horizon_s": 30,
+      "steps": 15,
+      "rollouts": 220,
+      "episodes": 20,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.0025824262124354972,
+            "rmse": 0.0038339100355914537
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.0010934266451821605,
+            "rmse": 0.0017637832114713527
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.16670464404941193,
+            "rmse": 0.2586097057122791
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.011906156062830098,
+            "rmse": 0.019382080178772545
+          },
+          "crew_axial_m_s2": {
+            "mae": 9.167927022314292e-05,
+            "rmse": 9.870157674329746e-05
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.1550529251239481,
+            "rmse": 0.23942381122163045
+          },
+          "ring_omega_rpm": {
+            "mae": 0.02466035381275142,
+            "rmse": 0.036611144012040256
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.015810998161854266,
+            "rmse": 0.02441443420756634
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 567.6764073423258,
+            "rmse": 4020.289962319164
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.017020972496094543,
+            "rmse": 0.026732441568075995
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.006631116667724448,
+            "rmse": 0.015212758703422364
+          },
+          "crew_radial_m_s2": {
+            "mae": 1.0690401867160193,
+            "rmse": 1.7411673518703192
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.06889961725717539,
+            "rmse": 0.12978017216988597
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.9995607809893169,
+            "rmse": 1.633891054442321
+          },
+          "ring_omega_rpm": {
+            "mae": 0.16253831453907858,
+            "rmse": 0.2552760129884732
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.10192683342316866,
+            "rmse": 0.16661051984544378
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.007185315921018413,
+            "rmse": 0.012874492130857455
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.005599235384347252,
+            "rmse": 0.011003384290945965
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.4666423261622123,
+            "rmse": 0.8624312509340971
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.044024944165796935,
+            "rmse": 0.08609480098328172
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.4251325671350274,
+            "rmse": 0.780780954183469
+          },
+          "ring_omega_rpm": {
+            "mae": 0.0686147127904185,
+            "rmse": 0.12294234374542036
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.0433514571372515,
+            "rmse": 0.07961749977652605
+          }
+        }
+      }
+    },
+    "dt=2s,horizon=60s": {
+      "dt_s": 2.0,
+      "horizon_s": 60,
+      "steps": 30,
+      "rollouts": 200,
+      "episodes": 20,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.00434043428732144,
+            "rmse": 0.005866319191146872
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.0017168519589112136,
+            "rmse": 0.0026557128661339902
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.283549631208304,
+            "rmse": 0.40029664314502855
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.01262688319904413,
+            "rmse": 0.01853910185999332
+          },
+          "crew_axial_m_s2": {
+            "mae": 9.197425144520821e-05,
+            "rmse": 0.00010047748485762094
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.26369129242498107,
+            "rmse": 0.37253765970515684
+          },
+          "ring_omega_rpm": {
+            "mae": 0.04144809431956531,
+            "rmse": 0.05601922182155243
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.026889028610685716,
+            "rmse": 0.037988269154620266
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 645.4566138494597,
+            "rmse": 5200.147846678913
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.02584544028411757,
+            "rmse": 0.03889745711647685
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.01052557160203791,
+            "rmse": 0.02421325880421075
+          },
+          "crew_radial_m_s2": {
+            "mae": 1.6121318696391944,
+            "rmse": 2.4697091765845247
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.07585233120870112,
+            "rmse": 0.1307398863501884
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 1.5142589050900563,
+            "rmse": 2.3348368369201666
+          },
+          "ring_omega_rpm": {
+            "mae": 0.2468057746562227,
+            "rmse": 0.3714433544275388
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.15441143561665363,
+            "rmse": 0.2380870977265597
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.01077995114906186,
+            "rmse": 0.017712001184337578
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.008868717883830703,
+            "rmse": 0.017751862621201923
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.7008184144213463,
+            "rmse": 1.1530197542696494
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.040984897204132266,
+            "rmse": 0.06975152199692111
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.6433557621605546,
+            "rmse": 1.0485453864350416
+          },
+          "ring_omega_rpm": {
+            "mae": 0.10294095069974113,
+            "rmse": 0.1691371524322098
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.06560403013878895,
+            "rmse": 0.1069218730591019
+          }
+        }
+      }
+    },
+    "dt=5s,horizon=10s": {
+      "dt_s": 5.0,
+      "horizon_s": 10,
+      "steps": 2,
+      "rollouts": 216,
+      "episodes": 18,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.0008430281626726344,
+            "rmse": 0.0011702904524988115
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.0004743507048583469,
+            "rmse": 0.0007680122730896857
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.05013945452853145,
+            "rmse": 0.08431137725198493
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.01832376491032597,
+            "rmse": 0.03355960812924851
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.00010567993469387013,
+            "rmse": 0.00012064578848581067
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.04434552463432319,
+            "rmse": 0.07830100609204443
+          },
+          "ring_omega_rpm": {
+            "mae": 0.008050325955301692,
+            "rmse": 0.011175450622106209
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.004521985044263147,
+            "rmse": 0.007984480540454125
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 400.02730743227534,
+            "rmse": 3361.0575476062927
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.004575628882160831,
+            "rmse": 0.007739909115246207
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.0022350446011149792,
+            "rmse": 0.00474128775194777
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.33697555062201867,
+            "rmse": 0.5924191419319587
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.07933587948845869,
+            "rmse": 0.147520027696455
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.31384071224774607,
+            "rmse": 0.5580110792551486
+          },
+          "ring_omega_rpm": {
+            "mae": 0.04369403726099639,
+            "rmse": 0.07391068768640713
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.032002846257156735,
+            "rmse": 0.05690129445377867
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.0036563153354515765,
+            "rmse": 0.006320880238958214
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.0017408437904319197,
+            "rmse": 0.003792585342932903
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.2762900225341445,
+            "rmse": 0.49829254678316315
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.06211580910655364,
+            "rmse": 0.11533162842269852
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.25531310818364444,
+            "rmse": 0.46703912094411165
+          },
+          "ring_omega_rpm": {
+            "mae": 0.034915239548389196,
+            "rmse": 0.06035996008332482
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.026034691580065,
+            "rmse": 0.04762473637216702
+          }
+        }
+      }
+    },
+    "dt=5s,horizon=30s": {
+      "dt_s": 5.0,
+      "horizon_s": 30,
+      "steps": 6,
+      "rollouts": 216,
+      "episodes": 18,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.002244462570350551,
+            "rmse": 0.0029735343625055016
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.001313615472544224,
+            "rmse": 0.0021366970993867383
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.1414062609215453,
+            "rmse": 0.21069541159685914
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.016524014801993565,
+            "rmse": 0.027468183762228194
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.00010588578694565783,
+            "rmse": 0.0001203443524307885
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.12375562749002925,
+            "rmse": 0.19143832914177317
+          },
+          "ring_omega_rpm": {
+            "mae": 0.021433038759361863,
+            "rmse": 0.028395161534781502
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.012619561979883983,
+            "rmse": 0.01952127680112711
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 829.0121712727489,
+            "rmse": 8669.268660071286
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.01329661232907807,
+            "rmse": 0.021755355071062854
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.006740903861285059,
+            "rmse": 0.013807016474850338
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.9505246895036842,
+            "rmse": 1.6033558924104647
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.07962056791140669,
+            "rmse": 0.1501227401035289
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.8738911625958568,
+            "rmse": 1.489280859895166
+          },
+          "ring_omega_rpm": {
+            "mae": 0.12697329471296484,
+            "rmse": 0.2077483378967391
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.08911209868771261,
+            "rmse": 0.15186438385128112
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.01049124949756651,
+            "rmse": 0.01758692557089809
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.005223312194985175,
+            "rmse": 0.011075056782946785
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.7510719990398526,
+            "rmse": 1.3008320888505522
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.05893492509985975,
+            "rmse": 0.11301454878921574
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.6834029033532071,
+            "rmse": 1.1964499234922366
+          },
+          "ring_omega_rpm": {
+            "mae": 0.1001840530048844,
+            "rmse": 0.16794276830386107
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.06968770205454534,
+            "rmse": 0.12200393850012355
+          }
+        }
+      }
+    },
+    "dt=5s,horizon=60s": {
+      "dt_s": 5.0,
+      "horizon_s": 60,
+      "steps": 12,
+      "rollouts": 198,
+      "episodes": 18,
+      "models": {
+        "learned_model": {
+          "ring_omega_rad_s": {
+            "mae": 0.004137370868707172,
+            "rmse": 0.005363927394640287
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.002389910053690704,
+            "rmse": 0.003683271774017951
+          },
+          "crew_radial_m_s2": {
+            "mae": 0.2754934723326631,
+            "rmse": 0.37434680388858377
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.017748436499113934,
+            "rmse": 0.03269889461593213
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0001056524023523606,
+            "rmse": 0.00012161332920899594
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 0.2371564965628556,
+            "rmse": 0.32859209211505197
+          },
+          "ring_omega_rpm": {
+            "mae": 0.03950898150954933,
+            "rmse": 0.051221733554582
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.024183232455818816,
+            "rmse": 0.03350706837860554
+          },
+          "actuator_torque_propagation_nm": {
+            "mae": 1982.793065513624,
+            "rmse": 12017.36145551399
+          }
+        },
+        "persistence": {
+          "ring_omega_rad_s": {
+            "mae": 0.024303754320144384,
+            "rmse": 0.038521484164395325
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.011688239199678829,
+            "rmse": 0.022859512786899735
+          },
+          "crew_radial_m_s2": {
+            "mae": 1.7596361595327263,
+            "rmse": 2.8942463883588787
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.07268766467461742,
+            "rmse": 0.14151422972559616
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 1.611159112743398,
+            "rmse": 2.6898542253303614
+          },
+          "ring_omega_rpm": {
+            "mae": 0.23208375814451912,
+            "rmse": 0.36785307719998117
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.16429250689515768,
+            "rmse": 0.27428879641165554
+          }
+        },
+        "ridge_baseline": {
+          "ring_omega_rad_s": {
+            "mae": 0.01927606565320992,
+            "rmse": 0.03145607788725591
+          },
+          "hub_omega_rad_s": {
+            "mae": 0.008848392309032992,
+            "rmse": 0.01852157510479626
+          },
+          "crew_radial_m_s2": {
+            "mae": 1.3925985572443789,
+            "rmse": 2.362327473106953
+          },
+          "crew_tangential_m_s2": {
+            "mae": 0.05873888488732215,
+            "rmse": 0.11077150346796207
+          },
+          "crew_axial_m_s2": {
+            "mae": 0.0,
+            "rmse": 0.0
+          },
+          "crew_gravity_magnitude_m_s2": {
+            "mae": 1.2648698158066223,
+            "rmse": 2.183717432190634
+          },
+          "ring_omega_rpm": {
+            "mae": 0.18407286792433578,
+            "rmse": 0.3003834171624265
+          },
+          "crew_gravity_magnitude_g": {
+            "mae": 0.12898082584844187,
+            "rmse": 0.22267720701673194
+          }
+        }
+      }
+    }
+  },
+  "rollout_error_growth": {
+    "0.5": {
+      "learned_model": {
+        "time_s": [
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0,
+          26.5,
+          27.0,
+          27.5,
+          28.0,
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          30.5,
+          31.0,
+          31.5,
+          32.0,
+          32.5,
+          33.0,
+          33.5,
+          34.0,
+          34.5,
+          35.0,
+          35.5,
+          36.0,
+          36.5,
+          37.0,
+          37.5,
+          38.0,
+          38.5,
+          39.0,
+          39.5,
+          40.0,
+          40.5,
+          41.0,
+          41.5,
+          42.0,
+          42.5,
+          43.0,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5,
+          47.0,
+          47.5,
+          48.0,
+          48.5,
+          49.0,
+          49.5,
+          50.0,
+          50.5,
+          51.0,
+          51.5,
+          52.0,
+          52.5,
+          53.0,
+          53.5,
+          54.0,
+          54.5,
+          55.0,
+          55.5,
+          56.0,
+          56.5,
+          57.0,
+          57.5,
+          58.0,
+          58.5,
+          59.0,
+          59.5,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.0015010943349048254,
+          0.002565977139099952,
+          0.003625090046825275,
+          0.004602808955442546,
+          0.005328451684781521,
+          0.006312716495514221,
+          0.007361452291445336,
+          0.008389534412924999,
+          0.009351034192970452,
+          0.010302979852000719,
+          0.011293579363341352,
+          0.01228955041113166,
+          0.013275134975715322,
+          0.014172173375744609,
+          0.015053204930733439,
+          0.015938532824084528,
+          0.016837910195938485,
+          0.017745592756713963,
+          0.018659710124629938,
+          0.019578481651588393,
+          0.020492754488107254,
+          0.021419208668091393,
+          0.022394654783162788,
+          0.02344417879869444,
+          0.024459220467522934,
+          0.0251938702366733,
+          0.025911807675151912,
+          0.026627571638943946,
+          0.027335713091808433,
+          0.028056122924929018,
+          0.02878069145033477,
+          0.029559248204885834,
+          0.030266870075993765,
+          0.031091523165051222,
+          0.0320043392554829,
+          0.03284922982839545,
+          0.033692402830816565,
+          0.034608282395166126,
+          0.03521540561696584,
+          0.035825728184973364,
+          0.036466190785125065,
+          0.0371252135718881,
+          0.03775463456935423,
+          0.03829518632995666,
+          0.03875852451382705,
+          0.039197267000422,
+          0.03965664896923446,
+          0.04009309047131705,
+          0.04053830160661022,
+          0.0409132862152015,
+          0.041301608683467876,
+          0.041728463041718435,
+          0.04222326032528953,
+          0.04274092816235163,
+          0.04339055326501602,
+          0.04405754760176643,
+          0.04467537730359155,
+          0.04532630275122819,
+          0.04601805095294059,
+          0.046706243755573404,
+          0.047407835259225144,
+          0.04813959281457544,
+          0.04897102881845389,
+          0.04979871814064595,
+          0.0505967200778871,
+          0.05110932664873624,
+          0.051617289795751406,
+          0.052130767632484545,
+          0.05264470708810173,
+          0.053162515990546756,
+          0.05369476020683392,
+          0.05432335534859169,
+          0.05494025892097293,
+          0.05550835446178714,
+          0.05605795855154017,
+          0.05656948012832817,
+          0.05708684480974402,
+          0.057612616576852044,
+          0.058160582815462616,
+          0.05873560720797151,
+          0.0595152230656363,
+          0.0603872491663003,
+          0.06124688316065873,
+          0.06208068446808651,
+          0.06283951917166354,
+          0.06352754666781711,
+          0.0643200293049542,
+          0.06511458399708364,
+          0.06601554345561933,
+          0.06708576633973952,
+          0.06805211136739855,
+          0.06891752749135739,
+          0.06975561000588708,
+          0.07063274343187968,
+          0.07153977300747974,
+          0.07242716659207828,
+          0.07327514907231432,
+          0.07408434230369945,
+          0.07485529370914387,
+          0.07552495245606788,
+          0.07616606989108154,
+          0.0767787428410513,
+          0.07738051627193625,
+          0.07797872565806423,
+          0.07859988185156476,
+          0.0792731173210774,
+          0.07990464167617216,
+          0.08050549831304155,
+          0.0810952077080138,
+          0.08167725186601876,
+          0.0822669843111854,
+          0.08286501963425037,
+          0.08342775111280319,
+          0.08396181304037134,
+          0.08450525581890442,
+          0.08508512102246692,
+          0.08562269516152682,
+          0.08633125823662244,
+          0.08708419585570877,
+          0.08784461936233365
+        ],
+        "gravity_g_mae": [
+          0.0007980623326728245,
+          0.0009377282886153461,
+          0.0012599184820510565,
+          0.001615224233189347,
+          0.0019130489130840982,
+          0.002315472734867307,
+          0.0026951116258040705,
+          0.003157509363273096,
+          0.0035670687115663636,
+          0.00400453710772755,
+          0.004492423730751695,
+          0.004994273172128392,
+          0.0055089552961898065,
+          0.006115541403781701,
+          0.006568454908294421,
+          0.007021163745283986,
+          0.007481634173262721,
+          0.007944262176962025,
+          0.008407676131156144,
+          0.008870717397130952,
+          0.009326380537978003,
+          0.009790063327062308,
+          0.010199104369143085,
+          0.010692503348469669,
+          0.011157740881267884,
+          0.011614775730816512,
+          0.011893447239398463,
+          0.012178284222393605,
+          0.012456640689103574,
+          0.012742837331375441,
+          0.013047826016595054,
+          0.013359395766657753,
+          0.014079342935126277,
+          0.014914292134119008,
+          0.015864906691553566,
+          0.016866741647619744,
+          0.017304016136448632,
+          0.0176520044309938,
+          0.01792817004768165,
+          0.018213628140006533,
+          0.018548180555203103,
+          0.018918303364278917,
+          0.019296687276104316,
+          0.019496504312579033,
+          0.019798240696250326,
+          0.020049670476368086,
+          0.02031805598541339,
+          0.020586113370769245,
+          0.020854535998736986,
+          0.021131341576146052,
+          0.021467946821162966,
+          0.021810948034015513,
+          0.02218120281160702,
+          0.022566798958489814,
+          0.023230960264889244,
+          0.023487021290483308,
+          0.023833578912520723,
+          0.024377806607837282,
+          0.02473642147142328,
+          0.025245187095667167,
+          0.025611500825791,
+          0.025996082943804625,
+          0.026403133533214787,
+          0.026827119899046903,
+          0.02726202044344775,
+          0.02759298610891222,
+          0.02787297324739549,
+          0.028160146854639467,
+          0.02845426144715304,
+          0.02875765104554904,
+          0.029060220204633773,
+          0.029457659694333015,
+          0.02982990236963815,
+          0.03030626029080127,
+          0.030639316272031963,
+          0.029850747554151336,
+          0.030132510693149147,
+          0.030431989053130267,
+          0.03076145701758095,
+          0.030747089868972937,
+          0.03117295573858771,
+          0.03161212845481185,
+          0.032088036945898984,
+          0.032554083673999465,
+          0.03297898467900394,
+          0.03319033405861126,
+          0.03381565400576532,
+          0.03316114936551768,
+          0.03298495187178948,
+          0.03330020859649474,
+          0.033935672603114315,
+          0.03439877506571591,
+          0.034831732494791996,
+          0.03528868468362616,
+          0.03575838612535027,
+          0.03620421002713153,
+          0.03664784108097758,
+          0.03708100322779188,
+          0.037512951746802,
+          0.03787915831208741,
+          0.03821017816110812,
+          0.03853916957687257,
+          0.03886800351658871,
+          0.039208456158824886,
+          0.039888071594898857,
+          0.04031467201236453,
+          0.04074814911640556,
+          0.04113717353528525,
+          0.04151968641316143,
+          0.041887370630511164,
+          0.0422467779230697,
+          0.04261263439404034,
+          0.042972533608933085,
+          0.04369956968766459,
+          0.04401457271774192,
+          0.044368280228198324,
+          0.04502707367627517,
+          0.04676025722798037,
+          0.04890087714457086,
+          0.05074662163215153
+        ]
+      },
+      "persistence": {
+        "time_s": [
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0,
+          26.5,
+          27.0,
+          27.5,
+          28.0,
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          30.5,
+          31.0,
+          31.5,
+          32.0,
+          32.5,
+          33.0,
+          33.5,
+          34.0,
+          34.5,
+          35.0,
+          35.5,
+          36.0,
+          36.5,
+          37.0,
+          37.5,
+          38.0,
+          38.5,
+          39.0,
+          39.5,
+          40.0,
+          40.5,
+          41.0,
+          41.5,
+          42.0,
+          42.5,
+          43.0,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5,
+          47.0,
+          47.5,
+          48.0,
+          48.5,
+          49.0,
+          49.5,
+          50.0,
+          50.5,
+          51.0,
+          51.5,
+          52.0,
+          52.5,
+          53.0,
+          53.5,
+          54.0,
+          54.5,
+          55.0,
+          55.5,
+          56.0,
+          56.5,
+          57.0,
+          57.5,
+          58.0,
+          58.5,
+          59.0,
+          59.5,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.0018916340291649733,
+          0.003841805166294307,
+          0.005682035337011,
+          0.007598252395383414,
+          0.009604386341141417,
+          0.01168089995874954,
+          0.013773666575468526,
+          0.015887654538466637,
+          0.01807169953505926,
+          0.020381959719149283,
+          0.022732387164527783,
+          0.02508783618243555,
+          0.02744993403521104,
+          0.02981046285317865,
+          0.0321384314223778,
+          0.034444167563808616,
+          0.036724997386225075,
+          0.038981645041797436,
+          0.04121481225804239,
+          0.043467029472409664,
+          0.0457732523881466,
+          0.048090741822201695,
+          0.0504201470642434,
+          0.05276209682271964,
+          0.0551431813033811,
+          0.057536326688162984,
+          0.059913879453248484,
+          0.062268892633680024,
+          0.06460173724469723,
+          0.06691277276528042,
+          0.06919306510230984,
+          0.07142930299717633,
+          0.07365038774063756,
+          0.07575716443732937,
+          0.07753755934070654,
+          0.0791451588548618,
+          0.0805646542593613,
+          0.08179669416892457,
+          0.08281595098512501,
+          0.08364707570821961,
+          0.08439604629743613,
+          0.08538029250660971,
+          0.08646421129340638,
+          0.08792579205196033,
+          0.08935362086705775,
+          0.0907178852121664,
+          0.09203759116536467,
+          0.09330117735484048,
+          0.09450929230089485,
+          0.09572543616532071,
+          0.09695139854547777,
+          0.09818747212157058,
+          0.0994525055825717,
+          0.10075359152298972,
+          0.10208417659002293,
+          0.10342257572169039,
+          0.10473746990744967,
+          0.10602910396427272,
+          0.10731858914856607,
+          0.10861602281176391,
+          0.1099209634273992,
+          0.11125101705852339,
+          0.1125802232851272,
+          0.11390878517621518,
+          0.11522318997423292,
+          0.11655955303723341,
+          0.11793207152083618,
+          0.11934088625204332,
+          0.12079092912978905,
+          0.12228568043096873,
+          0.12380776399697895,
+          0.12529261731105518,
+          0.1267413177198111,
+          0.1282176911532694,
+          0.12972331641198684,
+          0.1312609089110643,
+          0.13388434340763336,
+          0.13648857035536266,
+          0.1390673514698935,
+          0.14159901081250625,
+          0.1440313098542968,
+          0.14626052614951063,
+          0.1482878769965231,
+          0.15015223091718696,
+          0.15189730627488002,
+          0.15337556846518244,
+          0.15476787776422954,
+          0.15639026014177546,
+          0.15817994445431155,
+          0.15997439047730339,
+          0.16183600997906963,
+          0.1637442422354107,
+          0.1657263707765804,
+          0.1677284725904888,
+          0.16971194763308944,
+          0.17167780891982953,
+          0.17362493822206632,
+          0.17555411235548787,
+          0.17745696773235925,
+          0.17940442591684969,
+          0.18137387002375105,
+          0.18334393439817748,
+          0.18531553560519037,
+          0.1872888241778825,
+          0.18922892886842346,
+          0.19108845043314596,
+          0.19289342485912175,
+          0.19464575293512718,
+          0.1963531672501115,
+          0.1979912130324915,
+          0.19956208922604207,
+          0.20106826774407788,
+          0.20257012291293117,
+          0.20406881931967308,
+          0.20557218599776395,
+          0.20711349634454465,
+          0.20862260476187744,
+          0.20983090157398546,
+          0.2106156859269314,
+          0.21137585278463916
+        ],
+        "gravity_g_mae": [
+          0.0010507625115759637,
+          0.0021487651559704206,
+          0.0032310381502714306,
+          0.0043655577241830746,
+          0.005531996416871479,
+          0.006727553664032335,
+          0.00792419476951566,
+          0.009103109866867048,
+          0.010329337726851292,
+          0.011609818933419615,
+          0.012895059548750885,
+          0.014173025474926479,
+          0.015445783437333584,
+          0.016721242593030233,
+          0.017975239120213923,
+          0.019216685941672026,
+          0.02044795872826252,
+          0.021669791555041628,
+          0.02288250244022936,
+          0.02412604514056532,
+          0.0254395185183012,
+          0.026783985998539105,
+          0.02793073454822742,
+          0.0293336304993719,
+          0.030787035047411433,
+          0.0322441639810136,
+          0.03368140106098549,
+          0.03510192632745215,
+          0.0365102461147317,
+          0.0379065157132118,
+          0.039283406553420386,
+          0.04059490925665351,
+          0.04300282926592968,
+          0.04501856804789351,
+          0.04698641934468904,
+          0.04848727894954645,
+          0.04948302482803515,
+          0.05031980050916597,
+          0.05102325767506032,
+          0.05162303528681836,
+          0.05227841867732103,
+          0.052918923117118724,
+          0.05357181570959834,
+          0.05425007181275754,
+          0.05501404619590211,
+          0.055715626536034665,
+          0.056382738302394264,
+          0.05700503332310871,
+          0.057582837028032484,
+          0.05815279576486074,
+          0.0586816344959786,
+          0.0591702844549342,
+          0.05963411077057794,
+          0.06007360075322737,
+          0.06161856642632713,
+          0.06103482194627562,
+          0.061306167159941076,
+          0.061632844825251665,
+          0.061823058320874036,
+          0.06209389974994625,
+          0.06223036475257143,
+          0.06236766567674986,
+          0.06248958052113169,
+          0.0625486141695907,
+          0.06265244367640012,
+          0.06273625153162006,
+          0.06281308345677132,
+          0.06288460560154395,
+          0.06295569254617507,
+          0.06303043693366481,
+          0.06306146057678857,
+          0.06310859185939847,
+          0.06318381182929839,
+          0.06334057830145323,
+          0.06358158211664586,
+          0.060327742447909366,
+          0.061467125104231295,
+          0.06261888469833107,
+          0.06374276986941017,
+          0.06470738466035382,
+          0.06571908482620088,
+          0.06662801846622471,
+          0.06743357054605664,
+          0.06815965908651767,
+          0.0688212915021748,
+          0.06924236967225243,
+          0.07334820803812332,
+          0.07261024145005526,
+          0.07226281789338743,
+          0.07273352986722519,
+          0.07463246321791098,
+          0.0755944309719462,
+          0.07661197942157677,
+          0.0776570859978662,
+          0.07871045548933767,
+          0.07977202200380516,
+          0.08084100664011498,
+          0.08192025662907257,
+          0.08300311043107418,
+          0.08412197852717442,
+          0.08524070282595175,
+          0.08635123385072273,
+          0.08745697846188014,
+          0.08855673110237552,
+          0.09031050462261138,
+          0.09131257357162079,
+          0.09234836532537491,
+          0.0932772654702339,
+          0.09416945894953892,
+          0.0949867149765935,
+          0.09573554381631469,
+          0.09641676752593718,
+          0.09707648800278791,
+          0.0984682986206126,
+          0.09910476907302257,
+          0.09976387961061928,
+          0.10090532739453466,
+          0.10312774535516986,
+          0.1054752442390732,
+          0.10693717843251135
+        ]
+      },
+      "ridge_baseline": {
+        "time_s": [
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5,
+          14.0,
+          14.5,
+          15.0,
+          15.5,
+          16.0,
+          16.5,
+          17.0,
+          17.5,
+          18.0,
+          18.5,
+          19.0,
+          19.5,
+          20.0,
+          20.5,
+          21.0,
+          21.5,
+          22.0,
+          22.5,
+          23.0,
+          23.5,
+          24.0,
+          24.5,
+          25.0,
+          25.5,
+          26.0,
+          26.5,
+          27.0,
+          27.5,
+          28.0,
+          28.5,
+          29.0,
+          29.5,
+          30.0,
+          30.5,
+          31.0,
+          31.5,
+          32.0,
+          32.5,
+          33.0,
+          33.5,
+          34.0,
+          34.5,
+          35.0,
+          35.5,
+          36.0,
+          36.5,
+          37.0,
+          37.5,
+          38.0,
+          38.5,
+          39.0,
+          39.5,
+          40.0,
+          40.5,
+          41.0,
+          41.5,
+          42.0,
+          42.5,
+          43.0,
+          43.5,
+          44.0,
+          44.5,
+          45.0,
+          45.5,
+          46.0,
+          46.5,
+          47.0,
+          47.5,
+          48.0,
+          48.5,
+          49.0,
+          49.5,
+          50.0,
+          50.5,
+          51.0,
+          51.5,
+          52.0,
+          52.5,
+          53.0,
+          53.5,
+          54.0,
+          54.5,
+          55.0,
+          55.5,
+          56.0,
+          56.5,
+          57.0,
+          57.5,
+          58.0,
+          58.5,
+          59.0,
+          59.5,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.0056937356997938384,
+          0.011029372394136486,
+          0.015293102955810602,
+          0.019729898133724805,
+          0.025962465844705955,
+          0.032640066979817306,
+          0.039713451594705344,
+          0.04689675929230043,
+          0.05428856049816791,
+          0.061974396048909,
+          0.06953255969767562,
+          0.07712878773729225,
+          0.08464447160216815,
+          0.09051684949600415,
+          0.0966642802660921,
+          0.10299545255898188,
+          0.1092266276165226,
+          0.11555049068913759,
+          0.12206995539408314,
+          0.1285802022522931,
+          0.13508839185649293,
+          0.1415961437061315,
+          0.14805179270296956,
+          0.15446439747301247,
+          0.16088116160347762,
+          0.16582513013826386,
+          0.17048002744256394,
+          0.1750750891140113,
+          0.1795921857086475,
+          0.1840320312080759,
+          0.18826865500672396,
+          0.19262583339530848,
+          0.19585677392260625,
+          0.19905623260926208,
+          0.20036400048507577,
+          0.20226877590988382,
+          0.2041870438522202,
+          0.20598531256364322,
+          0.20704467851183767,
+          0.20931700213150978,
+          0.21292876726060042,
+          0.21621584989303874,
+          0.21944528139638067,
+          0.22268607332654128,
+          0.22621810315518867,
+          0.22967504883717474,
+          0.23301049378172642,
+          0.23633911036029795,
+          0.23960459139550014,
+          0.2430378429394357,
+          0.24568608857084087,
+          0.24820593959172021,
+          0.250724754504958,
+          0.25308692026606816,
+          0.25476956936318434,
+          0.2577044129077319,
+          0.2605254133207244,
+          0.26330390200026693,
+          0.2659487227038849,
+          0.2684743206772841,
+          0.271168477990182,
+          0.27397402796222853,
+          0.2763306672115592,
+          0.2787645997253463,
+          0.28147279428622296,
+          0.2836999980269155,
+          0.2858579762330257,
+          0.28794766846251735,
+          0.2899841635338181,
+          0.29194945275587014,
+          0.29349345167645535,
+          0.29479729907866886,
+          0.29601157879053414,
+          0.2983229554917653,
+          0.3022612014165038,
+          0.306581312658177,
+          0.3110098198148837,
+          0.3156481924384181,
+          0.32029958088059884,
+          0.32520926648484944,
+          0.3287554235728563,
+          0.33183222730927464,
+          0.334811808651423,
+          0.3376935449011621,
+          0.3406831608628169,
+          0.3422955766557347,
+          0.3414984558329094,
+          0.3408294648618886,
+          0.34111682375596614,
+          0.3425824629636085,
+          0.3451738673912455,
+          0.3465999520065429,
+          0.3481696221777163,
+          0.349748978619597,
+          0.35139681968390485,
+          0.35401557527339134,
+          0.35674786096564576,
+          0.3595833519322553,
+          0.3623179097700085,
+          0.36522013788772795,
+          0.3680597333054444,
+          0.3706418260354872,
+          0.3731213567305654,
+          0.375456534661557,
+          0.37820337048605823,
+          0.3811422822162967,
+          0.385611868163916,
+          0.39027717150592567,
+          0.39514765715686884,
+          0.40012108579071354,
+          0.40516927130909913,
+          0.41029763867730407,
+          0.41565958787003215,
+          0.4211275846775151,
+          0.42670953924725596,
+          0.432459996928678,
+          0.4372170167105292,
+          0.4407033401656701,
+          0.4426511374733898,
+          0.445497762098481
+        ],
+        "gravity_g_mae": [
+          0.0034239089725220705,
+          0.006056616744382131,
+          0.008309769553747844,
+          0.010170269428815921,
+          0.013428207664017467,
+          0.016523555948524053,
+          0.01999847239429992,
+          0.023469149464823973,
+          0.02703528330466802,
+          0.030574793133346854,
+          0.033913507345500034,
+          0.03714711833895757,
+          0.04022916075074334,
+          0.041981781501570045,
+          0.04419726157689787,
+          0.04675562644679226,
+          0.04922396320472767,
+          0.051742009180982144,
+          0.054431435437792164,
+          0.0571158611243756,
+          0.05979943700614845,
+          0.062469129840269734,
+          0.06446064933086233,
+          0.06708122879092991,
+          0.06970441401681295,
+          0.07129922934814059,
+          0.07308565295341571,
+          0.07471247607722775,
+          0.07626456264039623,
+          0.07774619762822924,
+          0.07906614782789499,
+          0.08029195569173839,
+          0.0820120206508228,
+          0.08522200903790864,
+          0.08798715708951617,
+          0.09086362181699228,
+          0.0916220779282757,
+          0.09202738774478776,
+          0.09188018588071406,
+          0.09295423315612197,
+          0.09408598897832854,
+          0.09508662647226702,
+          0.09625102086114139,
+          0.09647977680397822,
+          0.09725038601170384,
+          0.09813276496653561,
+          0.0990031501572464,
+          0.09991089057578631,
+          0.10104244613187525,
+          0.10236983385891325,
+          0.10340845464954586,
+          0.10437822400656196,
+          0.10541674857008829,
+          0.10642486410762088,
+          0.11678246291106545,
+          0.11368923202312288,
+          0.11526170227104955,
+          0.11679889207662016,
+          0.11818818542747749,
+          0.11971337217760412,
+          0.1212236427649273,
+          0.1228224428462103,
+          0.12423451501906502,
+          0.1253287887250578,
+          0.12660592612279764,
+          0.1277370689687793,
+          0.12859148138616286,
+          0.1293786984209464,
+          0.13011577615970152,
+          0.13079318125793363,
+          0.13127540049811173,
+          0.13166030583821436,
+          0.13185747262839342,
+          0.1330293726819609,
+          0.13414044565370473,
+          0.12772552929943248,
+          0.12913046682578594,
+          0.13061583343439728,
+          0.13208710735450768,
+          0.1328980064097878,
+          0.13348509113991866,
+          0.13415499704419112,
+          0.13497788676964043,
+          0.13572832811938507,
+          0.1366446613247493,
+          0.1364215252078215,
+          0.13343029962580244,
+          0.12927991686881427,
+          0.1268431477791172,
+          0.12699311936281413,
+          0.13309977533260828,
+          0.13365332627904453,
+          0.1345066914046308,
+          0.13532876904847055,
+          0.13616641125906379,
+          0.13758991289390052,
+          0.1388446335344063,
+          0.14013632157492917,
+          0.141323617315152,
+          0.14258729226881334,
+          0.1437861466406513,
+          0.1448224378511065,
+          0.14578051062474798,
+          0.1466240536200123,
+          0.15440551251489576,
+          0.1554002640062057,
+          0.15856624925479493,
+          0.16012925933871563,
+          0.16171138837083113,
+          0.1632373210984916,
+          0.16463844526084148,
+          0.16597695357645093,
+          0.16734533630303133,
+          0.1720925435771985,
+          0.17343844104299677,
+          0.17475640599442221,
+          0.17687897775204917,
+          0.18238353369244148,
+          0.18941826747228385,
+          0.19495267904888144
+        ]
+      }
+    },
+    "1": {
+      "learned_model": {
+        "time_s": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          10.0,
+          11.0,
+          12.0,
+          13.0,
+          14.0,
+          15.0,
+          16.0,
+          17.0,
+          18.0,
+          19.0,
+          20.0,
+          21.0,
+          22.0,
+          23.0,
+          24.0,
+          25.0,
+          26.0,
+          27.0,
+          28.0,
+          29.0,
+          30.0,
+          31.0,
+          32.0,
+          33.0,
+          34.0,
+          35.0,
+          36.0,
+          37.0,
+          38.0,
+          39.0,
+          40.0,
+          41.0,
+          42.0,
+          43.0,
+          44.0,
+          45.0,
+          46.0,
+          47.0,
+          48.0,
+          49.0,
+          50.0,
+          51.0,
+          52.0,
+          53.0,
+          54.0,
+          55.0,
+          56.0,
+          57.0,
+          58.0,
+          59.0,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.0023288867260029176,
+          0.004476325511569875,
+          0.006377801662876444,
+          0.008778365628818606,
+          0.01161074507987842,
+          0.01470112316716,
+          0.01683339318819076,
+          0.018271111343925645,
+          0.01973909928542534,
+          0.021502932480957044,
+          0.023379475153373738,
+          0.024935871159124896,
+          0.026040997561472122,
+          0.027390551941453668,
+          0.028539880223364317,
+          0.03030744591365446,
+          0.03173360637848672,
+          0.032389788733895,
+          0.03338133510375659,
+          0.0345103351625603,
+          0.0360132387855712,
+          0.03752528088863594,
+          0.039362712328783446,
+          0.040845983674706196,
+          0.04240153278976849,
+          0.04346793213040915,
+          0.04411677177783738,
+          0.04447996965890488,
+          0.04505498353096009,
+          0.046451921029893935,
+          0.047774575500106324,
+          0.048744289605167995,
+          0.04964204155693081,
+          0.051109431958189656,
+          0.05240072141064187,
+          0.05342227535951091,
+          0.05463220060934387,
+          0.05568283838585281,
+          0.056722107004915596,
+          0.058597548031046366,
+          0.06038918674342401,
+          0.06184491544535898,
+          0.06306503037812855,
+          0.06432456302697183,
+          0.06531320335398914,
+          0.06638238050273057,
+          0.06736958647582049,
+          0.06842013170575635,
+          0.06942259160882859,
+          0.07093356390841186,
+          0.07278242618260515,
+          0.074342944378575,
+          0.07561108363729661,
+          0.07654253865672983,
+          0.07716255414285686,
+          0.07790697786921859,
+          0.07882884140262326,
+          0.08006214817885987,
+          0.08121266872990247,
+          0.08300073358314
+        ],
+        "gravity_g_mae": [
+          0.0012986556360311354,
+          0.0028751997414786946,
+          0.0040878437997626,
+          0.005586082078192743,
+          0.007602677216894121,
+          0.009620264876128937,
+          0.011068628043937847,
+          0.011931671936265872,
+          0.012751530144395529,
+          0.013859720442623562,
+          0.015040716347903603,
+          0.01592646545070353,
+          0.016711272000308464,
+          0.017695905598203224,
+          0.01823726745366778,
+          0.019508692149657062,
+          0.02051905811132262,
+          0.02068466792708946,
+          0.021136230689464658,
+          0.021596960451115855,
+          0.022316234835174874,
+          0.023852667639268414,
+          0.025182437748271298,
+          0.026112136231912716,
+          0.02702079686253664,
+          0.02767182282601866,
+          0.02829222415720095,
+          0.028301614669534556,
+          0.028467149105227137,
+          0.02929115684542312,
+          0.030368395223331946,
+          0.031106830215085358,
+          0.0316321337194693,
+          0.03268388742996542,
+          0.03346128493157222,
+          0.03447509450023614,
+          0.035430835516350526,
+          0.036594359679437465,
+          0.037554588975027586,
+          0.03869206086989328,
+          0.040048998423401906,
+          0.04151803829445554,
+          0.042319866391509885,
+          0.043050257630697766,
+          0.043557554762208225,
+          0.04434788020338056,
+          0.04494392461510747,
+          0.045818136444641215,
+          0.04643619573084452,
+          0.047002487236478284,
+          0.04814885687439547,
+          0.04907837833541835,
+          0.04966722666828021,
+          0.05027619883037294,
+          0.0506430470662565,
+          0.05133103222496588,
+          0.05199022032912737,
+          0.052817158210742496,
+          0.05345627126296293,
+          0.054160846410372575
+        ]
+      },
+      "persistence": {
+        "time_s": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          10.0,
+          11.0,
+          12.0,
+          13.0,
+          14.0,
+          15.0,
+          16.0,
+          17.0,
+          18.0,
+          19.0,
+          20.0,
+          21.0,
+          22.0,
+          23.0,
+          24.0,
+          25.0,
+          26.0,
+          27.0,
+          28.0,
+          29.0,
+          30.0,
+          31.0,
+          32.0,
+          33.0,
+          34.0,
+          35.0,
+          36.0,
+          37.0,
+          38.0,
+          39.0,
+          40.0,
+          41.0,
+          42.0,
+          43.0,
+          44.0,
+          45.0,
+          46.0,
+          47.0,
+          48.0,
+          49.0,
+          50.0,
+          51.0,
+          52.0,
+          53.0,
+          54.0,
+          55.0,
+          56.0,
+          57.0,
+          58.0,
+          59.0,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.009835469897921414,
+          0.019516431436821618,
+          0.029109306556380804,
+          0.038210178686028225,
+          0.04686275382362742,
+          0.05546166784137667,
+          0.06406543102912203,
+          0.07256516807751154,
+          0.08157244142902935,
+          0.09090728967309555,
+          0.1010913351284721,
+          0.11087996954103324,
+          0.1198989603250634,
+          0.12811591502128594,
+          0.13534012278639354,
+          0.1423106347371342,
+          0.14872945245755673,
+          0.15464025255207497,
+          0.16057724137832002,
+          0.1666584253346927,
+          0.17257105566029443,
+          0.17880308715478851,
+          0.18567309488543132,
+          0.19239074066912135,
+          0.19792255998031877,
+          0.2027043671361136,
+          0.2064094985967372,
+          0.20929213722685752,
+          0.2115087393314782,
+          0.21465384961920203,
+          0.21802930622806133,
+          0.22122373080782923,
+          0.22467799913358225,
+          0.22845214414505882,
+          0.23201870997212123,
+          0.23533731726270304,
+          0.2381712453605394,
+          0.2404045185779439,
+          0.24230848852090137,
+          0.24478110202833223,
+          0.24742616868291728,
+          0.2501027355059734,
+          0.2529138979055925,
+          0.2560056991383943,
+          0.25835265895610793,
+          0.26014603400058495,
+          0.2620676115341392,
+          0.26423896119470697,
+          0.2667606232650076,
+          0.26911708339557755,
+          0.2714725485527787,
+          0.27457120027108173,
+          0.2785147323170188,
+          0.28197900566956996,
+          0.284569444161312,
+          0.2868499240205325,
+          0.28956527951786304,
+          0.29191483476683644,
+          0.2938415138539597,
+          0.29583347686032446
+        ],
+        "gravity_g_mae": [
+          0.006629093321023873,
+          0.013110246331451763,
+          0.019480560046118943,
+          0.025375151064475163,
+          0.030967872250604454,
+          0.03635568698450127,
+          0.04171221211794139,
+          0.047090335384530765,
+          0.0531388079416619,
+          0.05879965536544111,
+          0.06573653850580964,
+          0.07237950518710709,
+          0.07853002106758634,
+          0.08431428569896877,
+          0.08946821250127282,
+          0.09408270933535848,
+          0.09799581676023562,
+          0.10171669294387352,
+          0.10543751875245969,
+          0.10858067052787845,
+          0.11210936049222109,
+          0.11604545339163612,
+          0.12054177910627761,
+          0.12559530106004158,
+          0.12970039750754966,
+          0.13287022475067645,
+          0.13489538800094278,
+          0.13617943307521266,
+          0.13763995831375836,
+          0.13937524664088924,
+          0.14114099010810657,
+          0.14302455422466914,
+          0.14513655390242808,
+          0.1478880733990059,
+          0.1504018574725766,
+          0.1526978039998195,
+          0.15430931015342614,
+          0.15555446664613268,
+          0.15717632334305578,
+          0.1592495810954617,
+          0.16135086894116893,
+          0.16379920816528828,
+          0.1661190014105215,
+          0.1687213215826015,
+          0.1705737116062804,
+          0.1716355686171873,
+          0.17210168099977777,
+          0.17328616279963527,
+          0.17465430277416574,
+          0.1758759539755397,
+          0.17725363089481652,
+          0.17935284714121205,
+          0.18159767655731934,
+          0.18404919124372532,
+          0.18567308538871863,
+          0.18676995806657537,
+          0.188357357122784,
+          0.18911559083637935,
+          0.1899598698664452,
+          0.1903374549253195
+        ]
+      },
+      "ridge_baseline": {
+        "time_s": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          10.0,
+          11.0,
+          12.0,
+          13.0,
+          14.0,
+          15.0,
+          16.0,
+          17.0,
+          18.0,
+          19.0,
+          20.0,
+          21.0,
+          22.0,
+          23.0,
+          24.0,
+          25.0,
+          26.0,
+          27.0,
+          28.0,
+          29.0,
+          30.0,
+          31.0,
+          32.0,
+          33.0,
+          34.0,
+          35.0,
+          36.0,
+          37.0,
+          38.0,
+          39.0,
+          40.0,
+          41.0,
+          42.0,
+          43.0,
+          44.0,
+          45.0,
+          46.0,
+          47.0,
+          48.0,
+          49.0,
+          50.0,
+          51.0,
+          52.0,
+          53.0,
+          54.0,
+          55.0,
+          56.0,
+          57.0,
+          58.0,
+          59.0,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.005849051813257041,
+          0.011676975904317039,
+          0.017342363096879716,
+          0.022827446456102553,
+          0.028465411517587132,
+          0.03380035886157187,
+          0.03907547813270631,
+          0.043969699889849674,
+          0.04902051627658204,
+          0.054630369535162156,
+          0.06044403126979227,
+          0.0661623952730616,
+          0.07160812907048927,
+          0.07680417360811229,
+          0.08224593793862689,
+          0.08734638087304056,
+          0.09215836035675255,
+          0.0966329263451943,
+          0.10132361196872491,
+          0.10587652319255436,
+          0.11062565622577153,
+          0.11514736963947472,
+          0.1194856728341657,
+          0.12404420540348282,
+          0.12889688378786052,
+          0.13366772265573829,
+          0.13816503965922405,
+          0.14215872993690606,
+          0.14617697214959646,
+          0.1499697836150552,
+          0.15384022625669655,
+          0.15725104344619717,
+          0.1609854695547364,
+          0.16484465474949234,
+          0.16870314320425248,
+          0.1726612077429905,
+          0.17639685132694263,
+          0.18032098682225084,
+          0.18418895038296879,
+          0.18802575561681473,
+          0.1920016063214516,
+          0.19541382978010938,
+          0.1986924995531273,
+          0.20190942362560882,
+          0.20479063023223174,
+          0.207509288065491,
+          0.21073871049952267,
+          0.21373076144618502,
+          0.21674951193989841,
+          0.21977249441673422,
+          0.2231534350694151,
+          0.22620233000158013,
+          0.2291796472690059,
+          0.23211046676255992,
+          0.23461532107906494,
+          0.23701366910479685,
+          0.23944938717582995,
+          0.2417720226951961,
+          0.24404309265427518,
+          0.24615276753592485
+        ],
+        "gravity_g_mae": [
+          0.0052088583480744775,
+          0.00843579572507564,
+          0.011721581191956456,
+          0.01478207598575569,
+          0.018057012826918392,
+          0.02122975872334538,
+          0.024507457242347645,
+          0.02773213894338604,
+          0.03127873619348357,
+          0.034996749739486764,
+          0.03896935225216876,
+          0.04292664641370174,
+          0.046730875670609996,
+          0.050435989658517776,
+          0.0542859659264942,
+          0.057809944993394195,
+          0.06119434413184378,
+          0.0642482727601804,
+          0.0676725346151178,
+          0.07079946170103946,
+          0.07432994183655901,
+          0.07814819169679069,
+          0.0818408109798733,
+          0.08574933286707738,
+          0.08963960564559459,
+          0.09305444333951801,
+          0.0962772575367422,
+          0.09961377581597192,
+          0.10302226317217561,
+          0.106000182603513,
+          0.10925386484554714,
+          0.11271488935036429,
+          0.11617476294779638,
+          0.1198750657911653,
+          0.12323844451579277,
+          0.12652493860311007,
+          0.12972536123349418,
+          0.133119737743382,
+          0.13671170887648718,
+          0.13988729743973496,
+          0.14318052573749873,
+          0.14660427701477752,
+          0.14957350828137994,
+          0.15266396685109482,
+          0.15514844213834564,
+          0.15771750738265888,
+          0.16059629769361927,
+          0.16312635820359564,
+          0.16555792961984014,
+          0.16743174597145374,
+          0.17017683941422157,
+          0.17292438060080428,
+          0.17527984776500696,
+          0.1778463430251242,
+          0.17980059657521727,
+          0.18176812237434165,
+          0.18386182948510715,
+          0.18578166375142693,
+          0.1874991902802086,
+          0.18864701855218274
+        ]
+      }
+    },
+    "2": {
+      "learned_model": {
+        "time_s": [
+          2.0,
+          4.0,
+          6.0,
+          8.0,
+          10.0,
+          12.0,
+          14.0,
+          16.0,
+          18.0,
+          20.0,
+          22.0,
+          24.0,
+          26.0,
+          28.0,
+          30.0,
+          32.0,
+          34.0,
+          36.0,
+          38.0,
+          40.0,
+          42.0,
+          44.0,
+          46.0,
+          48.0,
+          50.0,
+          52.0,
+          54.0,
+          56.0,
+          58.0,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.002045963912865628,
+          0.003871864463791424,
+          0.0058159338030886396,
+          0.00802519616050635,
+          0.009805292086080108,
+          0.011500941598554361,
+          0.013298800558302229,
+          0.015063131351514483,
+          0.016691072412238116,
+          0.018359634663005855,
+          0.01990932192220077,
+          0.021348066795947262,
+          0.022738003234237542,
+          0.023927613248271733,
+          0.025012277339368703,
+          0.026032761925175413,
+          0.027201637752061924,
+          0.028435384590142967,
+          0.029538812984581008,
+          0.030743031641520487,
+          0.03177764473015342,
+          0.03301347585433477,
+          0.03428168695164568,
+          0.03527925859892829,
+          0.03609771739989629,
+          0.03685055649295438,
+          0.03784568604591103,
+          0.03908311207466281,
+          0.04026009641624073,
+          0.04144809431956531
+        ],
+        "gravity_g_mae": [
+          0.0015632382785674968,
+          0.002508140574974917,
+          0.00362452047378416,
+          0.005057501121471059,
+          0.00612451364263463,
+          0.007173015924026995,
+          0.00833689026108601,
+          0.009348197779236773,
+          0.010333528967945633,
+          0.011408067820209505,
+          0.012346185930962456,
+          0.013242821526155182,
+          0.014164887364661649,
+          0.015148153616810194,
+          0.015894764705438214,
+          0.016605476300700427,
+          0.017377400538979463,
+          0.018199305363270846,
+          0.018898579760542378,
+          0.019591849914127626,
+          0.02028190020244295,
+          0.0211360633735185,
+          0.02197054589494029,
+          0.022818243493051837,
+          0.023402459962647185,
+          0.02391998702194887,
+          0.024546275803278866,
+          0.02537869687541496,
+          0.026189714933712093,
+          0.026889028610685723
+        ]
+      },
+      "persistence": {
+        "time_s": [
+          2.0,
+          4.0,
+          6.0,
+          8.0,
+          10.0,
+          12.0,
+          14.0,
+          16.0,
+          18.0,
+          20.0,
+          22.0,
+          24.0,
+          26.0,
+          28.0,
+          30.0,
+          32.0,
+          34.0,
+          36.0,
+          38.0,
+          40.0,
+          42.0,
+          44.0,
+          46.0,
+          48.0,
+          50.0,
+          52.0,
+          54.0,
+          56.0,
+          58.0,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.011882479876641091,
+          0.024093663210319773,
+          0.0362065302202767,
+          0.048333575825915534,
+          0.060662592001298934,
+          0.07252819532995326,
+          0.08382055024080329,
+          0.09532136837733449,
+          0.10689323241507492,
+          0.11774711530977822,
+          0.12772490234535827,
+          0.13771181555815704,
+          0.14798085916903225,
+          0.1570630527549775,
+          0.1655175327333752,
+          0.1732640813512928,
+          0.1802820989111965,
+          0.18711536067423812,
+          0.1941460757780403,
+          0.20129719687292455,
+          0.2076428687014231,
+          0.2132677601450842,
+          0.21877218391066217,
+          0.22363635291049858,
+          0.22846736390310174,
+          0.23260956944415975,
+          0.23578489934895205,
+          0.23897193206211817,
+          0.2427712112698767,
+          0.24680577465622264
+        ],
+        "gravity_g_mae": [
+          0.0074153767043941814,
+          0.015203860989281687,
+          0.0226935146033238,
+          0.03009802786784176,
+          0.03773973182722599,
+          0.04514290451579838,
+          0.052304182095355686,
+          0.05977352702836794,
+          0.06710279240919938,
+          0.07362456849859227,
+          0.07959389903947782,
+          0.0857363501416845,
+          0.09223429379727423,
+          0.09800402030446011,
+          0.10328295017285198,
+          0.10814652439492445,
+          0.11255451574545566,
+          0.1166429469203149,
+          0.12121993870901444,
+          0.12550125380268295,
+          0.12945047719513236,
+          0.13295926288929744,
+          0.1366395386528163,
+          0.14003255718525892,
+          0.1431431158592377,
+          0.1457199604721956,
+          0.147703512584363,
+          0.14973479570623896,
+          0.1524210386119723,
+          0.15441143561665366
+        ]
+      },
+      "ridge_baseline": {
+        "time_s": [
+          2.0,
+          4.0,
+          6.0,
+          8.0,
+          10.0,
+          12.0,
+          14.0,
+          16.0,
+          18.0,
+          20.0,
+          22.0,
+          24.0,
+          26.0,
+          28.0,
+          30.0,
+          32.0,
+          34.0,
+          36.0,
+          38.0,
+          40.0,
+          42.0,
+          44.0,
+          46.0,
+          48.0,
+          50.0,
+          52.0,
+          54.0,
+          56.0,
+          58.0,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.005398549878552508,
+          0.010973890793731953,
+          0.01624517154487355,
+          0.021414103593202016,
+          0.026694139182340423,
+          0.03195473131588741,
+          0.03688175365574612,
+          0.0416727208367783,
+          0.04636190648931034,
+          0.05066652270426042,
+          0.05488858938502771,
+          0.05907587291247145,
+          0.0632468246717283,
+          0.06659169853527475,
+          0.06973514497298688,
+          0.07289433969705492,
+          0.07549794805254074,
+          0.07784823939809424,
+          0.08068727479147085,
+          0.08390138548184203,
+          0.08671968136783562,
+          0.08923191958229415,
+          0.09185835063180252,
+          0.09369172990522996,
+          0.09559711663520258,
+          0.09743212428416365,
+          0.09893142060925755,
+          0.0999797119837281,
+          0.10146550870841536,
+          0.10294095069974114
+        ],
+        "gravity_g_mae": [
+          0.003935439760441139,
+          0.007564769134221518,
+          0.010754395071081023,
+          0.014034628533247379,
+          0.01745043166776294,
+          0.020721850427990223,
+          0.023948310371080528,
+          0.02726341007656399,
+          0.030158760842969128,
+          0.03265478509570279,
+          0.035053020996883545,
+          0.03760150303684649,
+          0.04012373993908871,
+          0.04206222091750942,
+          0.0439463107910736,
+          0.045915227777529044,
+          0.04756517243156414,
+          0.04911545400476957,
+          0.05095519765529203,
+          0.05295120649732335,
+          0.0546676661977462,
+          0.05611479205363263,
+          0.05785931940274737,
+          0.05916482805493003,
+          0.0605198515757436,
+          0.06177411738437283,
+          0.06267228630355755,
+          0.06349082441866395,
+          0.06464809548312997,
+          0.06560403013878893
+        ]
+      }
+    },
+    "5": {
+      "learned_model": {
+        "time_s": [
+          5.0,
+          10.0,
+          15.0,
+          20.0,
+          25.0,
+          30.0,
+          35.0,
+          40.0,
+          45.0,
+          50.0,
+          55.0,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.0045583217141886645,
+          0.00807959991845658,
+          0.011631520761153365,
+          0.014604615363563092,
+          0.017907324144192525,
+          0.021430171372995348,
+          0.02475010155637265,
+          0.02789292740688728,
+          0.03142368622970303,
+          0.034032708578831936,
+          0.036862901173089165,
+          0.03950898150954935
+        ],
+        "gravity_g_mae": [
+          0.003105347525822202,
+          0.004600070913366953,
+          0.006697416220776353,
+          0.008494487782165138,
+          0.010442278183928889,
+          0.012869283168738527,
+          0.014808461053621783,
+          0.01709331669071851,
+          0.019224533249251465,
+          0.020920623172614547,
+          0.02290544515318707,
+          0.02418323245581882
+        ]
+      },
+      "persistence": {
+        "time_s": [
+          5.0,
+          10.0,
+          15.0,
+          20.0,
+          25.0,
+          30.0,
+          35.0,
+          40.0,
+          45.0,
+          50.0,
+          55.0,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.02370331422794396,
+          0.04493071540327706,
+          0.06837700405744465,
+          0.08936527039061573,
+          0.11050741433228947,
+          0.12972704379799888,
+          0.1494658128077465,
+          0.16745590633219357,
+          0.18682565025606807,
+          0.20276762144421911,
+          0.21898051644454908,
+          0.23208375814451904
+        ],
+        "gravity_g_mae": [
+          0.017574016431571384,
+          0.03279953068996142,
+          0.049332991790583605,
+          0.06354559002414245,
+          0.07782180147646739,
+          0.09167801669708318,
+          0.105827297695514,
+          0.11866264664555008,
+          0.13200436640392257,
+          0.14390400282851407,
+          0.15554055033068012,
+          0.16429250689515765
+        ]
+      },
+      "ridge_baseline": {
+        "time_s": [
+          5.0,
+          10.0,
+          15.0,
+          20.0,
+          25.0,
+          30.0,
+          35.0,
+          40.0,
+          45.0,
+          50.0,
+          55.0,
+          60.0
+        ],
+        "ring_rpm_mae": [
+          0.019118826271027713,
+          0.03568169898030812,
+          0.05415341926901979,
+          0.06998353038650829,
+          0.08674987128579584,
+          0.10161253964029747,
+          0.1166265513966377,
+          0.13059061575366646,
+          0.14687586386107362,
+          0.15992564356107902,
+          0.1737016808896433,
+          0.18407286792433583
+        ],
+        "gravity_g_mae": [
+          0.014761418040762309,
+          0.026553286549053524,
+          0.039336668691218525,
+          0.049711948912617154,
+          0.0606093507220949,
+          0.07125503550155435,
+          0.08168626021152373,
+          0.09149882581920511,
+          0.10282139727095398,
+          0.11249170081382645,
+          0.12222053313254627,
+          0.12898082584844187
+        ]
+      }
+    }
+  },
+  "rollout_example": {
+    "episode_id": 114,
+    "scenario": "mission_pid",
+    "dt_s": 2.0
+  },
+  "plots": {
+    "training_loss": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-residual-e50\\evaluation\\training_loss.png",
+    "pred_vs_actual_speeds": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-residual-e50\\evaluation\\pred_vs_actual_speeds.png",
+    "pred_vs_actual_accel": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-residual-e50\\evaluation\\pred_vs_actual_accel.png",
+    "rollout_error_growth": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-residual-e50\\evaluation\\rollout_error_growth.png",
+    "rollout_example": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-residual-e50\\evaluation\\rollout_example.png"
+  },
+  "elapsed_s": 3.98
+}

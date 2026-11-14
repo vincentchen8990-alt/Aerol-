@@ -1,0 +1,1490 @@
+# PROJECT: AI-DRIVEN PERSONALIZED ARTIFICIAL GRAVITY CONTROL SYSTEM
+
+## PRIMARY INSTRUCTION — USE MY PROVIDED CSV FILES
+
+You are a senior AI researcher, machine-learning engineer, computational biologist, aerospace engineer, and full-stack software developer.
+
+Your task is to **build the complete executable codebase for a personalized artificial-gravity research system, using the four CSV files I have already provided.**
+
+Do not start by conducting an entirely new dataset search.
+
+The previously generated CSV files contain research sources, measurement definitions, and mappings between NASA-supported wearable measurements and human physiological data collected on Earth.
+
+**These files must be the starting point for the entire machine-learning and data-processing pipeline.**
+
+The four CSV files are:
+
+```text
+embraceplus_watch_signals.csv
+embraceplus_watch_biomarkers.csv
+earth_human_dataset_sources.csv
+earth_human_metric_mapping.csv
+```
+
+I may also provide:
+
+```text
+embraceplus_earth_human_data_catalog.xlsx
+```
+
+The Excel file is an optional supplementary reference. The four CSV files are the primary required inputs.
+
+Your responsibilities are to:
+
+1. Read and inspect all four CSV files.
+2. Identify the physiological measurements and their corresponding research datasets.
+3. Determine which underlying datasets contain actual participant measurements.
+4. Retrieve publicly accessible datasets using the source links already provided in the CSVs.
+5. Validate and preprocess the real measurements.
+6. Build and train the physiological and machine-learning models.
+7. Implement the spacecraft physics simulator.
+8. Implement the artificial-gravity control system.
+9. Integrate the physiological and spacecraft models.
+10. Develop a functional interactive 3D simulation.
+11. Provide complete, reproducible model-training instructions.
+
+**Do not treat the catalog records themselves as physiological training samples.**
+
+If a dataset requires authorization or is unavailable, do not invent its contents. Continue with the accessible sources and document what is missing.
+
+---
+
+# PART 1 — SCIENTIFIC OBJECTIVE
+
+## 1.1 Research goal
+
+Develop a computational research system that investigates personalized artificial-gravity exposure for astronauts during long-duration space missions.
+
+Our current spacecraft design uses a rotating habitation ring to produce artificial gravity.
+
+In conventional operation, the reference target is approximately:
+
+\[
+g_{\text{Earth}}=9.80665\ \mathrm{m/s^2}
+\]
+
+However, we want to investigate whether a personalized physiological model could eventually support adjusting that target according to an astronaut's health and gravity-exposure history.
+
+The model should consider:
+
+- Bone mineral density.
+- Bone remodeling and skeletal-health indicators.
+- Blood pressure.
+- Heart rate.
+- Pulse-rate variability.
+- ECG-derived heart-rate variability when available.
+- Respiratory rate.
+- Blood oxygen saturation.
+- Skin temperature.
+- Electrodermal activity.
+- Physical activity and exercise.
+- Sleep patterns.
+- Relevant nutrition information.
+- Individual physiological baselines.
+- Spaceflight duration.
+- Cumulative artificial-gravity exposure.
+
+The research must distinguish physiological prediction from evidence of a causal benefit from changing gravity.
+
+Do not assume that increasing gravity necessarily improves every measured health condition.
+
+## 1.2 Main research question
+
+**Can multimodal physiological modeling help estimate astronaut health responses to artificial-gravity exposure, while a physics-based controller maintains a requested gravity level inside a rotating spacecraft?**
+
+Separate the research into:
+
+**Research question A:**
+
+Can we accurately model Earth-based physiological measurements obtained from wearable devices?
+
+**Research question B:**
+
+Can we model skeletal-health and cardiovascular measurements using existing human datasets?
+
+**Research question C:**
+
+Does available artificial-gravity research support estimating physiological responses to different exposure levels?
+
+**Research question D:**
+
+Can a spacecraft controller safely and accurately reproduce a requested artificial-gravity target under changing engine thrust and mechanical conditions?
+
+Treat these as distinct experiments.
+
+---
+
+# PART 2 — READ AND USE THE FOUR PROVIDED CSV FILES
+
+This is the most important change to the original project instructions.
+
+## 2.1 File A: `embraceplus_watch_signals.csv`
+
+This CSV contains the following columns:
+
+```text
+Signal / feature
+Layer
+Raw field / units
+Sample timing
+Availability
+Use in gravity-health research
+Earth analog
+Official source
+```
+
+It documents nine raw sensor and related signal entries.
+
+Use this file to determine which physiological signals the NASA-supported EmbracePlus wearable can provide.
+
+The documented signals include relevant measurements such as:
+
+- Three-axis acceleration.
+- Three-axis gyroscope readings.
+- Blood Volume Pulse / PPG.
+- Electrodermal activity.
+- Peripheral skin temperature.
+- Step events.
+- Pulse-related events.
+- Wearable event information.
+
+Use the actual contents to establish the complete supported signal list.
+
+### Implementation requirements
+
+Create a parser that:
+
+1. Reads this CSV with UTF-8 BOM handling.
+2. Extracts every documented signal.
+3. Identifies its measurement unit.
+4. Extracts its sampling information.
+5. Records its availability and device restrictions.
+6. Connects the signal to its documented Earth-based analogs.
+7. Creates the corresponding machine-learning feature definition.
+
+Do not invent a fixed sampling frequency when the CSV identifies a signal as mode-dependent.
+
+Do not assume that the wrist accelerometer directly measures the artificial-gravity vector at the crew floor.
+
+---
+
+## 2.2 File B: `embraceplus_watch_biomarkers.csv`
+
+This CSV contains:
+
+```text
+Signal / report
+Area
+Vendor output family
+Units
+Availability
+Important interpretation
+Earth counterpart
+Official source
+```
+
+It documents 26 physiological biomarkers, derived features, and reports.
+
+Use it to establish which features should be predicted, processed, or displayed in the astronaut health dashboard.
+
+### Required implementation
+
+Create a unified physiological feature registry.
+
+For every feature, store:
+
+```python
+{
+    "feature_name": "...",
+    "feature_category": "...",
+    "source_device": "...",
+    "source_field": "...",
+    "units": "...",
+    "sampling_information": "...",
+    "availability": "...",
+    "earth_reference": "...",
+    "interpretation_warning": "...",
+    "source_url": "..."
+}
+```
+
+Preserve the original descriptions and restrictions.
+
+Distinguish:
+
+- Raw sensor measurements.
+- Device-derived biomarkers.
+- Additional calculated features.
+- Measurements requiring external instruments.
+- Unavailable measurements.
+
+Important examples:
+
+Blood pressure is not a direct EmbracePlus watch measurement.
+
+Bone mineral density requires an appropriate skeletal measurement, such as DXA.
+
+Pulse-rate variability and ECG-derived heart-rate variability are not automatically interchangeable.
+
+Peripheral skin temperature is not equivalent to core temperature.
+
+Do not estimate unavailable clinical measurements without an explicitly implemented, validated model and corresponding evidence.
+
+---
+
+## 2.3 File C: `earth_human_dataset_sources.csv`
+
+This CSV is the **primary dataset acquisition manifest**.
+
+It contains:
+
+```text
+ID
+Dataset
+Watch/device match
+Cohort
+Available metrics
+Access
+Sampling / details
+Important limits
+Primary URL
+```
+
+It identifies 11 human dataset and reference-source records.
+
+### Required behavior
+
+Read every row.
+
+For each dataset:
+
+1. Retrieve its identifier.
+2. Read the original dataset name.
+3. Extract the source URL.
+4. Identify the available physiological measurements.
+5. Determine the subject population.
+6. Identify the wearable device used.
+7. Verify whether the dataset can be downloaded.
+8. Record access restrictions.
+9. Inspect the actual files.
+10. Implement a dataset-specific importer.
+
+Prioritize datasets already listed in this CSV.
+
+Do not substitute unrelated datasets without explaining why the source in the manifest could not be used.
+
+### Expected dataset families
+
+The provided catalog identifies sources including:
+
+- Simons Sleep Project.
+- BALLADEER.
+- E4xEmbrace.
+- Empatica E4 exercise and stress data.
+- WESAD.
+- PPG-DaLiA.
+- MMASH.
+- BIDMC.
+- NHANES and other corresponding Earth human-health sources.
+
+Use the actual CSV records as the authoritative list of cataloged sources.
+
+Do not assume that all listed datasets are public.
+
+### Downloading policy
+
+Automatically retrieve publicly accessible datasets when feasible.
+
+For restricted datasets:
+
+- Identify the access procedure.
+- Record the required authorization.
+- Implement a manual-import interface.
+- Continue with available data.
+
+Never bypass access controls.
+
+---
+
+## 2.4 File D: `earth_human_metric_mapping.csv`
+
+This file contains:
+
+```text
+Unified key
+Target feature
+Layer
+Earth reference IDs
+Coverage status
+Caveat
+```
+
+It documents 16 mappings between desired physiological variables and corresponding Earth data sources.
+
+**Use this file as the starting point for feature harmonization across datasets.**
+
+For example:
+
+```text
+Watch acceleration
+        ↓
+Unified acceleration feature
+        ↓
+Corresponding Earth dataset
+```
+
+And:
+
+```text
+Blood volume pulse
+        ↓
+Unified optical cardiovascular feature
+        ↓
+Corresponding Earth dataset
+```
+
+### Required implementation
+
+Create a feature-mapping system that:
+
+1. Reads each unified key.
+2. Resolves the corresponding source datasets.
+3. Identifies original source columns.
+4. Checks compatible units.
+5. Checks signal characteristics and device differences.
+6. Records missing or incomplete coverage.
+7. Converts compatible measurements into standardized features.
+8. Retains source-specific metadata.
+
+Do not merge features merely because they have similar names.
+
+Different sensors may have different:
+
+- Sampling rates.
+- Units.
+- Calibration methods.
+- Sensor locations.
+- Signal quality.
+- Participant populations.
+- Experimental conditions.
+
+Only merge data when the measurement definitions are scientifically compatible.
+
+---
+
+# PART 3 — BUILD THE COMPLETE DATA PIPELINE
+
+Create a reproducible pipeline:
+
+```text
+FOUR PROVIDED CSV FILES
+          │
+          ▼
+DATA CATALOG PARSER
+          │
+          ▼
+DATASET LINK RESOLVER
+          │
+          ▼
+PUBLIC DATASET DOWNLOADER
+          │
+          ▼
+DATA FORMAT VALIDATION
+          │
+          ▼
+PARTICIPANT-LEVEL DATA PROCESSING
+          │
+          ▼
+SIGNAL PREPROCESSING
+          │
+          ▼
+FEATURE HARMONIZATION
+          │
+          ▼
+TRAIN / VALIDATION / TEST SPLITS
+          │
+          ▼
+MODEL-READY DATASETS
+```
+
+## 3.1 CSV ingestion
+
+Use Python and Pandas.
+
+Create:
+
+```text
+gravity_ai/data/catalog_loader.py
+gravity_ai/data/source_registry.py
+gravity_ai/data/feature_registry.py
+gravity_ai/data/metric_mapping.py
+gravity_ai/data/download.py
+gravity_ai/data/prepare.py
+gravity_ai/data/validation.py
+```
+
+These must be actual working modules.
+
+The project should read the original CSVs directly rather than manually copying their contents into code.
+
+Place them in:
+
+```text
+data/catalogs/
+```
+
+Every training run should record which version of the supplied catalog was used.
+
+## 3.2 Downloaded data
+
+Store actual measurements separately:
+
+```text
+data/raw/
+    empatica_e4/
+    wesad/
+    ppg_dalia/
+    mmash/
+    bidmc/
+    nhanes/
+    embraceplus/
+    nasa/
+```
+
+Do not store personally identifiable health records in the public repository.
+
+Preserve original source files when licensing and privacy rules permit.
+
+## 3.3 Processed data
+
+Use:
+
+```text
+data/processed/
+    wearable/
+    cardiovascular/
+    sleep/
+    activity/
+    bone_density/
+    gravity_exposure/
+```
+
+Create data validation reports.
+
+Record:
+
+- Dataset ID.
+- Original filename.
+- Number of participants.
+- Number of independent experimental sessions.
+- Number of measurements.
+- Measurement units.
+- Time coverage.
+- Missing values.
+- Device.
+- Processing steps.
+- Train/test allocation.
+- Provenance.
+- Licensing restrictions.
+
+---
+
+# PART 4 — TRAIN THE EARTH PHYSIOLOGICAL MODEL
+
+Implement a machine-learning system that learns from real human physiological measurements.
+
+## Model 1: Physiological baseline estimation
+
+Inputs:
+
+```text
+pulse_rate
+pulse_rate_variability
+respiratory_rate
+SpO2
+skin_temperature
+electrodermal_activity
+physical_activity
+sleep_information
+subject_baseline
+```
+
+Only include features actually available in a given dataset.
+
+Use missing-data masks where appropriate.
+
+Do not fill unavailable clinical measurements with fabricated values.
+
+Outputs:
+
+- Expected physiological feature values.
+- Deviations from an observed individual baseline.
+- Forecast uncertainty.
+
+Start with simple statistical models and compare them against neural networks.
+
+## Model 2: Multimodal time-series prediction
+
+Implement:
+
+1. GRU.
+2. LSTM.
+3. Transformer-based time-series model.
+
+Use PyTorch.
+
+Train only against targets supported by real observations.
+
+The objective is to predict future physiological measurements from prior measurements.
+
+Example:
+
+\[
+\hat{\mathbf{x}}_{t+\Delta t}
+=
+f_\theta(\mathbf{x}_{t-k:t})
+\]
+
+Report:
+
+- MAE.
+- RMSE.
+- Relevant classification metrics.
+- Prediction uncertainty.
+- Calibration.
+- Subject-level variability.
+
+Prevent train/test leakage by separating participants or complete experimental sessions as appropriate.
+
+## Model 3: Activity and physiological context
+
+Train classification models using datasets with actual activity or experimental labels.
+
+Possible tasks:
+
+- Rest versus activity.
+- Available exercise classes.
+- Available stress-condition labels.
+- Sleep versus wake.
+
+Do not interpret stress labels as evidence that gravity should be increased or decreased.
+
+---
+
+# PART 5 — TRAIN THE BONE-DENSITY AND BLOOD-PRESSURE MODELS
+
+Use the NHANES dataset identified in the provided sources CSV.
+
+Retrieve the corresponding official data files.
+
+For the 2013–2014 cycle, investigate:
+
+```text
+DEMO_H
+BPX_H
+DXXFEM_H
+DXXSPN_H
+PAXDAY_H
+PAXHD_H
+```
+
+Verify every source file and field against the official documentation.
+
+Join participant records using:
+
+```python
+SEQN
+```
+
+Do not join unrelated participants across different datasets.
+
+## Bone-density model
+
+Inputs may include:
+
+- Age.
+- Sex.
+- Physical activity.
+- Blood pressure.
+- Pulse.
+- Other verified NHANES variables.
+
+Outputs:
+
+- Observed femoral bone mineral density.
+- Observed femoral-neck bone mineral density.
+- Observed spine bone mineral density.
+
+Compare:
+
+- Linear regression.
+- Random forest.
+- Gradient boosting.
+- PyTorch neural network.
+
+Evaluate on held-out participants.
+
+Account for eligibility restrictions, missing scans, and the complex survey design where relevant.
+
+**Important:** NHANES is primarily cross-sectional. Do not claim that this model predicts longitudinal bone-density recovery or the optimal artificial-gravity treatment.
+
+Those require appropriate longitudinal exposure-response evidence.
+
+---
+
+# PART 6 — NASA SPACEFLIGHT AND GRAVITY-EXPOSURE DATA
+
+After processing the datasets already listed in the CSVs, investigate NASA research sources for missing gravity-exposure information.
+
+Primary source:
+
+https://science.nasa.gov/biological-physical/data/osdr/
+
+Also inspect:
+
+https://www.nasa.gov/hrp/nlsp/
+
+Search specifically for human or relevant experimental data involving:
+
+- Artificial gravity.
+- Centrifugation.
+- Bone mineral density.
+- Bone turnover markers.
+- Cardiovascular adaptation.
+- Blood pressure.
+- Heart rate.
+- Respiratory changes.
+- Vestibular response.
+- Motion sickness.
+- Gravity duration.
+- Gravity intensity.
+- Exercise during gravity exposure.
+
+Preserve experimental conditions, populations, measurement timing, and source provenance.
+
+Create a separate gravity-exposure dataset schema:
+
+```python
+{
+    "study_id": str,
+    "subject_id": str,
+    "gravity_magnitude_m_s2": float,
+    "reference_location": str,
+    "centrifuge_radius_m": float,
+    "rpm": float,
+    "exposure_duration_s": float,
+    "measurement_time": str,
+    "physiological_outcome": str,
+    "outcome_value": float,
+    "outcome_units": str,
+    "study_condition": str,
+    "source": str
+}
+```
+
+Allow missing values where the study does not report a field.
+
+Do not infer an individual's gravity response from unrelated Earth datasets.
+
+If sufficiently detailed gravity-response training data are unavailable, implement only an exploratory, assumption-based simulation and clearly identify it as unvalidated.
+
+---
+
+# PART 7 — PERSONALIZED ASTRONAUT HEALTH MODEL
+
+Develop a physiological research model using both an Earth baseline and observations collected during a mission.
+
+Conceptual input:
+
+\[
+\mathbf{H}(t)=
+[
+BMD,
+BP,
+HR,
+PRV,
+SpO_2,
+RR,
+T,
+EDA,
+Activity,
+Sleep,
+\ldots
+]
+\]
+
+All features must include units, measurement source, and time information.
+
+The model should distinguish:
+
+1. Actual recorded measurements.
+2. Model predictions.
+3. Simulated measurements.
+4. Missing measurements.
+
+## Long-term health forecasting
+
+Investigate:
+
+\[
+\hat{\mathbf H}(t+\Delta t)
+=
+f_\theta(
+\mathbf H(t),
+\text{activity history},
+\text{gravity history},
+\text{subject information}
+)
+\]
+
+Only claim that the model predicts gravity-dependent outcomes if supported by real data containing gravity-exposure variation and relevant repeated outcomes.
+
+Otherwise, implement a research-only simulation with configurable assumptions.
+
+## Gravity-target research module
+
+Create an interface that evaluates candidate gravity targets such as:
+
+```text
+0.7 G
+0.8 G
+0.9 G
+1.0 G
+```
+
+These values are illustrative research scenarios, not medically validated prescriptions.
+
+Display predicted outcomes and uncertainty only when supported by the model.
+
+If there is insufficient evidence, display:
+
+```text
+INSUFFICIENT SCIENTIFIC EVIDENCE
+
+A personalized gravity target cannot be
+reliably estimated from the available data.
+
+Using the manually selected simulation target.
+```
+
+Do not enable autonomous medical gravity adjustments.
+
+---
+
+# PART 8 — SPACECRAFT PHYSICS SIMULATION
+
+Implement a spacecraft with:
+
+- A central spacecraft hub.
+- A rotating habitation ring.
+- Astronaut positions.
+- Main engine thrust.
+- Motor-driven ring rotation.
+- Finite motor torque.
+- Ring inertia.
+- Hub inertia.
+- Disturbances.
+- Sensor uncertainty.
+- Power and actuator limits.
+
+Use:
+
+```python
+G0 = 9.80665
+R = 100.0
+```
+
+as configurable defaults.
+
+## Required physics
+
+Steady rotational acceleration:
+
+\[
+a_r=\omega^2R
+\]
+
+For a steady axial thrust component:
+
+\[
+g_{\mathrm{effective}}
+=
+\sqrt{
+a_{\mathrm{engine}}^2+
+(\omega^2R)^2
+}
+\]
+
+Calculate the steady target RPM analytically when physically feasible.
+
+Model finite motor torque:
+
+\[
+I\dot{\omega}=\tau_{\mathrm{net}}
+\]
+
+Extend the dynamics to include the reaction of the hub to changes in ring angular momentum.
+
+Include transient tangential acceleration:
+
+\[
+a_t=R\dot{\omega}
+\]
+
+For a stationary crew location under fixed-axis rotation and axial thrust:
+
+\[
+g_{\mathrm{effective}}
+=
+\sqrt{
+a_{\mathrm{engine}}^2+
+(R\omega^2)^2+
+(R\dot{\omega})^2
+}
+\]
+
+Implement the underlying acceleration vectors rather than calculating magnitudes alone.
+
+Support:
+
+- Engine acceleration.
+- Coasting.
+- Deceleration.
+- Thrust reversal.
+- Spin-up.
+- Spin-down.
+- Motor saturation.
+- Sensor delay.
+- Sensor failure.
+- Changing spacecraft mass distribution.
+- Gravity gradients.
+- Coriolis acceleration for moving occupants.
+
+Validate the equations with automated tests.
+
+---
+
+# PART 9 — TRAIN THE SPACECRAFT CONTROL MODELS
+
+Implement four control approaches.
+
+## Controller A: Analytical reference
+
+Calculate steady-state RPM from the physics equations.
+
+## Controller B: PID
+
+Implement a torque-limited PID controller.
+
+## Controller C: Model Predictive Control
+
+Implement constrained MPC to track a specified gravity target while respecting motor and spacecraft limits.
+
+## Controller D: Learned dynamics-assisted controller
+
+Train a PyTorch model using synthetic spacecraft trajectories generated by the dynamics simulator.
+
+Inputs:
+
+```text
+ring_angular_velocity
+hub_angular_velocity
+motor_torque
+engine_acceleration
+ring_inertia
+hub_inertia
+friction
+sensor_measurements
+time_step
+```
+
+Outputs:
+
+```text
+future_ring_angular_velocity
+future_hub_angular_velocity
+future_gravity_vector
+```
+
+Use the learned dynamics model within a bounded control approach.
+
+Compare learned control with the analytical and conventional baselines.
+
+Evaluate:
+
+- Gravity tracking error.
+- Maximum transient error.
+- Recovery time.
+- Motor torque.
+- Energy consumption.
+- Constraint violations.
+- Lateral acceleration.
+- Performance on unseen scenarios.
+
+The large language model must not directly issue unconstrained motor commands.
+
+---
+
+# PART 10 — BUILD THE INTERACTIVE 3D SPACECRAFT
+
+Develop a complete browser interface using:
+
+```text
+React
+TypeScript
+Three.js / React Three Fiber
+FastAPI
+Python
+PyTorch
+```
+
+## 3D spacecraft components
+
+Show:
+
+- Rotating blue habitation ring.
+- Central spacecraft hub.
+- Yellow astronaut position marker.
+- Engine section.
+- Gravity vectors.
+- Rotation direction.
+- Current RPM.
+- Commanded RPM.
+- Motor torque.
+- Adjustable floor orientation.
+- Flight path.
+- Mission timeline.
+
+The ring must rotate according to the simulated physical angular velocity.
+
+Do not simply animate a predetermined rotation independent of the simulation.
+
+## Mission controls
+
+Allow adjustment of:
+
+- Habitat radius.
+- Engine acceleration.
+- Gravity target.
+- Mission duration.
+- Motor torque limit.
+- Ring inertia.
+- Simulation speed.
+
+Support:
+
+- Play.
+- Pause.
+- Restart.
+- Timeline scrubbing.
+- Acceleration phase.
+- Coasting phase.
+- Deceleration phase.
+
+## Astronaut physiological dashboard
+
+Show supported metrics such as:
+
+```text
+Heart rate
+Pulse-rate variability
+Respiratory rate
+Blood oxygen
+Skin temperature
+Electrodermal activity
+Physical activity
+Sleep
+Blood pressure
+Bone mineral density
+```
+
+For measurements not provided by the smartwatch, show their external source.
+
+Include a simulated astronaut profile based on Earth reference measurements.
+
+Make the profile clearly synthetic unless it represents an actual authorized participant record.
+
+Display:
+
+- Earth baseline.
+- Current simulated or measured health state.
+- Predicted physiological trends.
+- Model uncertainty.
+- Current gravity exposure.
+- Requested gravity target.
+- Current spacecraft RPM.
+
+For multiple astronauts, support individual health profiles while enforcing the shared mechanical constraints of the habitat.
+
+---
+
+# PART 11 — PROJECT FILE STRUCTURE
+
+Create the following executable project structure:
+
+```text
+personalized-gravity-ai/
+│
+├── README.md
+├── requirements.txt
+├── pyproject.toml
+├── docker-compose.yml
+├── .env.example
+│
+├── data/
+│   ├── catalogs/
+│   │   ├── embraceplus_watch_signals.csv
+│   │   ├── embraceplus_watch_biomarkers.csv
+│   │   ├── earth_human_dataset_sources.csv
+│   │   └── earth_human_metric_mapping.csv
+│   ├── raw/
+│   ├── processed/
+│   ├── synthetic/
+│   └── manifests/
+│
+├── gravity_ai/
+│   ├── data/
+│   │   ├── catalog_loader.py
+│   │   ├── source_registry.py
+│   │   ├── feature_registry.py
+│   │   ├── metric_mapping.py
+│   │   ├── download.py
+│   │   ├── prepare.py
+│   │   ├── nhanes.py
+│   │   ├── empatica.py
+│   │   ├── nasa_osdr.py
+│   │   └── validation.py
+│   │
+│   ├── models/
+│   │   ├── physiology.py
+│   │   ├── timeseries.py
+│   │   ├── bone.py
+│   │   ├── gravity_response.py
+│   │   └── spacecraft_dynamics.py
+│   │
+│   ├── train/
+│   │   ├── physiology.py
+│   │   ├── bone.py
+│   │   └── dynamics.py
+│   │
+│   ├── simulation/
+│   │   ├── spacecraft.py
+│   │   ├── physics.py
+│   │   ├── astronaut.py
+│   │   ├── mission.py
+│   │   └── generate.py
+│   │
+│   ├── controllers/
+│   │   ├── analytical.py
+│   │   ├── pid.py
+│   │   ├── mpc.py
+│   │   ├── learned.py
+│   │   └── safety.py
+│   │
+│   ├── api/
+│   │   ├── app.py
+│   │   └── websocket.py
+│   │
+│   └── evaluate.py
+│
+├── frontend/
+│   ├── package.json
+│   ├── src/
+│   │   ├── App.tsx
+│   │   └── components/
+│   │       ├── Spacecraft3D.tsx
+│   │       ├── HealthDashboard.tsx
+│   │       ├── GravityControls.tsx
+│   │       └── MissionTimeline.tsx
+│   └── public/
+│
+├── configs/
+│   ├── physiology.yaml
+│   ├── bone.yaml
+│   ├── dynamics.yaml
+│   └── spacecraft.yaml
+│
+├── tests/
+│   ├── test_catalog_loader.py
+│   ├── test_data_loaders.py
+│   ├── test_physics.py
+│   ├── test_controllers.py
+│   ├── test_models.py
+│   └── test_integration.py
+│
+├── outputs/
+│   ├── checkpoints/
+│   ├── metrics/
+│   ├── figures/
+│   └── simulations/
+│
+└── docs/
+    ├── INSTALLATION.md
+    ├── DATASETS.md
+    ├── TRAINING.md
+    ├── PHYSICS.md
+    ├── VALIDATION.md
+    └── LIMITATIONS.md
+```
+
+The project may be reorganized if necessary.
+
+All referenced modules and scripts must be implemented and runnable.
+
+---
+
+# PART 12 — COMPLETE MODEL TRAINING INSTRUCTIONS
+
+Provide exact instructions for training the models.
+
+The training commands must correspond to implemented modules.
+
+## Step 1: Install dependencies
+
+Document installation for:
+
+- Python.
+- PyTorch.
+- Pandas.
+- NumPy.
+- Scikit-learn.
+- SciPy.
+- FastAPI.
+- React and TypeScript dependencies.
+- Three.js.
+- Required dataset readers.
+
+Support both CPU and CUDA-compatible GPU environments.
+
+## Step 2: Validate the CSV catalogs
+
+Implement:
+
+```bash
+python -m gravity_ai.data.catalog_loader --validate
+```
+
+This command must:
+
+- Confirm all four CSVs exist.
+- Read their schemas.
+- Count rows.
+- Check missing values.
+- Extract source links.
+- Build the source registry.
+- Build the feature registry.
+- Build the variable mapping.
+- Save a validation report.
+
+## Step 3: Download the underlying datasets
+
+Implement:
+
+```bash
+python -m gravity_ai.data.download --from-catalog --public-only
+```
+
+This command must:
+
+- Read `earth_human_dataset_sources.csv`.
+- Resolve the source URLs.
+- Download accessible data.
+- Verify downloaded files.
+- Record source and licensing information.
+- Skip restricted sources with a clear explanation.
+
+## Step 4: Prepare the physiological data
+
+Implement:
+
+```bash
+python -m gravity_ai.data.prepare --dataset all
+```
+
+Process actual participant measurements, not catalog rows.
+
+Perform:
+
+- Timestamp handling.
+- Unit conversion.
+- Missing-data detection.
+- Signal filtering when appropriate.
+- Feature extraction.
+- Subject-level splits.
+- Reproducible normalization.
+
+## Step 5: Train the physiological model
+
+```bash
+python -m gravity_ai.train.physiology \
+    --config configs/physiology.yaml
+```
+
+Train baseline and neural time-series models.
+
+Save model checkpoints and evaluation results.
+
+## Step 6: Train the skeletal-health model
+
+```bash
+python -m gravity_ai.train.bone \
+    --config configs/bone.yaml
+```
+
+Train using the verified NHANES data.
+
+Report supported predictive performance, not unsupported claims about future bone recovery.
+
+## Step 7: Generate spacecraft trajectories
+
+```bash
+python -m gravity_ai.simulation.generate \
+    --config configs/spacecraft.yaml
+```
+
+Generate physically simulated trajectories covering normal operation, disturbances, thrust transitions, and faults.
+
+Keep simulator truth separate from noisy observations.
+
+## Step 8: Train the spacecraft dynamics model
+
+```bash
+python -m gravity_ai.train.dynamics \
+    --config configs/dynamics.yaml
+```
+
+Train on simulated state-transition data.
+
+Hold out complete trajectories and spacecraft configurations.
+
+## Step 9: Evaluate the models
+
+```bash
+python -m gravity_ai.evaluate --all
+```
+
+Produce:
+
+- Model performance tables.
+- Learning curves.
+- Predicted-versus-observed plots.
+- Gravity tracking graphs.
+- Torque and energy metrics.
+- Uncertainty results.
+- Failure-case reports.
+
+## Step 10: Run the 3D application
+
+Implement and document working commands to start:
+
+1. The FastAPI backend.
+2. The React frontend.
+3. The spacecraft simulation.
+4. The health dashboard.
+5. The model inference services.
+
+---
+
+# PART 13 — REQUIRED TESTS
+
+Run automated tests for:
+
+### Dataset processing
+
+- Correct ingestion of all four CSVs.
+- UTF-8 BOM handling.
+- Correct column mappings.
+- Correct source-ID mappings.
+- Missing-data handling.
+- Correct participant joins.
+- Prevention of training/test leakage.
+
+### Physics
+
+- Correct steady-state RPM.
+- Finite motor response.
+- Ring/hub reaction.
+- Gravity-vector calculations.
+- Spin-change acceleration.
+- Torque saturation.
+- Infeasible gravity targets.
+
+For a 100-meter radius and a standard Earth-gravity target, verify these approximate steady-state values:
+
+```text
+0.0G engine acceleration: 2.990 RPM
+0.5G engine acceleration: 2.783 RPM
+0.8G engine acceleration: 2.316 RPM
+```
+
+### Machine learning
+
+- Successful forward passes.
+- Backpropagation.
+- Model checkpoint loading.
+- Reproducible splits.
+- Correct metric calculations.
+- Inference on held-out data.
+
+### Application integration
+
+- Backend starts successfully.
+- Frontend connects to backend.
+- Spacecraft rotates according to calculated dynamics.
+- Gravity measurements update correctly.
+- Health measurements have accurate data-source labels.
+- Missing measurements are not replaced by invented values.
+
+Run the available tests and report actual results.
+
+---
+
+# PART 14 — SCIENTIFIC VALIDATION AND SAFETY
+
+This is a computational research project.
+
+The system must not be represented as a validated medical device or flight-ready spacecraft controller.
+
+Maintain a clear boundary between:
+
+- Measured Earth data.
+- Measured spaceflight data.
+- Simulated spacecraft data.
+- Synthetic biological data.
+- Model predictions.
+- Clinically validated outcomes.
+
+Do not automatically change a real spacecraft's gravity based on wearable measurements.
+
+Gravity-target recommendations must remain experimental unless supported by appropriate evidence and an independently approved decision process.
+
+Implement manual target selection and independently enforced mechanical constraints.
+
+Preserve data privacy, licensing, and access restrictions.
+
+---
+
+# PART 15 — FINAL DELIVERABLES
+
+Produce the following.
+
+**1. Complete executable repository**
+
+All Python, PyTorch, API, frontend, configuration, and testing files.
+
+**2. Dataset ingestion pipeline**
+
+Working code that reads the four supplied CSV catalogs and downloads available underlying datasets.
+
+**3. Processed training datasets**
+
+Actual validated physiological measurements and separately generated spacecraft simulation trajectories.
+
+**4. Trained model checkpoints**
+
+Save checkpoints for training runs that were actually completed.
+
+**5. Evaluation results**
+
+Report measured model performance and comparisons against baselines.
+
+**6. Spacecraft dynamics simulator**
+
+A working finite-torque simulation with realistic transitions.
+
+**7. Interactive 3D application**
+
+A rotating spacecraft, astronaut marker, health dashboard, gravity vectors, mission timeline, and real-time calculations.
+
+**8. Complete training instructions**
+
+Explain every installation, download, preprocessing, training, testing, and inference step.
+
+**9. Research limitations report**
+
+Identify missing biological evidence and distinguish validated results from speculative or simulated outputs.
+
+---
+
+# PART 16 — EXECUTION ORDER
+
+Follow this exact priority order:
+
+### Phase 1 — Use the CSV files
+
+Read:
+
+```text
+embraceplus_watch_signals.csv
+embraceplus_watch_biomarkers.csv
+earth_human_dataset_sources.csv
+earth_human_metric_mapping.csv
+```
+
+Validate their structure.
+
+Generate the feature registry and dataset source manifest.
+
+### Phase 2 — Obtain real data
+
+Use the source URLs and dataset identifiers already provided.
+
+Download and preprocess accessible actual human measurements.
+
+### Phase 3 — Train physiological models
+
+Develop working baseline and neural models on the real datasets.
+
+### Phase 4 — Train the skeletal-health model
+
+Use verified NHANES records.
+
+### Phase 5 — Develop the spacecraft simulator
+
+Implement physics, mission profiles, motor dynamics, and gravity calculations.
+
+### Phase 6 — Train spacecraft dynamics
+
+Generate simulation trajectories and train models to predict spacecraft behavior.
+
+### Phase 7 — Integrate the health and gravity models
+
+Connect physiological research outputs to a manually approved gravity-target interface.
+
+### Phase 8 — Build the 3D visualization
+
+Develop the interactive simulation and health dashboard.
+
+### Phase 9 — Test and document
+
+Run automated tests, evaluate the models, and provide complete training instructions.
+
+---
+
+# FINAL DIRECTIVE
+
+**Start implementing the project immediately using the four CSV files I supplied.**
+
+Do not ask me to recreate those catalogs.
+
+Do not ignore the supplied data sources and start an unrelated dataset search.
+
+Do not claim that the CSV catalogs contain raw human physiological measurements.
+
+Use them to locate, obtain, validate, and process the underlying datasets.
+
+Build actual executable code, train models where data and computing resources permit, and save the resulting artifacts.
+
+The minimum successfully demonstrated system must:
+
+1. Read the four supplied CSVs.
+2. Load and process at least one real human physiological dataset.
+3. Train and evaluate a physiological model.
+4. Simulate a rotating spacecraft with finite motor torque.
+5. Calculate and control apparent gravity.
+6. Display an interactive 3D spacecraft and physiological dashboard.
+7. Provide reproducible training and execution instructions.
+
+Complete and test this working system before expanding optional components.
+
+**Begin with the four CSV files now.**

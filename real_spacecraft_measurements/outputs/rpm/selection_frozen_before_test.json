@@ -1,0 +1,61 @@
+{
+  "frozen_at_utc": "2026-11-14T12:25:58.874251+00:00",
+  "selected_name": "mlp_residual",
+  "best_learned_name": "mlp_residual",
+  "selection_metric": "Full MHU-1 validation RMSE",
+  "validation_metrics": {
+    "persistence": {
+      "count": 846611,
+      "finite_count": 846611,
+      "rmse_rpm": 0.47034043531180764,
+      "mae_rpm": 0.32373836933373,
+      "rmse_rad_per_s": 0.049253935208726674,
+      "derived_nominal_radial_g_rmse": 0.012068883958707973,
+      "negative_predictions": 0,
+      "maximum_absolute_error_rpm": 16.747
+    },
+    "moving_mean_8": {
+      "count": 846611,
+      "finite_count": 846611,
+      "rmse_rpm": 0.3801803994491563,
+      "mae_rpm": 0.2694621781136775,
+      "rmse_rad_per_s": 0.039812398331610085,
+      "derived_nominal_radial_g_rmse": 0.008577784122702815,
+      "negative_predictions": 0,
+      "maximum_absolute_error_rpm": 26.5696625
+    },
+    "ridge_alpha_1": {
+      "count": 846611,
+      "finite_count": 846611,
+      "rmse_rpm": 0.3035179581535653,
+      "mae_rpm": 0.21767620271174115,
+      "rmse_rad_per_s": 0.0317843262522605,
+      "derived_nominal_radial_g_rmse": 0.007549212226000355,
+      "negative_predictions": 11795,
+      "maximum_absolute_error_rpm": 16.75239845411818
+    },
+    "ridge_alpha_100": {
+      "count": 846611,
+      "finite_count": 846611,
+      "rmse_rpm": 0.30356213898151446,
+      "mae_rpm": 0.21774382186566035,
+      "rmse_rad_per_s": 0.03178895285774432,
+      "derived_nominal_radial_g_rmse": 0.007550584535150947,
+      "negative_predictions": 11795,
+      "maximum_absolute_error_rpm": 16.75240550312735
+    },
+    "mlp_residual": {
+      "count": 846611,
+      "finite_count": 846611,
+      "rmse_rpm": 0.23734017270538113,
+      "mae_rpm": 0.15355032186675735,
+      "rmse_rad_per_s": 0.02485420476576527,
+      "derived_nominal_radial_g_rmse": 0.005931574557286508,
+      "negative_predictions": 11775,
+      "maximum_absolute_error_rpm": 16.765762688910577
+    }
+  },
+  "selected_checkpoint_sha256": "32dcaae3dfb3ec0b0963a740253975e5e986d4d514886094f2d2672b3703150f",
+  "mlp_best_epoch": 38,
+  "epochs_run": 40
+}

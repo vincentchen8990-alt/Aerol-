@@ -1,0 +1,100 @@
+{
+  "publication": "https://www.nature.com/articles/s41467-026-76349-y",
+  "retrieved_utc": "2026-11-14",
+  "files": [
+    {
+      "filename": "41467_2026_76349_MOESM1_ESM.pdf",
+      "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM1_ESM.pdf",
+      "resolved_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM1_ESM.pdf",
+      "content_type": "application/pdf",
+      "bytes": 522657,
+      "valid_magic": true,
+      "sha256": "824afd1a26abea04aa4f3f7f4e7fbc2e818062a388207d27cfae973d48bb1add"
+    },
+    {
+      "filename": "41467_2026_76349_MOESM3_ESM.pdf",
+      "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM3_ESM.pdf",
+      "resolved_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM3_ESM.pdf",
+      "content_type": "application/pdf",
+      "bytes": 187414,
+      "valid_magic": true,
+      "sha256": "13c91786e98d6ca3dc72c980ca7c96d68cf4b5f29fcdbabeb16f0d836e26103f"
+    },
+    {
+      "filename": "41467_2026_76349_MOESM15_ESM.zip",
+      "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM15_ESM.zip",
+      "resolved_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM15_ESM.zip",
+      "content_type": "application/octet-stream",
+      "bytes": 8303702,
+      "valid_magic": true,
+      "sha256": "04a50988c6a3d471539763a54dea6f7159e00e645b291190abc49240d64afa24",
+      "members": [
+        {
+          "name": "SupplementaryData12.txt",
+          "size": 82862335
+        },
+        {
+          "name": "__MACOSX/._SupplementaryData12.txt",
+          "size": 548
+        }
+      ]
+    },
+    {
+      "filename": "41467_2026_76349_MOESM16_ESM.zip",
+      "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM16_ESM.zip",
+      "resolved_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM16_ESM.zip",
+      "content_type": "application/octet-stream",
+      "bytes": 7154515,
+      "valid_magic": true,
+      "sha256": "c416c8dc8084217748d6f33457249a3f77e0dbce41d2e7ff9a336ed65f0c7790",
+      "members": [
+        {
+          "name": "SupplementaryData13.txt",
+          "size": 71569937
+        },
+        {
+          "name": "__MACOSX/._SupplementaryData13.txt",
+          "size": 342
+        }
+      ]
+    },
+    {
+      "filename": "41467_2026_76349_MOESM17_ESM.zip",
+      "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM17_ESM.zip",
+      "resolved_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM17_ESM.zip",
+      "content_type": "application/octet-stream",
+      "bytes": 6910688,
+      "valid_magic": true,
+      "sha256": "32c3095e0d3818078220e5171f2f1b684b9cefe37fdb4bf5def0fe3241c413f9",
+      "members": [
+        {
+          "name": "SupplementaryData14.txt",
+          "size": 61257149
+        },
+        {
+          "name": "__MACOSX/._SupplementaryData14.txt",
+          "size": 292
+        }
+      ]
+    },
+    {
+      "filename": "41467_2026_76349_MOESM18_ESM.zip",
+      "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM18_ESM.zip",
+      "resolved_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM18_ESM.zip",
+      "content_type": "application/octet-stream",
+      "bytes": 7063231,
+      "valid_magic": true,
+      "sha256": "96c3ef53abf6729a7862fb1fbb47a624ca71176d39d0d9123db4cb149bbe5a22",
+      "members": [
+        {
+          "name": "SupplementaryData15.txt",
+          "size": 56655409
+        },
+        {
+          "name": "__MACOSX/._SupplementaryData15.txt",
+          "size": 292
+        }
+      ]
+    }
+  ]
+}

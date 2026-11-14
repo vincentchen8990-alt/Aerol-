@@ -1,0 +1,93 @@
+﻿Effective configuration:
+{
+  "train": {
+    "dataset_dir": "data/synthetic/dynamics_v2",
+    "output_root": "outputs/runs",
+    "seed": 17,
+    "epochs": 50,
+    "batch_size": 256,
+    "learning_rate": 0.0015,
+    "weight_decay": 0.0001,
+    "early_stopping_patience": 8,
+    "device": "auto",
+    "num_threads": 0,
+    "target_mode": "absolute"
+  },
+  "model": {
+    "hidden_width": 64,
+    "hidden_layers": 3,
+    "activation": "silu"
+  }
+}
+Non-default values: model.activation <- file:dynamics.yaml, model.hidden_layers <- file:dynamics.yaml, model.hidden_width <- file:dynamics.yaml, train.batch_size <- file:dynamics.yaml, train.dataset_dir <- file:dynamics.yaml, train.device <- file:dynamics.yaml, train.early_stopping_patience <- file:dynamics.yaml, train.epochs <- file:dynamics.yaml, train.learning_rate <- file:dynamics.yaml, train.num_threads <- file:dynamics.yaml, train.output_root <- file:dynamics.yaml, train.seed <- file:dynamics.yaml, train.target_mode <- command-line, train.weight_decay <- file:dynamics.yaml
+Run dyn-v2-absolute-e50: from_scratch
+Device: cpu (cuda available: False, torch 2.15.0+cpu, threads 8)
+Dataset D:\personalized-gravity-ai\data\synthetic\dynamics_v2 fingerprint 9694a9ca3449...; episodes {'train': 349, 'val': 76, 'test': 75}; rows {'train': 41880, 'val': 9120, 'test': 9000}
+Model DynamicsNet 13->3x64->5 (9541 parameters), target_mode=absolute
+epoch   1/50  train 0.282090  val 0.110236  *best*  (0.3s)
+epoch   2/50  train 0.039983  val 0.064208  *best*  (0.3s)
+epoch   3/50  train 0.023088  val 0.051078  *best*  (0.3s)
+epoch   4/50  train 0.015386  val 0.038576  *best*  (0.3s)
+epoch   5/50  train 0.012142  val 0.038228  *best*  (0.3s)
+epoch   6/50  train 0.009866  val 0.035916  *best*  (0.3s)
+epoch   7/50  train 0.008453  val 0.030658  *best*  (0.3s)
+epoch   8/50  train 0.007640  val 0.028672  *best*  (0.3s)
+epoch   9/50  train 0.007122  val 0.029193  no improvement 1/8  (0.4s)
+epoch  10/50  train 0.006432  val 0.026012  *best*  (0.3s)
+epoch  11/50  train 0.005984  val 0.023759  *best*  (0.3s)
+epoch  12/50  train 0.005884  val 0.021892  *best*  (0.3s)
+epoch  13/50  train 0.005452  val 0.024488  no improvement 1/8  (0.3s)
+epoch  14/50  train 0.005235  val 0.024815  no improvement 2/8  (0.3s)
+epoch  15/50  train 0.005165  val 0.021103  *best*  (0.3s)
+epoch  16/50  train 0.004599  val 0.019493  *best*  (0.3s)
+epoch  17/50  train 0.004478  val 0.019080  *best*  (0.3s)
+epoch  18/50  train 0.004405  val 0.018674  *best*  (0.3s)
+epoch  19/50  train 0.004152  val 0.016657  *best*  (0.3s)
+epoch  20/50  train 0.004033  val 0.017793  no improvement 1/8  (0.3s)
+epoch  21/50  train 0.003981  val 0.017105  no improvement 2/8  (0.3s)
+epoch  22/50  train 0.003801  val 0.019727  no improvement 3/8  (0.3s)
+epoch  23/50  train 0.003833  val 0.018820  no improvement 4/8  (0.3s)
+epoch  24/50  train 0.003662  val 0.015269  *best*  (0.3s)
+epoch  25/50  train 0.003513  val 0.017797  no improvement 1/8  (0.3s)
+epoch  26/50  train 0.003151  val 0.016311  no improvement 2/8  (0.3s)
+epoch  27/50  train 0.002960  val 0.015551  no improvement 3/8  (0.3s)
+epoch  28/50  train 0.002898  val 0.015042  *best*  (0.3s)
+epoch  29/50  train 0.003090  val 0.013246  *best*  (0.3s)
+epoch  30/50  train 0.002703  val 0.016952  no improvement 1/8  (0.3s)
+epoch  31/50  train 0.002730  val 0.013166  *best*  (0.3s)
+epoch  32/50  train 0.002620  val 0.015225  no improvement 1/8  (0.3s)
+epoch  33/50  train 0.002549  val 0.012744  *best*  (0.3s)
+epoch  34/50  train 0.002394  val 0.012321  *best*  (0.3s)
+epoch  35/50  train 0.002254  val 0.013718  no improvement 1/8  (0.3s)
+epoch  36/50  train 0.002282  val 0.013327  no improvement 2/8  (0.3s)
+epoch  37/50  train 0.002140  val 0.013220  no improvement 3/8  (0.3s)
+epoch  38/50  train 0.002185  val 0.010987  *best*  (0.3s)
+epoch  39/50  train 0.001993  val 0.014028  no improvement 1/8  (0.3s)
+epoch  40/50  train 0.002062  val 0.013307  no improvement 2/8  (0.3s)
+epoch  41/50  train 0.001947  val 0.012043  no improvement 3/8  (0.3s)
+epoch  42/50  train 0.001953  val 0.012655  no improvement 4/8  (0.3s)
+epoch  43/50  train 0.001951  val 0.013107  no improvement 5/8  (0.3s)
+epoch  44/50  train 0.002041  val 0.012320  no improvement 6/8  (0.3s)
+epoch  45/50  train 0.001933  val 0.011050  no improvement 7/8  (0.3s)
+epoch  46/50  train 0.001846  val 0.010047  *best*  (0.3s)
+epoch  47/50  train 0.001791  val 0.014757  no improvement 1/8  (0.3s)
+epoch  48/50  train 0.001636  val 0.011403  no improvement 2/8  (0.3s)
+epoch  49/50  train 0.001677  val 0.012971  no improvement 3/8  (0.3s)
+epoch  50/50  train 0.001824  val 0.011113  no improvement 4/8  (0.3s)
+Finished: epoch_limit; best epoch 46 (val 0.010047); 50 epochs; 14.0s
+Checkpoint: D:\personalized-gravity-ai\outputs\runs\dyn-v2-absolute-e50\checkpoint_best.pt
+{
+  "run_id": "dyn-v2-absolute-e50",
+  "status": "completed",
+  "start_mode": "from_scratch",
+  "stop_reason": "epoch_limit",
+  "epochs_completed": 50,
+  "best_epoch": 46,
+  "best_validation_mse_standardized": 0.01004708744585514,
+  "training_elapsed_s": 14.02,
+  "artifacts": {
+    "best_checkpoint": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-absolute-e50\\checkpoint_best.pt",
+    "training_state": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-absolute-e50\\training_state_last.pt",
+    "manifest": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-absolute-e50\\run_manifest.json"
+  }
+}

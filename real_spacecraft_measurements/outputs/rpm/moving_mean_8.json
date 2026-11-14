@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "name": "moving_mean_8",
+  "kind": "moving_mean",
+  "hardware": "JAXA ISS Kibo MARS-S centrifuge, MHU-1/MHU-2 configuration",
+  "input": "8 consecutive measured RPM samples, oldest to newest",
+  "context_samples": 8,
+  "history_span_seconds": 7,
+  "sample_interval_seconds": 1,
+  "horizon_seconds": 1,
+  "output_unit": "RPM",
+  "nominal_radius_m": 0.15,
+  "nominal_rotation_setting_rpm": 77,
+  "feature_order": [
+    "latest_rpm",
+    "delta_rpm_0_to_1",
+    "delta_rpm_1_to_2",
+    "delta_rpm_2_to_3",
+    "delta_rpm_3_to_4",
+    "delta_rpm_4_to_5",
+    "delta_rpm_5_to_6",
+    "delta_rpm_6_to_7"
+  ],
+  "target": "next recorded RPM minus latest recorded RPM",
+  "training_mission": "MHU-1",
+  "independent_test_mission": "MHU-2",
+  "scope": "Observed closed-loop RPM forecaster; not torque-response identification or a controller",
+  "gravity_status": "r*omega^2/9.80665 is a derived nominal radial component, not a measured acceleration label",
+  "unknown_inputs": [
+    "motor command",
+    "motor torque",
+    "current",
+    "inertia",
+    "hub motion",
+    "maintenance schedule"
+  ]
+}

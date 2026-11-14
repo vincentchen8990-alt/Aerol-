@@ -1,0 +1,109 @@
+{
+  "hardware": "JAXA Multiple Artificial-gravity Research System (MARS), ISS Kibo Centrifuge-equipped Biological Experiment Facility (CBEF/CBEF-L)",
+  "schema": {
+    "Date": "Published timestamp string; no timezone stated in raw export",
+    "RPM": "Measured centrifuge rotational speed, revolutions per minute"
+  },
+  "raw_export_contains_commands": false,
+  "raw_export_contains_motor_torque": false,
+  "raw_export_contains_inertia": false,
+  "raw_export_contains_mass": false,
+  "raw_export_contains_direct_gravity_measurement": false,
+  "recommended_initial_comparison": {
+    "train_validation": "Chronological nonoverlapping blocks from MHU-1",
+    "external_test": "MHU-2, same published 0.15 m/77 rpm configuration",
+    "target": "Observed one-step measured RPM forecast, or explicitly declared longer-horizon forecast",
+    "scope": "Flight hardware RPM telemetry forecasting. Does not identify free-flying habitat control dynamics or performance under new commanded torque."
+  },
+  "preprocessing_notes": [
+    "Do not treat each row as uniformly sampled; check timestamp differences.",
+    "MHU-1 and MHU-2 have duplicate timestamps; choose and document aggregation or causal record selection.",
+    "Some midnight dates omit time; treat date-only entries as 00:00:00, preserving timezone-unspecified status.",
+    "Do not fill missing MHU-4 RPM with zeros; gaps are missing measurements.",
+    "Do not window across gaps or missions.",
+    "Zero RPM is real stopped hardware, according to Supplementary Figure 1 cage maintenance caption.",
+    "Steady operation dominates the logs; include persistence baseline and separate startup/stop and steady-operation metrics.",
+    "Only four mission histories are present; millions of autocorrelated rows are not independent experiments."
+  ],
+  "missions": [
+    {
+      "mission": "MHU-1",
+      "equipment": "MARS-S",
+      "nominal_radius_m": 0.15,
+      "nominal_rotation_setting_rpm": 77,
+      "nominal_gravity_g": 1,
+      "source": "https://ibsls.megabank.tohoku.ac.jp/overview",
+      "raw_supplementary_data": 12,
+      "archive_moesm": 15
+    },
+    {
+      "mission": "MHU-2",
+      "equipment": "MARS-S",
+      "nominal_radius_m": 0.15,
+      "nominal_rotation_setting_rpm": 77,
+      "nominal_gravity_g": 1,
+      "source": "https://ibsls.megabank.tohoku.ac.jp/overview",
+      "raw_supplementary_data": 13,
+      "archive_moesm": 16
+    },
+    {
+      "mission": "MHU-4",
+      "equipment": "MARS-S",
+      "nominal_radius_m": 0.15,
+      "nominal_rotation_setting_rpm": 32,
+      "nominal_gravity_g": 0.167,
+      "source": "https://ibsls.megabank.tohoku.ac.jp/overview",
+      "raw_supplementary_data": 14,
+      "archive_moesm": 17,
+      "source_discrepancy": "Official ibSLS overview says 32 rpm, earlier 2023/2024 mission papers say 31 rpm; raw measured mean for selected interval is 32.4 rpm. Preserve distinctions between nominal and measured values."
+    },
+    {
+      "mission": "MHU-5",
+      "equipment": "MARS-L",
+      "nominal_radius_m": null,
+      "radius_discrepancy": {
+        "official_ibSLS_overview_radius_m": 0.35,
+        "2026_paper_supplementary_figure_1_table_radius_m": 0.38,
+        "2023_primary_methods_floor_radius_m": 0.35
+      },
+      "nominal_rotation_setting_rpm": 21,
+      "nominal_gravity_g": 0.167,
+      "source": "https://ibsls.megabank.tohoku.ac.jp/overview",
+      "raw_supplementary_data": 15,
+      "archive_moesm": 18,
+      "use_radius_caution": "Do not silently resolve radius discrepancy. It is irrelevant to RPM-only prediction but material to derived centrifugal acceleration."
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.nature.com/articles/s41467-026-76349-y",
+      "title": "ibSLS as a biobank for democratizing access to multi-omics data and biospecimens from spaceflight research",
+      "publication_date": "2026-08-20",
+      "role": "Primary data release; Supplementary Data12-15 are raw measured centrifuge speeds."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13493919/",
+      "role": "NIH PMC full text mirror of paper."
+    },
+    {
+      "url": "https://ibsls.megabank.tohoku.ac.jp/overview",
+      "role": "Official JAXA/Tohoku mission configurations."
+    },
+    {
+      "url": "https://humans-in-space.jaxa.jp/en/biz-lab/experiment/facility/pm/cbef-l/",
+      "role": "Official hardware; launched2019, operations2020; designed radius/reference values are different from animal cage radius."
+    },
+    {
+      "url": "https://github.com/ibsls/ibsls-paper/tree/main/paper/SuppFig1_MARSparameters",
+      "role": "Author RPM plot code and README. README has older SupplementaryData10-13 names; descriptor PDF establishes final12-15 mapping."
+    },
+    {
+      "url": "https://humans-in-space.jaxa.jp/kibouser/subject/tag_10.html",
+      "role": "Program catalogue updated2026-05-27; MHU8/9 analysis, MHU10/11 preparation. Not proof that any specific centrifuge is spinning today."
+    },
+    {
+      "url": "https://doi.org/10.1038/s42003-023-04769-3",
+      "role": "2023 primary paper methods say0.35m MARS-L floor radius."
+    }
+  ]
+}

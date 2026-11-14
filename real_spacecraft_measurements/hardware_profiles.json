@@ -1,0 +1,54 @@
+{
+  "checked_date": "2026-11-14",
+  "iss_host_station": {
+    "name": "International Space Station",
+    "role": "Existing host spacecraft; dimensions are published reference specifications for geometry and labels",
+    "solar_array_wingspan_m": 109,
+    "solar_array_longitudinal_extent_m": 73,
+    "pressurized_module_major_axis_m": 67,
+    "truss_length_m": 94,
+    "reference_mass_kg": 419725,
+    "source_url": "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/",
+    "source_page_updated": "2024-07-16",
+    "configuration_caveat_source": "https://www.nasa.gov/reference/international-space-station/",
+    "configuration_caveat_source_updated": "2025-11-27",
+    "caveats": [
+      "These dimensions have distinct geometric definitions; 109 m is a span, not a radius.",
+      "The reference mass is not a measured mass for the 2016, 2017 or November 2026 telemetry dates. Visiting vehicles change station mass and configuration.",
+      "NASA also lists a 51 m PMA2-to-Service-Module extent, which is a different boundary definition from the 67 m module major axis.",
+      "No whole-station CAD model, inertia tensor or motor-command training labels are supplied here."
+    ]
+  },
+  "mars_s_mhu1_mhu2": {
+    "name": "JAXA Multiple Artificial-gravity Research System, short-arm configuration (MARS-S)",
+    "host": "ISS Kibo Centrifuge-equipped Biological Experiment Facility (CBEF)",
+    "hardware_type": "Small-animal centrifuge operated aboard ISS",
+    "nominal_radius_m": 0.15,
+    "nominal_rotation_setting_rpm": 77,
+    "source_url": "https://ibsls.megabank.tohoku.ac.jp/overview",
+    "flight_logs_used": {
+      "MHU-1": {"year": 2016, "use": "chronological training and validation"},
+      "MHU-2": {"year": 2017, "use": "independent mission test"}
+    },
+    "released_measurements": ["recorded timestamp", "rotor RPM"],
+    "missing_measurements": ["motor command", "torque", "current", "inertia", "rotor mass", "hub motion", "direct gravity measurement"],
+    "radius_role": "Verified configuration metadata; fixed for this experiment, not a learned input",
+    "measured_data_release": "https://doi.org/10.1038/s41467-026-76349-y",
+    "supplementary_data": [12, 13],
+    "program_status_source": "https://humans-in-space.jaxa.jp/kibouser/subject/tag_10.html",
+    "program_status_date": "2026-05-27",
+    "program_status": "MHU-1/MHU-2 completed; later MHU-8/9 listed in analysis and MHU-10/11 in preparation. Continuing program does not establish that this rotor is spinning today.",
+    "caveat": "Same published radius and speed setting across two missions; not proof of identical control software or all hardware revisions."
+  },
+  "iss_mams": {
+    "name": "NASA Microgravity Acceleration Measurement System (MAMS)",
+    "sensor_id": "ossbtmf",
+    "product": "Bias-compensated trimmed-mean-filtered three-axis acceleration",
+    "interval_seconds": 16,
+    "units": "standard gravity g",
+    "coordinate_system": "SSAnalysis",
+    "measurement_dates_utc": ["2026-11-01", "2026-11-11"],
+    "source_url": "https://gipoc.grc.nasa.gov/wp/pims/acceleration-archives/",
+    "caveat": "Separate date, measurement location and data product from MARS. It must not be combined with the centrifuge logs as simultaneous, co-located measurements."
+  }
+}

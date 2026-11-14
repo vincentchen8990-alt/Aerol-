@@ -1,0 +1,17 @@
+﻿Unified key,Target feature,Layer,Earth reference IDs,Coverage status,Caveat
+wear_ACC,3-axis accelerometer,watch raw,EMP-SSP / E4-STRESS-2025 / NHANES2013,"Yes, alternate devices",Movement; do not equate 1g wrist acceleration with habitat artificial gravity
+wear_GYRO,3-axis gyroscope,watch raw,E4XEMP (access dependent),Not verified in openly downloadable corresponding adult dataset,Sensor mode can disable stream
+wear_BVP,optical BVP,watch raw,EMP-SSP / WESAD / PPG-DALIA / BIDMC,"Yes, different devices and populations","Different light wavelengths, placement, sample rates"
+wear_EDA,electrodermal,watch raw,EMP-SSP / WESAD / E4-STRESS-2025,Yes,Skin conductance depends on context
+wear_TEMP,wrist skin temp,watch raw,EMP-SSP / WESAD / E4-STRESS-2025,Yes,Not a core temperature reference
+wear_PEAKS,systolic pulse peaks,watch event,WESAD / E4-STRESS-2025 IBI,Analog only,Peak timestamp is not mmHg
+pulse_rate,PR bpm,watch biomarker,WESAD / E4-STRESS-2025 / MMASH / BIDMC,"Yes, different sensors",PPG pulse vs ECG heart rate
+prv_rmssd,pulse rate variability,watch biomarker,WESAD E4 IBI / MMASH RR.csv,Analog only,Pulse vs ECG variability signal differences
+resp_rate,breathing rate,watch biomarker,WESAD chest / BIDMC ICU,"Yes, modality mismatch",Acquisition context and motion limits
+spo2,SpO2,enterprise biometric,BIDMC / OPENOX,Clinical analog only,No validated freely accessible normal healthy-Earth EmbracePlus SpO2 cohort found
+sleep,sleep/rest,watch biomarker,EMP-SSP / MMASH,Yes,"Population differences, subjective vs measured sleep"
+activity,"movement, counts, MET, steps",watch biomarker,NHANES2013 / EMP-SSP / MMASH,Partial,Different proprietary algorithms; field definitions are not interchangeable
+bmd_femur,femur bone density,external DXA,NHANES2013: DXXFEM_H,"Yes, cross-sectional","Not wrist sensor data; ≥40, selected valid cases"
+bmd_spine,spine bone density,external DXA,NHANES2013: DXXSPN_H,"Yes, cross-sectional",Not longitudinal bone change
+bp_sys_dia,blood pressure,external cuff / Bio-Monitor,NHANES2013: BPX_H,"Yes, cross-sectional",Not EmbracePlus; requires separate clinical device
+bio_health_response,causal response to changes in artificial g,not currently matched in these datasets,None verified,Gap,Cannot learn from unrelated terrestrial normal values alone

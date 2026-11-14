@@ -1,0 +1,57 @@
+{
+  "format": "iss-mams-forecast-v1",
+  "kind": "persistence",
+  "data_type": "MEASURED_PROCESSED_ISS_ACCELERATION_FORECAST",
+  "scope": "Forecast filtered ISS disturbance acceleration; no actuator actions, RPM, habitat or gravity-control outputs.",
+  "units": "g",
+  "dt_s": 16,
+  "lookback_samples": 8,
+  "input_shape": [
+    8,
+    3
+  ],
+  "axis_order": [
+    "ax_g",
+    "ay_g",
+    "az_g"
+  ],
+  "history_order": "oldest to newest; last sample is forecast origin",
+  "history_span_between_first_and_last_samples_s": 112,
+  "feature_order": [
+    "ax_g_at_origin_minus_112s",
+    "ay_g_at_origin_minus_112s",
+    "az_g_at_origin_minus_112s",
+    "ax_g_at_origin_minus_96s",
+    "ay_g_at_origin_minus_96s",
+    "az_g_at_origin_minus_96s",
+    "ax_g_at_origin_minus_80s",
+    "ay_g_at_origin_minus_80s",
+    "az_g_at_origin_minus_80s",
+    "ax_g_at_origin_minus_64s",
+    "ay_g_at_origin_minus_64s",
+    "az_g_at_origin_minus_64s",
+    "ax_g_at_origin_minus_48s",
+    "ay_g_at_origin_minus_48s",
+    "az_g_at_origin_minus_48s",
+    "ax_g_at_origin_minus_32s",
+    "ay_g_at_origin_minus_32s",
+    "az_g_at_origin_minus_32s",
+    "ax_g_at_origin_minus_16s",
+    "ay_g_at_origin_minus_16s",
+    "az_g_at_origin_minus_16s",
+    "ax_g_at_origin_minus_0s",
+    "ay_g_at_origin_minus_0s",
+    "az_g_at_origin_minus_0s"
+  ],
+  "forecast_horizon_s": 16,
+  "output_order": [
+    "ax_g",
+    "ay_g",
+    "az_g"
+  ],
+  "output_formula": "last_measured_acceleration_g",
+  "processed_data_sha256": "50747a1ea6f501df47cc0db23b7a1471b305f436f88400b7708d21d0d55ad74b",
+  "normalization_fit_partition": "train: 2026-11-01 through 2026-11-07 UTC only",
+  "tested_max_recursive_steps": 15,
+  "selected_on_validation": false
+}

@@ -1,0 +1,443 @@
+{
+  "catalog_type": "metadata_only_not_training_measurements",
+  "files": {
+    "embraceplus_watch_signals.csv": {
+      "rows": 9,
+      "sha256": "6239749bcaf6dab128b637a975c1f91e6f0cddc217937e54bda0c66897200428",
+      "missing_cells": 0
+    },
+    "embraceplus_watch_biomarkers.csv": {
+      "rows": 26,
+      "sha256": "aa748e73457b7abe4a974bbf0d16bcf60e1b6cb1c31fa9e573daaad8ff7681c2",
+      "missing_cells": 0
+    },
+    "earth_human_dataset_sources.csv": {
+      "rows": 11,
+      "sha256": "73a7f0287b231bc059a9f9d9726032d0f7bbb579eb60ad3c6be2c410318984ba",
+      "missing_cells": 0
+    },
+    "earth_human_metric_mapping.csv": {
+      "rows": 16,
+      "sha256": "6ff22d31b121212b472e061fc23272adb9b849425e4cca7f25f84b09e92bb568",
+      "missing_cells": 0
+    }
+  },
+  "sources": [
+    {
+      "id": "EMP-SSP",
+      "name": "Simons Sleep Project (EmbracePlus + Dreem3 + Withings)",
+      "url": "https://www.simonsfoundation.org/sfari/resources/autism-cohorts/spark/simons-sleep-project/",
+      "access": "Controlled access: approved SFARI Base researchers",
+      "category": "source_record"
+    },
+    {
+      "id": "BALLADEER",
+      "name": "A Multimodal Dataset for Neurophysiological and AI Applications / BALLADEER",
+      "url": "https://springernature.figshare.com/articles/dataset/A_Multimodal_Dataset_for_Neurophysiological_and_AI_Applications/28676042",
+      "access": "Public download (Figshare CC BY); not downloaded here",
+      "category": "source_record"
+    },
+    {
+      "id": "E4XEMP",
+      "name": "E4xEmbrace paired-device recordings",
+      "url": "https://doi.org/10.3758/s13428-026-03097-8",
+      "access": "Institutional request / OSF view-only described; raw uninspected",
+      "category": "source_record"
+    },
+    {
+      "id": "E4-STRESS-2025",
+      "name": "Wearable Device Dataset from Induced Stress and Structured Exercise Sessions",
+      "url": "https://physionet.org/content/wearable-device-dataset/1.0.1/",
+      "access": "Open PhysioNet; 69.7 MB ZIP",
+      "category": "source_record"
+    },
+    {
+      "id": "WESAD",
+      "name": "Wearable Stress and Affect Detection",
+      "url": "https://archive.ics.uci.edu/dataset/465/wesad+wearable+stress+and+affect+detection",
+      "access": "UCI available; ~2.7 GB download",
+      "category": "source_record"
+    },
+    {
+      "id": "PPG-DALIA",
+      "name": "PPG-DaLiA",
+      "url": "https://archive.ics.uci.edu/dataset/495/ppg-dalia",
+      "access": "Open UCI; ~2.7 GB ZIP",
+      "category": "source_record"
+    },
+    {
+      "id": "MMASH",
+      "name": "Multilevel Monitoring of Activity and Sleep in Healthy People",
+      "url": "https://physionet.org/content/mmash/1.0.0/",
+      "access": "Open PhysioNet; 22.7 MB ZIP; ODbL",
+      "category": "source_record"
+    },
+    {
+      "id": "BIDMC",
+      "name": "BIDMC PPG and Respiration Dataset",
+      "url": "https://physionet.org/content/bidmc/1.0.0/",
+      "access": "Open PhysioNet CSV/WFDB/MAT",
+      "category": "source_record"
+    },
+    {
+      "id": "OPENOX",
+      "name": "OpenOximetry Repository v1.1.1",
+      "url": "https://physionet.org/content/openox-repo/1.1.1/",
+      "access": "Open PhysioNet (check individual subfolder access)",
+      "category": "source_record"
+    },
+    {
+      "id": "NHANES2013",
+      "name": "NHANES 2013\u20132014 linked exam & wrist actigraphy",
+      "url": "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Examination&Cycle=2013-2014",
+      "access": "Public CDC XPT; multi-file subject linking by SEQN",
+      "category": "source_record"
+    },
+    {
+      "id": "NASA-OSDR",
+      "name": "NASA OSDR",
+      "url": "https://science.nasa.gov/biological-physical/data/osdr/",
+      "access": "Mixed: open/controlled by study",
+      "category": "source_record"
+    }
+  ],
+  "features": [
+    {
+      "name": "ACC \u2014 3-axis acceleration",
+      "layer": "raw_watch",
+      "availability": "Generally available",
+      "description": "x, y, z ADC counts; convert to g",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "GYRO \u2014 3-axis angular velocity",
+      "layer": "raw_watch",
+      "availability": "Depending on mode/plan",
+      "description": "x, y, z ADC counts; calibrate to angular rate",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "BVP / PPG waveform",
+      "layer": "raw_watch",
+      "availability": "Generally available",
+      "description": "optical blood volume pulse / light absorption (nW)",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "EDA (electrodermal activity)",
+      "layer": "raw_watch",
+      "availability": "Generally available",
+      "description": "skin conductance (\u00b5S)",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Peripheral skin temperature",
+      "layer": "raw_watch",
+      "availability": "Generally available",
+      "description": "\u00b0C (wrist skin temperature)",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Step-event counts",
+      "layer": "raw_watch",
+      "availability": "Generally available",
+      "description": "number of steps per sensor interval",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Systolic pulse peaks",
+      "layer": "raw_watch",
+      "availability": "Generally available",
+      "description": "UTC nanosecond timestamps of pulse peaks",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Manual user tags",
+      "layer": "raw_watch",
+      "availability": "Depending on enabled tags",
+      "description": "UTC \u00b5s",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Recording metadata",
+      "layer": "raw_watch",
+      "availability": "Usually with export",
+      "description": "participant study ID, device serial, firmware, timezone, ADC factors, sensor polling rate",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Pulse rate",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "PPG-derived pulse, not ECG",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Pulse-rate variability (PRV)",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "PPG-based RMSSD; not interchangeable with ECG HRV",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Respiratory rate",
+      "layer": "biomarker",
+      "availability": "Basic/academic; validation context matters",
+      "description": "Algorithmic estimate; motion limitations",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "SpO\u2082",
+      "layer": "biomarker",
+      "availability": "Enterprise/SpO2 sensor mode",
+      "description": "Reported under no-motion conditions; not basic plan",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Peripheral skin temperature",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Wrist skin not core temperature",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Skin conductance level (SCL)",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "EDA-derived, context sensitive",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Accelerometer magnitude SD",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Movement magnitude variability",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Actigraphy counts",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Axis-wise and vector movement counts",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Activity counts",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Movement activity summary",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Activity intensity",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Do not transfer earth-calibrated cut points to partial g without validation",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Activity classification",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Activity classes depend on setting and training",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Body position",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Position/posture inferred, may change under partial g",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "MET (metabolic equivalent)",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Estimated energy cost, not direct calorimetry",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Step counts (wrist)",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Walking count; may miscount in partial gravity",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Sleep detection",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Sleep detection, not full polysomnographic architecture",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Wearing detection",
+      "layer": "biomarker",
+      "availability": "Basic/academic",
+      "description": "Use to flag missing and nonwear intervals",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Gait speed",
+      "layer": "biomarker",
+      "availability": "Enterprise, end-of-study",
+      "description": "Feature requires appropriate walking conditions",
+      "source_url": "https://support.empatica.com/hc/en-us/articles/17721117772317-Understanding-your-Empatica-Health-Monitoring-Platform-Plan"
+    },
+    {
+      "name": "Spatiotemporal gait measures",
+      "layer": "biomarker",
+      "availability": "Enterprise, end-of-study",
+      "description": "Several related gait features; gravity-dependent walking patterns",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Actigraphy report",
+      "layer": "biomarker",
+      "availability": "Plan-dependent",
+      "description": "Summarized sleep and movement",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Autonomic arousal report",
+      "layer": "biomarker",
+      "availability": "Enterprise",
+      "description": "Algorithms based on EDA etc; do not treat as clinical diagnosis",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Extended actigraphy report",
+      "layer": "biomarker",
+      "availability": "Enterprise",
+      "description": "Sleep/activity summary",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Sleep report",
+      "layer": "biomarker",
+      "availability": "Enterprise",
+      "description": "Aggregated sleep measurements",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Gait features report",
+      "layer": "biomarker",
+      "availability": "Enterprise",
+      "description": "Walk-related computed metrics",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Six-minute walk test report",
+      "layer": "biomarker",
+      "availability": "Enterprise",
+      "description": "If configured and protocol performed",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Seizure/GTCS report",
+      "layer": "biomarker",
+      "availability": "Enterprise",
+      "description": "A report category; not routine health diagnosis for astronauts",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    },
+    {
+      "name": "Wearing detection report",
+      "layer": "biomarker",
+      "availability": "Enterprise",
+      "description": "Compliance / missingness summary",
+      "source_url": "https://manuals.empatica.com/ehmp/careportal/data_access/v2.7e/en.pdf"
+    }
+  ],
+  "mapping_coverage": [
+    {
+      "key": "wear_ACC",
+      "sources": "EMP-SSP / E4-STRESS-2025 / NHANES2013",
+      "coverage": "Yes, alternate devices"
+    },
+    {
+      "key": "wear_GYRO",
+      "sources": "E4XEMP (access dependent)",
+      "coverage": "Not verified in openly downloadable corresponding adult dataset"
+    },
+    {
+      "key": "wear_BVP",
+      "sources": "EMP-SSP / WESAD / PPG-DALIA / BIDMC",
+      "coverage": "Yes, different devices and populations"
+    },
+    {
+      "key": "wear_EDA",
+      "sources": "EMP-SSP / WESAD / E4-STRESS-2025",
+      "coverage": "Yes"
+    },
+    {
+      "key": "wear_TEMP",
+      "sources": "EMP-SSP / WESAD / E4-STRESS-2025",
+      "coverage": "Yes"
+    },
+    {
+      "key": "wear_PEAKS",
+      "sources": "WESAD / E4-STRESS-2025 IBI",
+      "coverage": "Analog only"
+    },
+    {
+      "key": "pulse_rate",
+      "sources": "WESAD / E4-STRESS-2025 / MMASH / BIDMC",
+      "coverage": "Yes, different sensors"
+    },
+    {
+      "key": "prv_rmssd",
+      "sources": "WESAD E4 IBI / MMASH RR.csv",
+      "coverage": "Analog only"
+    },
+    {
+      "key": "resp_rate",
+      "sources": "WESAD chest / BIDMC ICU",
+      "coverage": "Yes, modality mismatch"
+    },
+    {
+      "key": "spo2",
+      "sources": "BIDMC / OPENOX",
+      "coverage": "Clinical analog only"
+    },
+    {
+      "key": "sleep",
+      "sources": "EMP-SSP / MMASH",
+      "coverage": "Yes"
+    },
+    {
+      "key": "activity",
+      "sources": "NHANES2013 / EMP-SSP / MMASH",
+      "coverage": "Partial"
+    },
+    {
+      "key": "bmd_femur",
+      "sources": "NHANES2013: DXXFEM_H",
+      "coverage": "Yes, cross-sectional"
+    },
+    {
+      "key": "bmd_spine",
+      "sources": "NHANES2013: DXXSPN_H",
+      "coverage": "Yes, cross-sectional"
+    },
+    {
+      "key": "bp_sys_dia",
+      "sources": "NHANES2013: BPX_H",
+      "coverage": "Yes, cross-sectional"
+    },
+    {
+      "key": "bio_health_response",
+      "sources": "None verified",
+      "coverage": "Gap"
+    }
+  ],
+  "warnings": [
+    "Catalogs contain metadata and source URLs. Do not use catalog row counts as human sample counts.",
+    "Restricted and public data are separate; preserve participant and session identity."
+  ],
+  "counts": {
+    "signals": 9,
+    "biomarkers": 26,
+    "dataset_sources": 11,
+    "metric_mappings": 16
+  }
+}

@@ -1,0 +1,15 @@
+__pycache__/
+.pytest_cache/
+.venv/
+node_modules/
+frontend/dist/
+*.pyc
+*.pkl
+.env
+data/raw/*
+!data/raw/.gitkeep
+# Restored/reacquired raw ISS measurements (recoverable from the recorded source URLs and SHA256s)
+real_spacecraft_measurements/data/raw/mhu/*.zip
+real_spacecraft_measurements/reacquired/
+# Generated model and output files retained in the downloadable research package;
+# do not commit restricted, personally identifiable, or licensed recordings.

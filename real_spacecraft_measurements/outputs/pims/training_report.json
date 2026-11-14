@@ -1,0 +1,598 @@
+{
+  "purpose": "Supplemental model of measured ISS filtered disturbance acceleration, not ring, motor-command, artificial-gravity or biological response.",
+  "created_at_utc": "2026-11-14T12:19:59.014979+00:00",
+  "dataset": {
+    "rows": 59062,
+    "sha256": "50747a1ea6f501df47cc0db23b7a1471b305f436f88400b7708d21d0d55ad74b",
+    "source_urls": {
+      "archive": "https://gipoc.grc.nasa.gov/wp/pims/acceleration-archives/",
+      "schema": "https://gipoc.grc.nasa.gov/pims/plots/user/mohan/how2read_pad_binary_files.html",
+      "timing": "https://gipoc.grc.nasa.gov/pims/pub/plots/user/mohan/PADprimer.pdf",
+      "instrument": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/acceleration-measurements/"
+    },
+    "raw_binary_files": 134,
+    "raw_binary_records": 59419,
+    "raw_binary_and_header_bytes": 1062986,
+    "quality_values": [
+      "Valid"
+    ],
+    "segments": 5,
+    "raw_manifest": "data/raw/pims/source_manifest.json",
+    "processed_csv": "data/processed/iss_mams_acceleration.csv",
+    "acceleration_units": "standard gravity g",
+    "sample_interval_s": 16,
+    "measurement_kind": "OSS bias-compensated trimmed-mean-filtered; no second bias correction or interpolation performed",
+    "rows_by_utc_day": {
+      "2026-11-01": 5166,
+      "2026-11-02": 5356,
+      "2026-11-03": 5400,
+      "2026-11-04": 5400,
+      "2026-11-05": 5400,
+      "2026-11-06": 5390,
+      "2026-11-07": 5395,
+      "2026-11-08": 5400,
+      "2026-11-09": 5355,
+      "2026-11-10": 5400,
+      "2026-11-11": 5400
+    },
+    "parsing_assumptions": [
+      "Rows are 4 little-endian IEEE float32 values: relative time, ax_g, ay_g, az_g.",
+      "NASA PADprimer explicitly requires ignoring embedded relative times and filename end times.",
+      "A first series uses its first filename UTC start; subsequent plus-marked files continue at 16-second cadence.",
+      "Minus-marked files start new segments, snapped to the nearest original cadence grid (at most 8 s adjustment).",
+      "Gaps are represented by timestamp jumps and segment IDs, not invented or imputed acceleration values.",
+      "OSS BTMF is already bias-compensated and trimmed-mean-filtered; BiasCoeff is NOT subtracted again.",
+      "Only header quality Valid is accepted. Data-coordinate-system metadata is retained; no additional frame transformation applied.",
+      "Rows outside requested UTC dates are excluded, including final files extending into the next day.",
+      "The first requested directory may start after midnight. No preceding-day data were invented to fill that edge.",
+      "No motor command, motor torque, rotating-ring speed, ring inertia, or ring gravity labels occur in this dataset."
+    ]
+  },
+  "features": {
+    "lookback_samples": 8,
+    "input_dimensions": 24,
+    "axes": [
+      "ax_g",
+      "ay_g",
+      "az_g"
+    ],
+    "history_first_to_last_span_s": 112,
+    "next_sample_horizon_s": 16,
+    "residual_target": "next measured acceleration minus most recent measured acceleration",
+    "scaling_fit_on": "train only"
+  },
+  "splits": {
+    "train": {
+      "input_rows": 37507,
+      "chunks": 4,
+      "segments": 4,
+      "first_utc": "2026-11-01T01:02:31.070000+00:00",
+      "last_utc": "2026-11-07T23:59:51.070000+00:00",
+      "one_step_windows": 37475,
+      "bounds": {
+        "start_inclusive": "2026-11-01T00:00:00Z",
+        "end_exclusive": "2026-11-08T00:00:00Z"
+      }
+    },
+    "validation": {
+      "input_rows": 10755,
+      "chunks": 2,
+      "segments": 2,
+      "first_utc": "2026-11-08T00:00:07.070000+00:00",
+      "last_utc": "2026-11-09T23:59:51.070000+00:00",
+      "one_step_windows": 10739,
+      "bounds": {
+        "start_inclusive": "2026-11-08T00:00:00Z",
+        "end_exclusive": "2026-11-10T00:00:00Z"
+      }
+    },
+    "test": {
+      "input_rows": 10800,
+      "chunks": 1,
+      "segments": 1,
+      "first_utc": "2026-11-10T00:00:07.070000+00:00",
+      "last_utc": "2026-11-11T23:59:51.070000+00:00",
+      "one_step_windows": 10792,
+      "bounds": {
+        "start_inclusive": "2026-11-10T00:00:00Z",
+        "end_exclusive": "2026-11-12T00:00:00Z"
+      }
+    }
+  },
+  "training": {
+    "candidate_budget": "One fixed Ridge setting and one fixed MLP setting plus persistence; no test-driven tuning",
+    "random_seed": 20261114,
+    "mlp_epochs_run": 52,
+    "mlp_best_epoch": 49,
+    "mlp_max_epochs": 80,
+    "mlp_patience": 12,
+    "mlp_stopping": "Chronological validation RMSE; no sklearn internal random validation split",
+    "mlp_refit_after_selection": false,
+    "training_seconds": 2.1989413000010245
+  },
+  "selection": {
+    "criterion": "Lowest overall validation one-step RMSE, including persistence",
+    "winner": "mlp_residual",
+    "frozen_before_test_at_utc": "2026-11-14T12:19:58.903008+00:00",
+    "validation": {
+      "persistence": {
+        "samples": 10739,
+        "overall_rmse_g": 2.2742677620409544e-07,
+        "overall_rmse_micro_g": 0.22742677620409543,
+        "overall_mae_g": 1.5549484979153314e-07,
+        "overall_mae_micro_g": 0.15549484979153314,
+        "per_axis": {
+          "ax_g": {
+            "rmse_g": 1.8497062783679056e-07,
+            "rmse_micro_g": 0.18497062783679055,
+            "mae_g": 1.2491554771075935e-07,
+            "mae_micro_g": 0.12491554771075936,
+            "bias_g": -1.0710839898323374e-11,
+            "bias_micro_g": -1.0710839898323373e-05
+          },
+          "ay_g": {
+            "rmse_g": 2.663848905140204e-07,
+            "rmse_micro_g": 0.26638489051402037,
+            "mae_g": 1.7717254314038994e-07,
+            "mae_micro_g": 0.17717254314038994,
+            "bias_g": -1.0086205411758713e-11,
+            "bias_micro_g": -1.0086205411758713e-05
+          },
+          "az_g": {
+            "rmse_g": 2.23592872308705e-07,
+            "rmse_micro_g": 0.223592872308705,
+            "mae_g": 1.643964585234501e-07,
+            "mae_micro_g": 0.16439645852345008,
+            "bias_g": -4.906559404149672e-11,
+            "bias_micro_g": -4.906559404149672e-05
+          }
+        }
+      },
+      "ridge_residual": {
+        "samples": 10739,
+        "overall_rmse_g": 1.6442579807943586e-07,
+        "overall_rmse_micro_g": 0.16442579807943586,
+        "overall_mae_g": 1.1348693530648334e-07,
+        "overall_mae_micro_g": 0.11348693530648334,
+        "per_axis": {
+          "ax_g": {
+            "rmse_g": 1.424953881112041e-07,
+            "rmse_micro_g": 0.1424953881112041,
+            "mae_g": 9.731246853091875e-08,
+            "mae_micro_g": 0.09731246853091875,
+            "bias_g": 1.634736584807151e-09,
+            "bias_micro_g": 0.001634736584807151
+          },
+          "ay_g": {
+            "rmse_g": 1.619066511767639e-07,
+            "rmse_micro_g": 0.1619066511767639,
+            "mae_g": 1.0509288830468952e-07,
+            "mae_micro_g": 0.10509288830468952,
+            "bias_g": -3.2069373880180217e-09,
+            "bias_micro_g": -0.0032069373880180218
+          },
+          "az_g": {
+            "rmse_g": 1.8598072452257293e-07,
+            "rmse_micro_g": 0.18598072452257294,
+            "mae_g": 1.380554490838421e-07,
+            "mae_micro_g": 0.1380554490838421,
+            "bias_g": 1.843289586386394e-08,
+            "bias_micro_g": 0.01843289586386394
+          }
+        }
+      },
+      "mlp_residual": {
+        "samples": 10739,
+        "overall_rmse_g": 1.6354786368431817e-07,
+        "overall_rmse_micro_g": 0.16354786368431817,
+        "overall_mae_g": 1.1398363565728142e-07,
+        "overall_mae_micro_g": 0.11398363565728142,
+        "per_axis": {
+          "ax_g": {
+            "rmse_g": 1.4267216732999251e-07,
+            "rmse_micro_g": 0.14267216732999252,
+            "mae_g": 9.785716538384634e-08,
+            "mae_micro_g": 0.09785716538384634,
+            "bias_g": -3.5229661087015425e-09,
+            "bias_micro_g": -0.0035229661087015423
+          },
+          "ay_g": {
+            "rmse_g": 1.596347489525602e-07,
+            "rmse_micro_g": 0.1596347489525602,
+            "mae_g": 1.0633298171388282e-07,
+            "mae_micro_g": 0.10633298171388282,
+            "bias_g": -3.215203989103997e-10,
+            "bias_micro_g": -0.0003215203989103997
+          },
+          "az_g": {
+            "rmse_g": 1.8548614703887892e-07,
+            "rmse_micro_g": 0.18548614703887892,
+            "mae_g": 1.3776075987411644e-07,
+            "mae_micro_g": 0.13776075987411643,
+            "bias_g": 1.7134456197199997e-08,
+            "bias_micro_g": 0.017134456197199995
+          }
+        }
+      }
+    },
+    "baseline_beats_learned_models": false,
+    "hyperparameter_candidates": {
+      "ridge_residual": {
+        "alpha": 10.0
+      },
+      "mlp_residual": {
+        "hidden": [
+          32,
+          16
+        ],
+        "activation": "tanh",
+        "learning_rate_init": 0.001,
+        "alpha": 0.0001
+      }
+    },
+    "held_out_rmse_reduction_vs_persistence_percent": 24.416415522663335,
+    "held_out_better_than_persistence": true
+  },
+  "one_step_test": {
+    "persistence": {
+      "samples": 10792,
+      "overall_rmse_g": 2.2562231756764513e-07,
+      "overall_rmse_micro_g": 0.22562231756764514,
+      "overall_mae_g": 1.5293839153455053e-07,
+      "overall_mae_micro_g": 0.15293839153455052,
+      "per_axis": {
+        "ax_g": {
+          "rmse_g": 1.9488884098002783e-07,
+          "rmse_micro_g": 0.19488884098002784,
+          "mae_g": 1.3159037684562287e-07,
+          "mae_micro_g": 0.13159037684562286,
+          "bias_g": 1.7956505239153897e-11,
+          "bias_micro_g": 1.7956505239153898e-05
+        },
+        "ay_g": {
+          "rmse_g": 2.4475658352591113e-07,
+          "rmse_micro_g": 0.24475658352591112,
+          "mae_g": 1.5977306364311014e-07,
+          "mae_micro_g": 0.15977306364311014,
+          "bias_g": -9.032041073376556e-12,
+          "bias_micro_g": -9.032041073376556e-06
+        },
+        "az_g": {
+          "rmse_g": 2.341556000525462e-07,
+          "rmse_micro_g": 0.23415560005254618,
+          "mae_g": 1.674517341149186e-07,
+          "mae_micro_g": 0.1674517341149186,
+          "bias_g": 9.182477033910651e-12,
+          "bias_micro_g": 9.182477033910652e-06
+        }
+      }
+    },
+    "ridge_residual": {
+      "samples": 10792,
+      "overall_rmse_g": 1.7079422670527435e-07,
+      "overall_rmse_micro_g": 0.17079422670527436,
+      "overall_mae_g": 1.1763471080173517e-07,
+      "overall_mae_micro_g": 0.11763471080173518,
+      "per_axis": {
+        "ax_g": {
+          "rmse_g": 1.487609138701519e-07,
+          "rmse_micro_g": 0.14876091387015192,
+          "mae_g": 1.034326696568922e-07,
+          "mae_micro_g": 0.1034326696568922,
+          "bias_g": 3.5033127076929133e-09,
+          "bias_micro_g": 0.003503312707692913
+        },
+        "ay_g": {
+          "rmse_g": 1.6593911941272093e-07,
+          "rmse_micro_g": 0.16593911941272094,
+          "mae_g": 1.0945083639076103e-07,
+          "mae_micro_g": 0.10945083639076103,
+          "bias_g": -1.2611634085594087e-08,
+          "bias_micro_g": -0.012611634085594087
+        },
+        "az_g": {
+          "rmse_g": 1.9454151942607478e-07,
+          "rmse_micro_g": 0.19454151942607478,
+          "mae_g": 1.4002062635755246e-07,
+          "mae_micro_g": 0.14002062635755247,
+          "bias_g": 2.282052890090373e-08,
+          "bias_micro_g": 0.02282052890090373
+        }
+      }
+    },
+    "mlp_residual": {
+      "samples": 10792,
+      "overall_rmse_g": 1.7053343499846586e-07,
+      "overall_rmse_micro_g": 0.17053343499846588,
+      "overall_mae_g": 1.1911785602527287e-07,
+      "overall_mae_micro_g": 0.11911785602527288,
+      "per_axis": {
+        "ax_g": {
+          "rmse_g": 1.4929678191347992e-07,
+          "rmse_micro_g": 0.14929678191347992,
+          "mae_g": 1.0356201475180594e-07,
+          "mae_micro_g": 0.10356201475180594,
+          "bias_g": 8.164917501967921e-09,
+          "bias_micro_g": 0.008164917501967921
+        },
+        "ay_g": {
+          "rmse_g": 1.65886320937272e-07,
+          "rmse_micro_g": 0.165886320937272,
+          "mae_g": 1.1424058060430799e-07,
+          "mae_micro_g": 0.11424058060430799,
+          "bias_g": -3.384133230960061e-08,
+          "bias_micro_g": -0.03384133230960061
+        },
+        "az_g": {
+          "rmse_g": 1.9348683881159254e-07,
+          "rmse_micro_g": 0.19348683881159254,
+          "mae_g": 1.395509727197043e-07,
+          "mae_micro_g": 0.1395509727197043,
+          "bias_g": 1.4733941889923385e-08,
+          "bias_micro_g": 0.014733941889923384
+        }
+      }
+    }
+  },
+  "recursive_test": {
+    "origins": 10778,
+    "horizons_steps": [
+      1,
+      5,
+      15
+    ],
+    "horizons_seconds": [
+      16,
+      80,
+      240
+    ],
+    "same_origins_all_horizons": true,
+    "no_future_truth_inputs": true,
+    "metrics": {
+      "persistence": {
+        "1": {
+          "samples": 10778,
+          "overall_rmse_g": 2.2575501427911824e-07,
+          "overall_rmse_micro_g": 0.22575501427911823,
+          "overall_mae_g": 1.5306430167895528e-07,
+          "overall_mae_micro_g": 0.15306430167895527,
+          "per_axis": {
+            "ax_g": {
+              "rmse_g": 1.9499810898931596e-07,
+              "rmse_micro_g": 0.19499810898931597,
+              "mae_g": 1.3168068888803438e-07,
+              "mae_micro_g": 0.1316806888880344,
+              "bias_g": 3.373971241154065e-11,
+              "bias_micro_g": 3.373971241154065e-05
+            },
+            "ay_g": {
+              "rmse_g": 2.449115473843377e-07,
+              "rmse_micro_g": 0.24491154738433768,
+              "mae_g": 1.5993604071014758e-07,
+              "mae_micro_g": 0.15993604071014758,
+              "bias_g": -5.490020512177807e-12,
+              "bias_micro_g": -5.490020512177807e-06
+            },
+            "az_g": {
+              "rmse_g": 2.3428625837827474e-07,
+              "rmse_micro_g": 0.23428625837827474,
+              "mae_g": 1.6757617543868389e-07,
+              "mae_micro_g": 0.1675761754386839,
+              "bias_g": 9.959296083442821e-12,
+              "bias_micro_g": 9.959296083442822e-06
+            }
+          }
+        },
+        "5": {
+          "samples": 10778,
+          "overall_rmse_g": 3.0220155406460454e-07,
+          "overall_rmse_micro_g": 0.3022015540646045,
+          "overall_mae_g": 2.0701331775169726e-07,
+          "overall_mae_micro_g": 0.20701331775169726,
+          "per_axis": {
+            "ax_g": {
+              "rmse_g": 2.434829690267578e-07,
+              "rmse_micro_g": 0.2434829690267578,
+              "mae_g": 1.7187152566857816e-07,
+              "mae_micro_g": 0.17187152566857816,
+              "bias_g": 1.886813199649982e-10,
+              "bias_micro_g": 0.0001886813199649982
+            },
+            "ay_g": {
+              "rmse_g": 2.480221266784164e-07,
+              "rmse_micro_g": 0.2480221266784164,
+              "mae_g": 1.625232621859885e-07,
+              "mae_micro_g": 0.1625232621859885,
+              "bias_g": -2.4514892579796567e-11,
+              "bias_micro_g": -2.4514892579796566e-05
+            },
+            "az_g": {
+              "rmse_g": 3.9138013019188504e-07,
+              "rmse_micro_g": 0.39138013019188506,
+              "mae_g": 2.866451654005251e-07,
+              "mae_micro_g": 0.2866451654005251,
+              "bias_g": 1.1419455735855137e-10,
+              "bias_micro_g": 0.00011419455735855137
+            }
+          }
+        },
+        "15": {
+          "samples": 10778,
+          "overall_rmse_g": 3.018970901061792e-07,
+          "overall_rmse_micro_g": 0.30189709010617916,
+          "overall_mae_g": 2.1302612964740802e-07,
+          "overall_mae_micro_g": 0.21302612964740802,
+          "per_axis": {
+            "ax_g": {
+              "rmse_g": 2.556537055182322e-07,
+              "rmse_micro_g": 0.2556537055182322,
+              "mae_g": 1.8588490211670657e-07,
+              "mae_micro_g": 0.18588490211670658,
+              "bias_g": 3.850260358370047e-10,
+              "bias_micro_g": 0.0003850260358370047
+            },
+            "ay_g": {
+              "rmse_g": 2.5033105430881286e-07,
+              "rmse_micro_g": 0.25033105430881286,
+              "mae_g": 1.6640333462203257e-07,
+              "mae_micro_g": 0.16640333462203258,
+              "bias_g": 2.800037828863806e-11,
+              "bias_micro_g": 2.8000378288638058e-05
+            },
+            "az_g": {
+              "rmse_g": 3.8131496842789896e-07,
+              "rmse_micro_g": 0.38131496842789897,
+              "mae_g": 2.8679015220348485e-07,
+              "mae_micro_g": 0.28679015220348486,
+              "bias_g": 3.465873621789658e-10,
+              "bias_micro_g": 0.0003465873621789658
+            }
+          }
+        }
+      },
+      "mlp_residual": {
+        "1": {
+          "samples": 10778,
+          "overall_rmse_g": 1.7062372655688246e-07,
+          "overall_rmse_micro_g": 0.17062372655688246,
+          "overall_mae_g": 1.1919432185366962e-07,
+          "overall_mae_micro_g": 0.11919432185366963,
+          "per_axis": {
+            "ax_g": {
+              "rmse_g": 1.493676649304584e-07,
+              "rmse_micro_g": 0.14936766493045842,
+              "mae_g": 1.0361378155496485e-07,
+              "mae_micro_g": 0.10361378155496484,
+              "bias_g": 8.190262203321177e-09,
+              "bias_micro_g": 0.008190262203321176
+            },
+            "ay_g": {
+              "rmse_g": 1.6598408390642898e-07,
+              "rmse_micro_g": 0.165984083906429,
+              "mae_g": 1.1433101913222667e-07,
+              "mae_micro_g": 0.11433101913222667,
+              "bias_g": -3.3828903454093235e-08,
+              "bias_micro_g": -0.033828903454093236
+            },
+            "az_g": {
+              "rmse_g": 1.935870676347966e-07,
+              "rmse_micro_g": 0.19358706763479658,
+              "mae_g": 1.3963816487381698e-07,
+              "mae_micro_g": 0.13963816487381697,
+              "bias_g": 1.4692855136490163e-08,
+              "bias_micro_g": 0.014692855136490162
+            }
+          }
+        },
+        "5": {
+          "samples": 10778,
+          "overall_rmse_g": 2.291101898280126e-07,
+          "overall_rmse_micro_g": 0.2291101898280126,
+          "overall_mae_g": 1.6156205032862112e-07,
+          "overall_mae_micro_g": 0.16156205032862112,
+          "per_axis": {
+            "ax_g": {
+              "rmse_g": 1.9475643074413282e-07,
+              "rmse_micro_g": 0.19475643074413282,
+              "mae_g": 1.400713246327049e-07,
+              "mae_micro_g": 0.1400713246327049,
+              "bias_g": 2.0272349801273696e-08,
+              "bias_micro_g": 0.020272349801273695
+            },
+            "ay_g": {
+              "rmse_g": 1.8734917519929777e-07,
+              "rmse_micro_g": 0.18734917519929775,
+              "mae_g": 1.293213414439801e-07,
+              "mae_micro_g": 0.12932134144398008,
+              "bias_g": -4.4445307050163945e-08,
+              "bias_micro_g": -0.044445307050163946
+            },
+            "az_g": {
+              "rmse_g": 2.905936277433363e-07,
+              "rmse_micro_g": 0.2905936277433363,
+              "mae_g": 2.1529348490917727e-07,
+              "mae_micro_g": 0.21529348490917727,
+              "bias_g": 4.1386847621214466e-08,
+              "bias_micro_g": 0.041386847621214466
+            }
+          }
+        },
+        "15": {
+          "samples": 10778,
+          "overall_rmse_g": 2.31564905214286e-07,
+          "overall_rmse_micro_g": 0.231564905214286,
+          "overall_mae_g": 1.656798508706208e-07,
+          "overall_mae_micro_g": 0.1656798508706208,
+          "per_axis": {
+            "ax_g": {
+              "rmse_g": 2.0140521584013062e-07,
+              "rmse_micro_g": 0.2014052158401306,
+              "mae_g": 1.480052017099057e-07,
+              "mae_micro_g": 0.1480052017099057,
+              "bias_g": 3.372974740340681e-08,
+              "bias_micro_g": 0.033729747403406805
+            },
+            "ay_g": {
+              "rmse_g": 1.8612628997383748e-07,
+              "rmse_micro_g": 0.18612628997383748,
+              "mae_g": 1.2934668249999729e-07,
+              "mae_micro_g": 0.12934668249999728,
+              "bias_g": -5.0582108683622204e-08,
+              "bias_micro_g": -0.0505821086836222
+            },
+            "az_g": {
+              "rmse_g": 2.926770561449419e-07,
+              "rmse_micro_g": 0.2926770561449419,
+              "mae_g": 2.1968766840196e-07,
+              "mae_micro_g": 0.21968766840196,
+              "bias_g": 7.594179058938314e-08,
+              "bias_micro_g": 0.07594179058938313
+            }
+          }
+        }
+      }
+    }
+  },
+  "portable_json_reload_checks": {
+    "persistence": {
+      "compared_held_out_windows": 256,
+      "max_absolute_difference_g": 0.0,
+      "passed": true
+    },
+    "ridge_residual": {
+      "compared_held_out_windows": 256,
+      "max_absolute_difference_g": 2.117582368135751e-22,
+      "passed": true
+    },
+    "mlp_residual": {
+      "compared_held_out_windows": 256,
+      "max_absolute_difference_g": 0.0,
+      "passed": true
+    }
+  },
+  "validation_checks": {
+    "processed_sha256_matches_source_and_split_manifests": true,
+    "chronologically_sorted_unique_timestamps": true,
+    "finite_measurements_and_Valid_source_quality_only": true,
+    "windows_never_cross_segment_gap_or_split": true,
+    "window_requires_exact_16_second_cadence": true,
+    "models_and_selection_saved_before_test": true,
+    "test_labels_used_only_for_final_metrics_and_illustration": true
+  },
+  "limits": [
+    "A short November 2026 interval is not representative of every ISS mission state; there is no external mission validation.",
+    "The target is an already filtered accelerometer series at its documented coordinate system and location, not whole-ISS rigid-body acceleration.",
+    "No actuator command, force, torque, RPM, inertia or rotating-habitat label is present; causal command-response dynamics cannot be trained here.",
+    "A recursive forecast is not a stable closed-loop controller or a validation of a crew artificial-gravity system.",
+    "The 1/5/15-step recursive metrics use common 15-step-capable origins and therefore have slightly fewer samples than one-step metrics.",
+    "No confidence interval or significance claim is made for differences from persistence; serial dependence is substantial."
+  ],
+  "software": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0",
+    "sklearn": "1.8.0",
+    "matplotlib": "3.10.8"
+  }
+}

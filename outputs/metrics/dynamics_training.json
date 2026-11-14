@@ -1,0 +1,126 @@
+{
+  "data_type": "PHYSICS_SYNTHETIC_ONLY",
+  "not_a_human_health_model": true,
+  "episode_counts": [
+    49,
+    10,
+    11
+  ],
+  "rows": 8400,
+  "test_rows": 1320,
+  "best_validation_mse_normalized": 0.010353997349739075,
+  "targets": [
+    "ring_omega_rad_s",
+    "hub_omega_rad_s",
+    "radial_m_s2",
+    "tangential_m_s2",
+    "axial_m_s2"
+  ],
+  "held_out_mae": [
+    0.0028749757912009954,
+    0.0009280967060476542,
+    0.5914214849472046,
+    0.041571807116270065,
+    0.11996487528085709
+  ],
+  "held_out_rmse": [
+    0.003801357907602849,
+    0.0012694682713307846,
+    0.7495207447415603,
+    0.05732221989826582,
+    0.1641561036798249
+  ],
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.8283632138501043,
+      "validation_loss": 0.8713610172271729
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.31822742780913477,
+      "validation_loss": 0.25479260087013245
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.11494260670050331,
+      "validation_loss": 0.14327844977378845
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.06204302252634712,
+      "validation_loss": 0.08487708121538162
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.0374753014386996,
+      "validation_loss": 0.05294753611087799
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.023729664799959763,
+      "validation_loss": 0.0352901928126812
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.017604221063463585,
+      "validation_loss": 0.025954239070415497
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.014541901364598585,
+      "validation_loss": 0.022086171433329582
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.012714057188966999,
+      "validation_loss": 0.01934978924691677
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.011142691394881062,
+      "validation_loss": 0.016896504908800125
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.010374789834832367,
+      "validation_loss": 0.01529404055327177
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.009340197374315365,
+      "validation_loss": 0.01475934311747551
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.008420954276200222,
+      "validation_loss": 0.013210888020694256
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.00790055928265919,
+      "validation_loss": 0.01236532349139452
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.0072018597477480125,
+      "validation_loss": 0.011222857050597668
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.006586360238978396,
+      "validation_loss": 0.010603602975606918
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.006062528968829176,
+      "validation_loss": 0.01051411870867014
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.005564673206485484,
+      "validation_loss": 0.010353997349739075
+    }
+  ],
+  "important_note": "A learned approximation cannot replace the verified analytical physics model. No clinical or flight validity."
+}

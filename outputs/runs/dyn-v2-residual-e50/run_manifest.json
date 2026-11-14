@@ -1,0 +1,617 @@
+{
+  "run_id": "dyn-v2-residual-e50",
+  "status": "completed",
+  "data_type": "SIMULATED_SPACECRAFT_DYNAMICS",
+  "note": "Learned approximation of the analytical spacecraft simulator. Not a human or flight-qualified model.",
+  "start_mode": "from_scratch",
+  "resume_events": [],
+  "created": "2026-11-14T02:37:22",
+  "config": {
+    "data": {
+      "output_dir": "data/synthetic/dynamics_v2",
+      "seed": 49,
+      "episodes": 500,
+      "steps_per_episode": 120,
+      "dt_values_s": [
+        0.5,
+        1.0,
+        2.0,
+        5.0
+      ],
+      "scenario_mix": {
+        "mission_pid": 0.35,
+        "setpoint_steps": 0.35,
+        "random_torque": 0.3
+      },
+      "max_crew_gravity_g": 3.0,
+      "ranges": {
+        "radius_m": [
+          40.0,
+          400.0
+        ],
+        "ring_inertia_kg_m2": [
+          1000000000.0,
+          10000000000.0
+        ],
+        "hub_inertia_kg_m2": [
+          2000000000.0,
+          30000000000.0
+        ],
+        "bearing_drag_nms": [
+          10000.0,
+          1500000.0
+        ],
+        "motor_torque_limit_nm": [
+          2000000.0,
+          20000000.0
+        ],
+        "motor_power_limit_w": [
+          1000000.0,
+          10000000.0
+        ],
+        "motor_slew_nm_s": [
+          200000.0,
+          4000000.0
+        ]
+      }
+    },
+    "train": {
+      "dataset_dir": "data/synthetic/dynamics_v2",
+      "output_root": "outputs/runs",
+      "seed": 17,
+      "epochs": 50,
+      "batch_size": 256,
+      "learning_rate": 0.0015,
+      "weight_decay": 0.0001,
+      "early_stopping_patience": 8,
+      "device": "auto",
+      "num_threads": 0,
+      "target_mode": "residual"
+    },
+    "model": {
+      "hidden_width": 64,
+      "hidden_layers": 3,
+      "activation": "silu"
+    },
+    "evaluation": {
+      "rollout_horizons_s": [
+        10,
+        30,
+        60
+      ],
+      "rollout_start_stride_steps": 10
+    }
+  },
+  "config_sources": {
+    "data.output_dir": "file:dynamics.yaml",
+    "data.seed": "file:dynamics.yaml",
+    "data.episodes": "file:dynamics.yaml",
+    "data.steps_per_episode": "file:dynamics.yaml",
+    "data.dt_values_s": "file:dynamics.yaml",
+    "data.scenario_mix": "file:dynamics.yaml",
+    "data.max_crew_gravity_g": "file:dynamics.yaml",
+    "data.ranges.radius_m": "file:dynamics.yaml",
+    "data.ranges.ring_inertia_kg_m2": "file:dynamics.yaml",
+    "data.ranges.hub_inertia_kg_m2": "file:dynamics.yaml",
+    "data.ranges.bearing_drag_nms": "file:dynamics.yaml",
+    "data.ranges.motor_torque_limit_nm": "file:dynamics.yaml",
+    "data.ranges.motor_power_limit_w": "file:dynamics.yaml",
+    "data.ranges.motor_slew_nm_s": "file:dynamics.yaml",
+    "train.dataset_dir": "file:dynamics.yaml",
+    "train.output_root": "file:dynamics.yaml",
+    "train.seed": "file:dynamics.yaml",
+    "train.epochs": "file:dynamics.yaml",
+    "train.batch_size": "file:dynamics.yaml",
+    "train.learning_rate": "file:dynamics.yaml",
+    "train.weight_decay": "file:dynamics.yaml",
+    "train.early_stopping_patience": "file:dynamics.yaml",
+    "train.device": "file:dynamics.yaml",
+    "train.num_threads": "file:dynamics.yaml",
+    "train.target_mode": "file:dynamics.yaml",
+    "model.hidden_width": "file:dynamics.yaml",
+    "model.hidden_layers": "file:dynamics.yaml",
+    "model.activation": "file:dynamics.yaml",
+    "evaluation.rollout_horizons_s": "file:dynamics.yaml",
+    "evaluation.rollout_start_stride_steps": "file:dynamics.yaml"
+  },
+  "schema": {
+    "schema_version": "dynamics-v2",
+    "data_type": "SIMULATED_SPACECRAFT_DYNAMICS",
+    "features": [
+      {
+        "name": "ring_omega_rad_s",
+        "unit": "rad/s",
+        "physical_scale": 1.0,
+        "description": "current inertial ring angular velocity"
+      },
+      {
+        "name": "hub_omega_rad_s",
+        "unit": "rad/s",
+        "physical_scale": 1.0,
+        "description": "current inertial hub angular velocity"
+      },
+      {
+        "name": "applied_torque_nm",
+        "unit": "N*m",
+        "physical_scale": 10000000.0,
+        "description": "motor torque applied during the previous step (actuator state)"
+      },
+      {
+        "name": "requested_torque_nm",
+        "unit": "N*m",
+        "physical_scale": 10000000.0,
+        "description": "motor torque command for this step"
+      },
+      {
+        "name": "axial_accel_m_s2",
+        "unit": "m/s^2",
+        "physical_scale": 9.80665,
+        "description": "spacecraft axial (thrust) acceleration during this step; feature expressed in g"
+      },
+      {
+        "name": "ring_inertia_kg_m2",
+        "unit": "kg*m^2",
+        "physical_scale": 10000000000.0,
+        "description": "ring moment of inertia"
+      },
+      {
+        "name": "hub_inertia_kg_m2",
+        "unit": "kg*m^2",
+        "physical_scale": 10000000000.0,
+        "description": "hub moment of inertia"
+      },
+      {
+        "name": "bearing_drag_nms",
+        "unit": "N*m*s/rad",
+        "physical_scale": 1000000.0,
+        "description": "bearing drag coefficient on relative ring-hub speed"
+      },
+      {
+        "name": "radius_m",
+        "unit": "m",
+        "physical_scale": 100.0,
+        "description": "crew floor radius"
+      },
+      {
+        "name": "dt_s",
+        "unit": "s",
+        "physical_scale": 1.0,
+        "description": "integration time step"
+      },
+      {
+        "name": "motor_torque_limit_nm",
+        "unit": "N*m",
+        "physical_scale": 10000000.0,
+        "description": "motor torque magnitude limit"
+      },
+      {
+        "name": "motor_power_limit_w",
+        "unit": "W",
+        "physical_scale": 10000000.0,
+        "description": "motor power limit"
+      },
+      {
+        "name": "motor_slew_nm_s",
+        "unit": "N*m/s",
+        "physical_scale": 1000000.0,
+        "description": "motor torque slew-rate limit"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "next_ring_omega_rad_s",
+        "unit": "rad/s",
+        "description": "ring angular velocity after the step"
+      },
+      {
+        "name": "next_hub_omega_rad_s",
+        "unit": "rad/s",
+        "description": "hub angular velocity after the step"
+      },
+      {
+        "name": "crew_radial_m_s2",
+        "unit": "m/s^2",
+        "description": "apparent gravity, radial component at the floor (r*omega_next^2)"
+      },
+      {
+        "name": "crew_tangential_m_s2",
+        "unit": "m/s^2",
+        "description": "apparent gravity, tangential component (-r*alpha_ring)"
+      },
+      {
+        "name": "crew_axial_m_s2",
+        "unit": "m/s^2",
+        "description": "apparent gravity, axial component (-axial_accel)"
+      }
+    ],
+    "target_mode": "residual",
+    "target_definition": "model target = output - reference",
+    "residual_references": {
+      "next_ring_omega_rad_s": "ring_omega_rad_s",
+      "next_hub_omega_rad_s": "hub_omega_rad_s",
+      "crew_radial_m_s2": "radius_m * ring_omega_rad_s**2",
+      "crew_tangential_m_s2": "0",
+      "crew_axial_m_s2": "-axial_accel_m_s2"
+    },
+    "preprocessing": [
+      "feature = raw / physical_scale",
+      "standardise features with training-split mean/std (std==0 -> 1)",
+      "standardise targets with training-split mean/std (std==0 -> 1)"
+    ],
+    "not_a_human_model": true
+  },
+  "architecture": {
+    "class": "gravity_ai.models.dynamics.DynamicsNet",
+    "inputs": 13,
+    "outputs": 5,
+    "hidden_width": 64,
+    "hidden_layers": 3,
+    "activation": "silu",
+    "parameters": 9541
+  },
+  "dataset": {
+    "dir": "D:\\personalized-gravity-ai\\data\\synthetic\\dynamics_v2",
+    "fingerprint_sha256": "9694a9ca3449d13aa4d96ad5971d9ec1ffa09cb9438bbd7f96db32f6dea7f902",
+    "split_manifest_sha256": "f757c1ef81c1e25f092adb0cda941876d2cfeca1237890ee516ff0e1c13ab6f9",
+    "generation_seed": 49,
+    "split_seed": 49,
+    "split_episode_counts": {
+      "train": 349,
+      "val": 76,
+      "test": 75
+    },
+    "split_row_counts": {
+      "train": 41880,
+      "val": 9120,
+      "test": 9000
+    },
+    "dt_values_trained": [
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ]
+  },
+  "seeds": {
+    "train": 17,
+    "data_generation": 49
+  },
+  "environment": {
+    "python": "3.11.9",
+    "torch": "2.15.0+cpu",
+    "numpy": "2.4.6",
+    "scikit_learn": "1.9.1",
+    "platform": "Windows-10-10.0.26340-SP0",
+    "device": "cpu",
+    "cuda_available": false,
+    "torch_cuda_build": null,
+    "torch_threads": 8,
+    "cpu": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel"
+  },
+  "feature_envelope_train": {
+    "ring_omega_rad_s": [
+      0.006949461577297527,
+      0.6259611938336603
+    ],
+    "hub_omega_rad_s": [
+      -0.6046991134119357,
+      0.6174781010324788
+    ],
+    "applied_torque_nm": [
+      -19769126.758557037,
+      16998048.454131264
+    ],
+    "requested_torque_nm": [
+      -19769126.758557037,
+      18803250.905265756
+    ],
+    "axial_accel_m_s2": [
+      -11.73130510879374,
+      11.73130510879374
+    ],
+    "ring_inertia_kg_m2": [
+      1003169602.2896073,
+      9880987541.580387
+    ],
+    "hub_inertia_kg_m2": [
+      2102848167.1016333,
+      29809280238.291595
+    ],
+    "bearing_drag_nms": [
+      10010.638906658476,
+      1484345.1348454326
+    ],
+    "radius_m": [
+      40.004960550796326,
+      399.43195712291833
+    ],
+    "dt_s": [
+      0.5,
+      5.0
+    ],
+    "motor_torque_limit_nm": [
+      2030188.9504985153,
+      19769126.758557037
+    ],
+    "motor_power_limit_w": [
+      1000217.5655903158,
+      9875782.45603827
+    ],
+    "motor_slew_nm_s": [
+      201412.41452888955,
+      3975060.836891036
+    ]
+  },
+  "completed": "2026-11-14T02:37:29",
+  "stop_reason": "early_stopping",
+  "epochs_completed": 37,
+  "best_epoch": 29,
+  "best_validation_mse_standardized": 0.02700292132794857,
+  "training_elapsed_s": 7.34,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.43480746718737323,
+      "validation_loss": 0.1730790138244629,
+      "seconds": 0.215,
+      "improved": true
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.16224142728300467,
+      "validation_loss": 0.10883268713951111,
+      "seconds": 0.186,
+      "improved": true
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.10005425996188903,
+      "validation_loss": 0.10436958074569702,
+      "seconds": 0.196,
+      "improved": true
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.07479870401273028,
+      "validation_loss": 0.09010988473892212,
+      "seconds": 0.197,
+      "improved": true
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.062329602692322496,
+      "validation_loss": 0.08526934683322906,
+      "seconds": 0.217,
+      "improved": true
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.05237201934301409,
+      "validation_loss": 0.07933942973613739,
+      "seconds": 0.194,
+      "improved": true
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.04528752297390726,
+      "validation_loss": 0.071006640791893,
+      "seconds": 0.199,
+      "improved": true
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.040408310927486236,
+      "validation_loss": 0.07365726679563522,
+      "seconds": 0.222,
+      "improved": false
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.03575245725113717,
+      "validation_loss": 0.06964794546365738,
+      "seconds": 0.204,
+      "improved": true
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.030687884360181796,
+      "validation_loss": 0.06323184072971344,
+      "seconds": 0.203,
+      "improved": true
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.02833527822221817,
+      "validation_loss": 0.05675574764609337,
+      "seconds": 0.202,
+      "improved": true
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.025621285841025503,
+      "validation_loss": 0.0504593662917614,
+      "seconds": 0.201,
+      "improved": true
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.023988511718261663,
+      "validation_loss": 0.05634448677301407,
+      "seconds": 0.192,
+      "improved": false
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.021577601207361522,
+      "validation_loss": 0.04881783947348595,
+      "seconds": 0.186,
+      "improved": true
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.0203003719317395,
+      "validation_loss": 0.048189155757427216,
+      "seconds": 0.194,
+      "improved": true
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.018505404586436756,
+      "validation_loss": 0.04135696589946747,
+      "seconds": 0.209,
+      "improved": true
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.018180585747234232,
+      "validation_loss": 0.04459139704704285,
+      "seconds": 0.186,
+      "improved": false
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.016031726240158195,
+      "validation_loss": 0.03920087218284607,
+      "seconds": 0.193,
+      "improved": true
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.01621208768747142,
+      "validation_loss": 0.03441525995731354,
+      "seconds": 0.188,
+      "improved": true
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.015148229911610299,
+      "validation_loss": 0.03795517608523369,
+      "seconds": 0.192,
+      "improved": false
+    },
+    {
+      "epoch": 21,
+      "train_loss": 0.0150750426025821,
+      "validation_loss": 0.03463190421462059,
+      "seconds": 0.189,
+      "improved": false
+    },
+    {
+      "epoch": 22,
+      "train_loss": 0.0137485077867948,
+      "validation_loss": 0.03877444565296173,
+      "seconds": 0.188,
+      "improved": false
+    },
+    {
+      "epoch": 23,
+      "train_loss": 0.012851110507076768,
+      "validation_loss": 0.03350326791405678,
+      "seconds": 0.207,
+      "improved": true
+    },
+    {
+      "epoch": 24,
+      "train_loss": 0.011996307483773746,
+      "validation_loss": 0.030399173498153687,
+      "seconds": 0.192,
+      "improved": true
+    },
+    {
+      "epoch": 25,
+      "train_loss": 0.012010680714759126,
+      "validation_loss": 0.0298212468624115,
+      "seconds": 0.191,
+      "improved": true
+    },
+    {
+      "epoch": 26,
+      "train_loss": 0.011611469957973975,
+      "validation_loss": 0.03145903721451759,
+      "seconds": 0.197,
+      "improved": false
+    },
+    {
+      "epoch": 27,
+      "train_loss": 0.01002929873538578,
+      "validation_loss": 0.02912265434861183,
+      "seconds": 0.191,
+      "improved": true
+    },
+    {
+      "epoch": 28,
+      "train_loss": 0.010384088072217752,
+      "validation_loss": 0.0330049954354763,
+      "seconds": 0.191,
+      "improved": false
+    },
+    {
+      "epoch": 29,
+      "train_loss": 0.01100422262117167,
+      "validation_loss": 0.02700292132794857,
+      "seconds": 0.189,
+      "improved": true
+    },
+    {
+      "epoch": 30,
+      "train_loss": 0.010079443792046653,
+      "validation_loss": 0.03252600133419037,
+      "seconds": 0.187,
+      "improved": false
+    },
+    {
+      "epoch": 31,
+      "train_loss": 0.009925467365820747,
+      "validation_loss": 0.02857663668692112,
+      "seconds": 0.19,
+      "improved": false
+    },
+    {
+      "epoch": 32,
+      "train_loss": 0.009090943183703659,
+      "validation_loss": 0.02929927408695221,
+      "seconds": 0.186,
+      "improved": false
+    },
+    {
+      "epoch": 33,
+      "train_loss": 0.008590409312834883,
+      "validation_loss": 0.029200030490756035,
+      "seconds": 0.199,
+      "improved": false
+    },
+    {
+      "epoch": 34,
+      "train_loss": 0.009371211021558632,
+      "validation_loss": 0.027793144807219505,
+      "seconds": 0.2,
+      "improved": false
+    },
+    {
+      "epoch": 35,
+      "train_loss": 0.007636603031666823,
+      "validation_loss": 0.031461261212825775,
+      "seconds": 0.195,
+      "improved": false
+    },
+    {
+      "epoch": 36,
+      "train_loss": 0.0084561812661147,
+      "validation_loss": 0.02846803143620491,
+      "seconds": 0.194,
+      "improved": false
+    },
+    {
+      "epoch": 37,
+      "train_loss": 0.007997166433255078,
+      "validation_loss": 0.029092181473970413,
+      "seconds": 0.192,
+      "improved": false
+    }
+  ],
+  "artifacts": {
+    "best_checkpoint": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-residual-e50\\checkpoint_best.pt",
+    "training_state": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-residual-e50\\training_state_last.pt",
+    "manifest": "D:\\personalized-gravity-ai\\outputs\\runs\\dyn-v2-residual-e50\\run_manifest.json"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "data_type": "real_measurements_only",
+  "prepared": {},
+  "unavailable": {
+    "empatica_e4": "No valid subject sessions under /mnt/data/personalized-gravity-ai/data/raw/empatica_e4; obtain real PhysioNet E4 CSVs first",
+    "nhanes": "/mnt/data/personalized-gravity-ai/data/raw/nhanes/DEMO_H.XPT"
+  }
+}

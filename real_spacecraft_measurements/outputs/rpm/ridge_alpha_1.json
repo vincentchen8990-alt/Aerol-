@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "name": "ridge_alpha_1",
+  "kind": "ridge_residual",
+  "hardware": "JAXA ISS Kibo MARS-S centrifuge, MHU-1/MHU-2 configuration",
+  "input": "8 consecutive measured RPM samples, oldest to newest",
+  "context_samples": 8,
+  "history_span_seconds": 7,
+  "sample_interval_seconds": 1,
+  "horizon_seconds": 1,
+  "output_unit": "RPM",
+  "nominal_radius_m": 0.15,
+  "nominal_rotation_setting_rpm": 77,
+  "feature_order": [
+    "latest_rpm",
+    "delta_rpm_0_to_1",
+    "delta_rpm_1_to_2",
+    "delta_rpm_2_to_3",
+    "delta_rpm_3_to_4",
+    "delta_rpm_4_to_5",
+    "delta_rpm_5_to_6",
+    "delta_rpm_6_to_7"
+  ],
+  "target": "next recorded RPM minus latest recorded RPM",
+  "training_mission": "MHU-1",
+  "independent_test_mission": "MHU-2",
+  "scope": "Observed closed-loop RPM forecaster; not torque-response identification or a controller",
+  "gravity_status": "r*omega^2/9.80665 is a derived nominal radial component, not a measured acceleration label",
+  "unknown_inputs": [
+    "motor command",
+    "motor torque",
+    "current",
+    "inertia",
+    "hub motion",
+    "maintenance schedule"
+  ],
+  "x_mean": [
+    76.28377179410009,
+    -0.0001004326422982357,
+    0.0010701576196060411,
+    0.0008719802826419638,
+    -0.0017351526836410604,
+    0.0012947586014986632,
+    -0.0003267496173798914,
+    0.00022814692611953667
+  ],
+  "x_scale": [
+    9.706621283579757,
+    0.5293791374841073,
+    0.5278179370265053,
+    0.5281038452619773,
+    0.5279852975199911,
+    0.5275650284410338,
+    0.5288430055197784,
+    0.5278013969317206
+  ],
+  "y_mean": -0.0008945161097970621,
+  "y_scale": 0.5133544313890939,
+  "coef": [
+    0.000981756449907828,
+    0.05249183987565958,
+    0.23360902689029184,
+    0.025694083415264312,
+    0.07285228574152122,
+    0.34089709195506945,
+    -0.17709567914335217,
+    -0.35804803904554416
+  ],
+  "intercept": -1.6964129513062986e-15
+}

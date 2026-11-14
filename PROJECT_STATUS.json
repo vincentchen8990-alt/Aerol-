@@ -1,0 +1,141 @@
+{
+  "project": "Personalized Artificial Gravity AI",
+  "date": "2026-11-11",
+  "catalog_input_files": [
+    "earth_human_metric_mapping.csv",
+    "embraceplus_watch_signals.csv",
+    "embraceplus_watch_biomarkers.csv",
+    "earth_human_dataset_sources.csv",
+    "embraceplus_earth_human_data_catalog.xlsx"
+  ],
+  "prior_research_records": {
+    "source_inventory": 40,
+    "variable_dictionary": 102
+  },
+  "executed_tests": {
+    "command": "python -m pytest -q",
+    "passed": 95,
+    "date": "2026-11-14"
+  },
+  "viewer_learned_predictions": {
+    "served_run": "outputs/runs/selected_dynamics.json -> dyn-v2-residual-e200-p20",
+    "panel": "Learned Model vs Simulated Physics (one-step prediction and open-loop forecast)",
+    "used_for_control": false,
+    "browser_check": "headless Chrome, 58 checks passed (main scenario 52, missing model 6)"
+  },
+  "dynamics_v2_training": {
+    "type": "SIMULATED_SPACECRAFT_DYNAMICS",
+    "dataset": "data/synthetic/dynamics_v2 (500 episodes, 60,000 transitions, dt 0.5/1/2/5 s)",
+    "train_validation_test_episodes": [
+      349,
+      76,
+      75
+    ],
+    "selected_run": "outputs/runs/dyn-v2-residual-e200-p20",
+    "evaluation": "outputs/runs/dyn-v2-residual-e200-p20/evaluation/evaluation.json",
+    "test_one_step_mae_learned_vs_persistence": {
+      "ring_omega_rad_s": [
+        0.000238,
+        0.00126
+      ],
+      "crew_gravity_magnitude_m_s2": [
+        0.0162,
+        0.0794
+      ]
+    },
+    "used_for_control": false,
+    "benchmark_note": "different benchmark from the archived 70-episode model; not directly comparable"
+  },
+  "api_smoke_test": {
+    "local_3d_viewer": 200,
+    "catalog": 200,
+    "simulate": 200
+  },
+  "completed_training": {
+    "type": "PHYSICS_SYNTHETIC_ONLY",
+    "trajectories": 70,
+    "transitions": 8400,
+    "train_validation_test_episodes": [
+      49,
+      10,
+      11
+    ],
+    "heldout_mae": {
+      "ring_omega_rad_s": 0.002874975558370352,
+      "hub_omega_rad_s": 0.0009280962403863668,
+      "radial_m_s2": 0.5914214253425598,
+      "tangential_m_s2": 0.04157180339097977,
+      "axial_m_s2": 0.11996487528085709
+    }
+  },
+  "mission_demo": {
+    "data_type": "SYNTHETIC_PHYSICS_NOT_MEDICAL",
+    "samples": 600,
+    "mean_abs_error_g": 0.014345688170342466,
+    "max_abs_error_g": 0.1405758693528183,
+    "files": [
+      "mission_1200s.csv",
+      "gravity_tracking.png"
+    ]
+  },
+  "not_completed": {
+    "real_human_training": "Not trained: upstream participant files not supplied and outbound DNS disabled",
+    "clinical_gravity_model": "Not scientifically validated from current data",
+    "react_three_build": "Source supplied; npm registry inaccessible in runtime, so not compiled; dependency-free 3D viewer HTTP-tested"
+  },
+  "data_handling": "Original user catalogs are included byte-identically; real participant measurements are not embedded.",
+  "commands": [
+    "python -m gravity_ai.api",
+    "python -m pytest -q",
+    "python -m gravity_ai.simulation.generate",
+    "python -m gravity_ai.train.dynamics",
+    "python -m scripts.run_demo",
+    "python -m scripts.verify_measured_iss",
+    "python -m scripts.build_pims_replay"
+  ],
+  "measured_iss_integration": {
+    "type": "ARCHIVED_MEASURED_ISS_DATA",
+    "live_telemetry": false,
+    "viewer_mode": "ISS archived measurements (/#iss): schematic ISS plan view from NASA reference dimensions, MARS-S inset, MHU-2 RPM replay, separate NASA PIMS panel",
+    "api": [
+      "/api/measured/status",
+      "/api/measured/hardware",
+      "/api/measured/rpm/predict",
+      "/api/measured/pims/predict",
+      "/api/measured/rpm/replay",
+      "/api/measured/pims/replay"
+    ],
+    "models": {
+      "mars_s_rpm_next_second_mlp": {
+        "file": "real_spacecraft_measurements/outputs/rpm/selected_model_with_usage_notes.json",
+        "input": "(8,) measured RPM, 1 s cadence",
+        "output": "next RPM, 1 s ahead",
+        "mhu2_test_rmse_rpm": 0.245751,
+        "persistence_rmse_rpm": 0.474178,
+        "one_step_only": true,
+        "recursive_forecasting": "failed; not exposed",
+        "used_for_control": false
+      },
+      "iss_mams_ossbtmf_next_16s_mlp": {
+        "file": "real_spacecraft_measurements/outputs/pims/selected_model.json",
+        "input": "(8,3) g, 16 s cadence",
+        "output": "next (3,) g, 16 s ahead",
+        "test_rmse_micro_g": 0.170533,
+        "ridge_rmse_micro_g": 0.170794,
+        "persistence_rmse_micro_g": 0.225622,
+        "note": "Ridge almost tied; no neural-superiority claim"
+      }
+    },
+    "retrained": false,
+    "simulated_dynamics_selection_unchanged": "outputs/runs/selected_dynamics.json -> dyn-v2-residual-e200-p20",
+    "verification": {
+      "handoff_manifest_files": 41,
+      "test_vector_parity": "RPM 5/5, PIMS 8/8",
+      "mhu2_archive": "restored, SHA256 verified, replay clips match",
+      "pims_reacquisition": "268/268 source files and processed table SHA256 match the training dataset",
+      "browser_checks": "headless Chrome, 22/22"
+    },
+    "evaluation_note": "MHU-2 and the 10-11 Nov 2026 PIMS test days have been examined; retraining or architecture changes need a new reserved evaluation dataset for new claims.",
+    "docs": "docs/MEASURED_ISS.md"
+  }
+}

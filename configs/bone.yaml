@@ -1,0 +1,5 @@
+input: data/processed/bone_density/nhanes_bone.csv
+task: cross_sectional_BMD_association
+models: [ridge, forest]
+seed: 42
+# NHANES does not establish longitudinal gravity-based recovery.

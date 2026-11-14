@@ -1,0 +1,33 @@
+{
+  "fixed_before_training": "2026-11-14T12:25:32.603852+00:00",
+  "seed": 20261114,
+  "history_samples": 8,
+  "horizon_seconds": 1,
+  "train": "MHU-1 first 70% of elapsed source time",
+  "validation": "MHU-1 last 30%; entire input history must be inside validation",
+  "test": "MHU-2 independent mission; first scored after model selection and saved checkpoints",
+  "preprocessing": "Keep last duplicate; no interpolation; retain actual zero RPM; windows require 1-second cadence and finite data",
+  "training_sample": "Up to 150000 uniformly spaced training windows, union every training window with past-history peak-to-peak RPM >2.0; no future-target selection",
+  "candidates": [
+    "persistence",
+    "moving_mean_8",
+    "ridge_alpha_1",
+    "ridge_alpha_100",
+    "mlp_residual_32_32_relu"
+  ],
+  "selection_metric": "Full chronological validation RMSE in RPM",
+  "mlp": {
+    "hidden_layer_sizes": [
+      32,
+      32
+    ],
+    "activation": "relu",
+    "solver": "adam",
+    "alpha": 0.0001,
+    "learning_rate_init": 0.001,
+    "batch_size": 256,
+    "max_epochs": 40,
+    "patience": 8
+  },
+  "rollout": "1,10,30,60 s endpoints; fixed 600-second-spaced and past-history-active origins with a full contiguous future"
+}

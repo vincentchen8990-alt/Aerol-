@@ -1,0 +1,121 @@
+{
+  "criterion": "Lowest overall validation one-step RMSE, including persistence",
+  "winner": "mlp_residual",
+  "frozen_before_test_at_utc": "2026-11-14T12:19:58.903008+00:00",
+  "validation": {
+    "persistence": {
+      "samples": 10739,
+      "overall_rmse_g": 2.2742677620409544e-07,
+      "overall_rmse_micro_g": 0.22742677620409543,
+      "overall_mae_g": 1.5549484979153314e-07,
+      "overall_mae_micro_g": 0.15549484979153314,
+      "per_axis": {
+        "ax_g": {
+          "rmse_g": 1.8497062783679056e-07,
+          "rmse_micro_g": 0.18497062783679055,
+          "mae_g": 1.2491554771075935e-07,
+          "mae_micro_g": 0.12491554771075936,
+          "bias_g": -1.0710839898323374e-11,
+          "bias_micro_g": -1.0710839898323373e-05
+        },
+        "ay_g": {
+          "rmse_g": 2.663848905140204e-07,
+          "rmse_micro_g": 0.26638489051402037,
+          "mae_g": 1.7717254314038994e-07,
+          "mae_micro_g": 0.17717254314038994,
+          "bias_g": -1.0086205411758713e-11,
+          "bias_micro_g": -1.0086205411758713e-05
+        },
+        "az_g": {
+          "rmse_g": 2.23592872308705e-07,
+          "rmse_micro_g": 0.223592872308705,
+          "mae_g": 1.643964585234501e-07,
+          "mae_micro_g": 0.16439645852345008,
+          "bias_g": -4.906559404149672e-11,
+          "bias_micro_g": -4.906559404149672e-05
+        }
+      }
+    },
+    "ridge_residual": {
+      "samples": 10739,
+      "overall_rmse_g": 1.6442579807943586e-07,
+      "overall_rmse_micro_g": 0.16442579807943586,
+      "overall_mae_g": 1.1348693530648334e-07,
+      "overall_mae_micro_g": 0.11348693530648334,
+      "per_axis": {
+        "ax_g": {
+          "rmse_g": 1.424953881112041e-07,
+          "rmse_micro_g": 0.1424953881112041,
+          "mae_g": 9.731246853091875e-08,
+          "mae_micro_g": 0.09731246853091875,
+          "bias_g": 1.634736584807151e-09,
+          "bias_micro_g": 0.001634736584807151
+        },
+        "ay_g": {
+          "rmse_g": 1.619066511767639e-07,
+          "rmse_micro_g": 0.1619066511767639,
+          "mae_g": 1.0509288830468952e-07,
+          "mae_micro_g": 0.10509288830468952,
+          "bias_g": -3.2069373880180217e-09,
+          "bias_micro_g": -0.0032069373880180218
+        },
+        "az_g": {
+          "rmse_g": 1.8598072452257293e-07,
+          "rmse_micro_g": 0.18598072452257294,
+          "mae_g": 1.380554490838421e-07,
+          "mae_micro_g": 0.1380554490838421,
+          "bias_g": 1.843289586386394e-08,
+          "bias_micro_g": 0.01843289586386394
+        }
+      }
+    },
+    "mlp_residual": {
+      "samples": 10739,
+      "overall_rmse_g": 1.6354786368431817e-07,
+      "overall_rmse_micro_g": 0.16354786368431817,
+      "overall_mae_g": 1.1398363565728142e-07,
+      "overall_mae_micro_g": 0.11398363565728142,
+      "per_axis": {
+        "ax_g": {
+          "rmse_g": 1.4267216732999251e-07,
+          "rmse_micro_g": 0.14267216732999252,
+          "mae_g": 9.785716538384634e-08,
+          "mae_micro_g": 0.09785716538384634,
+          "bias_g": -3.5229661087015425e-09,
+          "bias_micro_g": -0.0035229661087015423
+        },
+        "ay_g": {
+          "rmse_g": 1.596347489525602e-07,
+          "rmse_micro_g": 0.1596347489525602,
+          "mae_g": 1.0633298171388282e-07,
+          "mae_micro_g": 0.10633298171388282,
+          "bias_g": -3.215203989103997e-10,
+          "bias_micro_g": -0.0003215203989103997
+        },
+        "az_g": {
+          "rmse_g": 1.8548614703887892e-07,
+          "rmse_micro_g": 0.18548614703887892,
+          "mae_g": 1.3776075987411644e-07,
+          "mae_micro_g": 0.13776075987411643,
+          "bias_g": 1.7134456197199997e-08,
+          "bias_micro_g": 0.017134456197199995
+        }
+      }
+    }
+  },
+  "baseline_beats_learned_models": false,
+  "hyperparameter_candidates": {
+    "ridge_residual": {
+      "alpha": 10.0
+    },
+    "mlp_residual": {
+      "hidden": [
+        32,
+        16
+      ],
+      "activation": "tanh",
+      "learning_rate_init": 0.001,
+      "alpha": 0.0001
+    }
+  }
+}

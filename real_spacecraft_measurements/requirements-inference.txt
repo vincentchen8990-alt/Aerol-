@@ -1,0 +1,2 @@
+# Portable JSON inference uses only NumPy, not PyTorch or scikit-learn.
+numpy>=2.0,<3

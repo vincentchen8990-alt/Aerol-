@@ -1,0 +1,426 @@
+{
+  "seed": 49,
+  "data_type": "SIMULATED",
+  "episodes": [
+    {
+      "episode_id": 0,
+      "radius_m": 137.52781903041475,
+      "ring_inertia_kg_m2": 6338955341.527591,
+      "hub_inertia_kg_m2": 10271203391.426992
+    },
+    {
+      "episode_id": 1,
+      "radius_m": 259.0656843146502,
+      "ring_inertia_kg_m2": 6213272333.921306,
+      "hub_inertia_kg_m2": 17927369206.972897
+    },
+    {
+      "episode_id": 2,
+      "radius_m": 150.9165687604268,
+      "ring_inertia_kg_m2": 2346129533.869018,
+      "hub_inertia_kg_m2": 18148847229.305984
+    },
+    {
+      "episode_id": 3,
+      "radius_m": 113.16650906780012,
+      "ring_inertia_kg_m2": 5253726773.70621,
+      "hub_inertia_kg_m2": 19514981706.507874
+    },
+    {
+      "episode_id": 4,
+      "radius_m": 101.5621586305099,
+      "ring_inertia_kg_m2": 5786838109.159756,
+      "hub_inertia_kg_m2": 4587730501.43466
+    },
+    {
+      "episode_id": 5,
+      "radius_m": 204.62655428726742,
+      "ring_inertia_kg_m2": 2625288926.261656,
+      "hub_inertia_kg_m2": 12510622873.749825
+    },
+    {
+      "episode_id": 6,
+      "radius_m": 48.787659657314286,
+      "ring_inertia_kg_m2": 5020770203.368315,
+      "hub_inertia_kg_m2": 14353547575.813644
+    },
+    {
+      "episode_id": 7,
+      "radius_m": 274.3522236703153,
+      "ring_inertia_kg_m2": 4167761462.655493,
+      "hub_inertia_kg_m2": 19436417329.99811
+    },
+    {
+      "episode_id": 8,
+      "radius_m": 125.61549369224238,
+      "ring_inertia_kg_m2": 8927453550.337214,
+      "hub_inertia_kg_m2": 13894005538.473269
+    },
+    {
+      "episode_id": 9,
+      "radius_m": 111.19673118988872,
+      "ring_inertia_kg_m2": 4564728711.31213,
+      "hub_inertia_kg_m2": 18824578615.153503
+    },
+    {
+      "episode_id": 10,
+      "radius_m": 116.65284004235843,
+      "ring_inertia_kg_m2": 1269530383.4746041,
+      "hub_inertia_kg_m2": 14033193307.730463
+    },
+    {
+      "episode_id": 11,
+      "radius_m": 298.03411005982866,
+      "ring_inertia_kg_m2": 7241494015.65814,
+      "hub_inertia_kg_m2": 19726256325.326553
+    },
+    {
+      "episode_id": 12,
+      "radius_m": 239.80038468790116,
+      "ring_inertia_kg_m2": 9831798341.943695,
+      "hub_inertia_kg_m2": 15222597284.41085
+    },
+    {
+      "episode_id": 13,
+      "radius_m": 53.18510743819065,
+      "ring_inertia_kg_m2": 8608666258.808842,
+      "hub_inertia_kg_m2": 15651791298.833752
+    },
+    {
+      "episode_id": 14,
+      "radius_m": 192.11124208915706,
+      "ring_inertia_kg_m2": 1196958958.6668546,
+      "hub_inertia_kg_m2": 13685509765.148373
+    },
+    {
+      "episode_id": 15,
+      "radius_m": 123.4336081518169,
+      "ring_inertia_kg_m2": 4429986716.575052,
+      "hub_inertia_kg_m2": 6752440599.684523
+    },
+    {
+      "episode_id": 16,
+      "radius_m": 59.29247692478928,
+      "ring_inertia_kg_m2": 4819308009.958592,
+      "hub_inertia_kg_m2": 10257527321.740662
+    },
+    {
+      "episode_id": 17,
+      "radius_m": 230.49191907065477,
+      "ring_inertia_kg_m2": 7779837383.189278,
+      "hub_inertia_kg_m2": 17466097209.2688
+    },
+    {
+      "episode_id": 18,
+      "radius_m": 231.13955739997104,
+      "ring_inertia_kg_m2": 4494894664.269138,
+      "hub_inertia_kg_m2": 4762591907.796841
+    },
+    {
+      "episode_id": 19,
+      "radius_m": 137.0180554276779,
+      "ring_inertia_kg_m2": 7252902893.819003,
+      "hub_inertia_kg_m2": 4223551113.393077
+    },
+    {
+      "episode_id": 20,
+      "radius_m": 200.46476228392913,
+      "ring_inertia_kg_m2": 8964192155.244516,
+      "hub_inertia_kg_m2": 8898992777.737398
+    },
+    {
+      "episode_id": 21,
+      "radius_m": 149.47740431559606,
+      "ring_inertia_kg_m2": 4535065060.095383,
+      "hub_inertia_kg_m2": 17101789593.595888
+    },
+    {
+      "episode_id": 22,
+      "radius_m": 130.9148311638593,
+      "ring_inertia_kg_m2": 6260693936.919578,
+      "hub_inertia_kg_m2": 17003183261.333073
+    },
+    {
+      "episode_id": 23,
+      "radius_m": 125.45033426085276,
+      "ring_inertia_kg_m2": 2542748274.8573475,
+      "hub_inertia_kg_m2": 11346657597.611393
+    },
+    {
+      "episode_id": 24,
+      "radius_m": 218.15927655852488,
+      "ring_inertia_kg_m2": 7408028039.111111,
+      "hub_inertia_kg_m2": 13923642143.595379
+    },
+    {
+      "episode_id": 25,
+      "radius_m": 254.30889716989188,
+      "ring_inertia_kg_m2": 8298064052.54477,
+      "hub_inertia_kg_m2": 17862397760.381382
+    },
+    {
+      "episode_id": 26,
+      "radius_m": 299.20838508329905,
+      "ring_inertia_kg_m2": 4601239950.705191,
+      "hub_inertia_kg_m2": 15372435430.473167
+    },
+    {
+      "episode_id": 27,
+      "radius_m": 78.3388897771797,
+      "ring_inertia_kg_m2": 9189731575.89513,
+      "hub_inertia_kg_m2": 17923768459.273087
+    },
+    {
+      "episode_id": 28,
+      "radius_m": 201.17927906751734,
+      "ring_inertia_kg_m2": 8925036608.89444,
+      "hub_inertia_kg_m2": 17682370804.479668
+    },
+    {
+      "episode_id": 29,
+      "radius_m": 61.58090100585218,
+      "ring_inertia_kg_m2": 1486577529.0015903,
+      "hub_inertia_kg_m2": 11000699590.595545
+    },
+    {
+      "episode_id": 30,
+      "radius_m": 232.8139852370034,
+      "ring_inertia_kg_m2": 8912125161.815075,
+      "hub_inertia_kg_m2": 7956301757.346918
+    },
+    {
+      "episode_id": 31,
+      "radius_m": 76.36533852174195,
+      "ring_inertia_kg_m2": 5106860697.097118,
+      "hub_inertia_kg_m2": 10801722631.65255
+    },
+    {
+      "episode_id": 32,
+      "radius_m": 198.4727566451333,
+      "ring_inertia_kg_m2": 6814788215.13054,
+      "hub_inertia_kg_m2": 14669798610.338638
+    },
+    {
+      "episode_id": 33,
+      "radius_m": 92.67965052019964,
+      "ring_inertia_kg_m2": 5466410909.498595,
+      "hub_inertia_kg_m2": 13027310901.05516
+    },
+    {
+      "episode_id": 34,
+      "radius_m": 177.57812143669835,
+      "ring_inertia_kg_m2": 1427256439.8976123,
+      "hub_inertia_kg_m2": 13371530291.695232
+    },
+    {
+      "episode_id": 35,
+      "radius_m": 80.60507581860907,
+      "ring_inertia_kg_m2": 1122553356.7527733,
+      "hub_inertia_kg_m2": 9106225497.171936
+    },
+    {
+      "episode_id": 36,
+      "radius_m": 191.00555213233793,
+      "ring_inertia_kg_m2": 3212213302.407124,
+      "hub_inertia_kg_m2": 14853134182.800676
+    },
+    {
+      "episode_id": 37,
+      "radius_m": 177.47984446636116,
+      "ring_inertia_kg_m2": 4802504130.015423,
+      "hub_inertia_kg_m2": 19876757135.528946
+    },
+    {
+      "episode_id": 38,
+      "radius_m": 54.65015245784457,
+      "ring_inertia_kg_m2": 8363062076.801935,
+      "hub_inertia_kg_m2": 11653109483.17612
+    },
+    {
+      "episode_id": 39,
+      "radius_m": 223.07737764022477,
+      "ring_inertia_kg_m2": 6332130283.808944,
+      "hub_inertia_kg_m2": 12043574909.501886
+    },
+    {
+      "episode_id": 40,
+      "radius_m": 253.21342193680056,
+      "ring_inertia_kg_m2": 9394684446.18341,
+      "hub_inertia_kg_m2": 14905162060.804935
+    },
+    {
+      "episode_id": 41,
+      "radius_m": 268.97250285728717,
+      "ring_inertia_kg_m2": 5848113463.013455,
+      "hub_inertia_kg_m2": 19545475262.30071
+    },
+    {
+      "episode_id": 42,
+      "radius_m": 81.20386015516513,
+      "ring_inertia_kg_m2": 2485650059.7365246,
+      "hub_inertia_kg_m2": 9947612475.955631
+    },
+    {
+      "episode_id": 43,
+      "radius_m": 104.566343006191,
+      "ring_inertia_kg_m2": 6751606320.957342,
+      "hub_inertia_kg_m2": 14773357997.625372
+    },
+    {
+      "episode_id": 44,
+      "radius_m": 173.80793896045796,
+      "ring_inertia_kg_m2": 7751829521.062601,
+      "hub_inertia_kg_m2": 16562577492.540602
+    },
+    {
+      "episode_id": 45,
+      "radius_m": 220.3090310849874,
+      "ring_inertia_kg_m2": 8266669498.824331,
+      "hub_inertia_kg_m2": 15170265631.038687
+    },
+    {
+      "episode_id": 46,
+      "radius_m": 190.80990164528743,
+      "ring_inertia_kg_m2": 8179039652.836695,
+      "hub_inertia_kg_m2": 5208993966.916898
+    },
+    {
+      "episode_id": 47,
+      "radius_m": 50.68889012263022,
+      "ring_inertia_kg_m2": 4185375425.458943,
+      "hub_inertia_kg_m2": 9134644227.395885
+    },
+    {
+      "episode_id": 48,
+      "radius_m": 183.96593176571704,
+      "ring_inertia_kg_m2": 2542333430.5796676,
+      "hub_inertia_kg_m2": 17126885709.457684
+    },
+    {
+      "episode_id": 49,
+      "radius_m": 132.1827203873749,
+      "ring_inertia_kg_m2": 5059251508.674098,
+      "hub_inertia_kg_m2": 11213584181.979464
+    },
+    {
+      "episode_id": 50,
+      "radius_m": 167.815905896755,
+      "ring_inertia_kg_m2": 6877596533.73127,
+      "hub_inertia_kg_m2": 9708522615.53516
+    },
+    {
+      "episode_id": 51,
+      "radius_m": 233.47813228783346,
+      "ring_inertia_kg_m2": 3595609360.1365566,
+      "hub_inertia_kg_m2": 9912947426.206587
+    },
+    {
+      "episode_id": 52,
+      "radius_m": 287.4262237040527,
+      "ring_inertia_kg_m2": 9417899035.879814,
+      "hub_inertia_kg_m2": 11980116578.189373
+    },
+    {
+      "episode_id": 53,
+      "radius_m": 134.9050283929599,
+      "ring_inertia_kg_m2": 6747923903.133691,
+      "hub_inertia_kg_m2": 10130976464.071959
+    },
+    {
+      "episode_id": 54,
+      "radius_m": 127.8144144344464,
+      "ring_inertia_kg_m2": 5861564629.265504,
+      "hub_inertia_kg_m2": 11634108861.841782
+    },
+    {
+      "episode_id": 55,
+      "radius_m": 68.21249555468629,
+      "ring_inertia_kg_m2": 1829257163.865016,
+      "hub_inertia_kg_m2": 19451647274.12395
+    },
+    {
+      "episode_id": 56,
+      "radius_m": 138.91998812754156,
+      "ring_inertia_kg_m2": 6665562956.651615,
+      "hub_inertia_kg_m2": 12733962250.679535
+    },
+    {
+      "episode_id": 57,
+      "radius_m": 126.16650973360521,
+      "ring_inertia_kg_m2": 8919265519.65422,
+      "hub_inertia_kg_m2": 10004609945.25021
+    },
+    {
+      "episode_id": 58,
+      "radius_m": 109.27104361220951,
+      "ring_inertia_kg_m2": 8763395114.812523,
+      "hub_inertia_kg_m2": 17641954211.698082
+    },
+    {
+      "episode_id": 59,
+      "radius_m": 196.26405830711246,
+      "ring_inertia_kg_m2": 6602339059.067928,
+      "hub_inertia_kg_m2": 4113708310.3324113
+    },
+    {
+      "episode_id": 60,
+      "radius_m": 269.8221529776872,
+      "ring_inertia_kg_m2": 9456593844.604095,
+      "hub_inertia_kg_m2": 11032754239.380295
+    },
+    {
+      "episode_id": 61,
+      "radius_m": 119.15826700740548,
+      "ring_inertia_kg_m2": 4286235440.8136635,
+      "hub_inertia_kg_m2": 8240146960.966612
+    },
+    {
+      "episode_id": 62,
+      "radius_m": 209.7714040302739,
+      "ring_inertia_kg_m2": 6504941925.838705,
+      "hub_inertia_kg_m2": 13440086103.680073
+    },
+    {
+      "episode_id": 63,
+      "radius_m": 51.956024533536805,
+      "ring_inertia_kg_m2": 3056218082.56003,
+      "hub_inertia_kg_m2": 8237961143.935469
+    },
+    {
+      "episode_id": 64,
+      "radius_m": 84.57804285512177,
+      "ring_inertia_kg_m2": 5526166371.659121,
+      "hub_inertia_kg_m2": 9027018167.090776
+    },
+    {
+      "episode_id": 65,
+      "radius_m": 126.57051225292453,
+      "ring_inertia_kg_m2": 3692330253.522622,
+      "hub_inertia_kg_m2": 9628138561.113537
+    },
+    {
+      "episode_id": 66,
+      "radius_m": 149.46214861352678,
+      "ring_inertia_kg_m2": 7666312750.056519,
+      "hub_inertia_kg_m2": 16222746312.075151
+    },
+    {
+      "episode_id": 67,
+      "radius_m": 52.46216128131799,
+      "ring_inertia_kg_m2": 1414792675.2531855,
+      "hub_inertia_kg_m2": 19636435050.029865
+    },
+    {
+      "episode_id": 68,
+      "radius_m": 233.82500778332613,
+      "ring_inertia_kg_m2": 6890382465.758703,
+      "hub_inertia_kg_m2": 10337987348.245316
+    },
+    {
+      "episode_id": 69,
+      "radius_m": 209.94786776100028,
+      "ring_inertia_kg_m2": 8616870779.880314,
+      "hub_inertia_kg_m2": 7882723637.116806
+    }
+  ]
+}

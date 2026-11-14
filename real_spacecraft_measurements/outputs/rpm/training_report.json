@@ -1,0 +1,774 @@
+{
+  "created_utc": "2026-11-14T12:26:05.036499+00:00",
+  "task": "Actual ISS MARS-S measured RPM forecasting",
+  "selected_model": "mlp_residual",
+  "best_learned_model": "mlp_residual",
+  "hardware": {
+    "name": "MARS-S",
+    "host": "ISS Kibo CBEF",
+    "nominal_radius_m": 0.15,
+    "nominal_setting_rpm": 77,
+    "configuration_source": "https://ibsls.megabank.tohoku.ac.jp/overview"
+  },
+  "source_publication": "https://doi.org/10.1038/s41467-026-76349-y",
+  "source_missions": [
+    {
+      "mission": "MHU-1",
+      "source_archive": "data/raw/mhu/41467_2026_76349_MOESM15_ESM.zip",
+      "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM15_ESM.zip",
+      "sha256": "04a50988c6a3d471539763a54dea6f7159e00e645b291190abc49240d64afa24",
+      "archive_member": "SupplementaryData12.txt",
+      "raw_rows": 2968360,
+      "unique_timestamp_rows": 2958322,
+      "duplicate_rows_removed": 10038,
+      "conflicting_duplicate_timestamps": 10035,
+      "duplicate_policy": "Keep the last row in the source for each recorded timestamp; no averaging.",
+      "timestamp_timezone": "Unspecified in the released export; timestamps are preserved as recorded, not relabeled UTC.",
+      "first_timestamp_as_recorded": "2016-07-21 19:23:39",
+      "last_timestamp_as_recorded": "2016-08-25 09:17:43",
+      "nonfinite_rpm_rows": 0,
+      "zero_rpm_rows": 41891,
+      "one_second_segments": 20966,
+      "largest_recorded_interval_seconds": 2337,
+      "rpm_min": 0.0,
+      "rpm_max": 78.5641
+    },
+    {
+      "mission": "MHU-2",
+      "source_archive": "data/raw/mhu/41467_2026_76349_MOESM16_ESM.zip",
+      "source_url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-76349-y/MediaObjects/41467_2026_76349_MOESM16_ESM.zip",
+      "sha256": "c416c8dc8084217748d6f33457249a3f77e0dbce41d2e7ff9a336ed65f0c7790",
+      "archive_member": "SupplementaryData13.txt",
+      "raw_rows": 2571264,
+      "unique_timestamp_rows": 2545141,
+      "duplicate_rows_removed": 26123,
+      "conflicting_duplicate_timestamps": 8189,
+      "duplicate_policy": "Keep the last row in the source for each recorded timestamp; no averaging.",
+      "timestamp_timezone": "Unspecified in the released export; timestamps are preserved as recorded, not relabeled UTC.",
+      "first_timestamp_as_recorded": "2017-08-17 17:23:25",
+      "last_timestamp_as_recorded": "2017-09-16 09:12:49",
+      "nonfinite_rpm_rows": 0,
+      "zero_rpm_rows": 70030,
+      "one_second_segments": 17093,
+      "largest_recorded_interval_seconds": 96,
+      "rpm_min": 0.0,
+      "rpm_max": 78.5641
+    }
+  ],
+  "fixed_plan": {
+    "fixed_before_training": "2026-11-14T12:25:32.603852+00:00",
+    "seed": 20261114,
+    "history_samples": 8,
+    "horizon_seconds": 1,
+    "train": "MHU-1 first 70% of elapsed source time",
+    "validation": "MHU-1 last 30%; entire input history must be inside validation",
+    "test": "MHU-2 independent mission; first scored after model selection and saved checkpoints",
+    "preprocessing": "Keep last duplicate; no interpolation; retain actual zero RPM; windows require 1-second cadence and finite data",
+    "training_sample": "Up to 150000 uniformly spaced training windows, union every training window with past-history peak-to-peak RPM >2.0; no future-target selection",
+    "candidates": [
+      "persistence",
+      "moving_mean_8",
+      "ridge_alpha_1",
+      "ridge_alpha_100",
+      "mlp_residual_32_32_relu"
+    ],
+    "selection_metric": "Full chronological validation RMSE in RPM",
+    "mlp": {
+      "hidden_layer_sizes": [
+        32,
+        32
+      ],
+      "activation": "relu",
+      "solver": "adam",
+      "alpha": 0.0001,
+      "learning_rate_init": 0.001,
+      "batch_size": 256,
+      "max_epochs": 40,
+      "patience": 8
+    },
+    "rollout": "1,10,30,60 s endpoints; fixed 600-second-spaced and past-history-active origins with a full contiguous future"
+  },
+  "split": {
+    "cutoff_timestamp_as_recorded": "2016-08-15T00:19:29",
+    "train_eligible_windows": 1970009,
+    "train_fitted_windows": 150933,
+    "uniform_training_windows": 150000,
+    "active_history_training_windows": 1013,
+    "validation_windows": 846611,
+    "test_windows": 2428381,
+    "test_active_past_history_windows": 2130,
+    "training_target_last": "2016-08-15T00:19:28",
+    "validation_input_first": "2016-08-15T00:19:36"
+  },
+  "validation_metrics": {
+    "persistence": {
+      "count": 846611,
+      "finite_count": 846611,
+      "rmse_rpm": 0.47034043531180764,
+      "mae_rpm": 0.32373836933373,
+      "rmse_rad_per_s": 0.049253935208726674,
+      "negative_predictions": 0,
+      "maximum_absolute_error_rpm": 16.747
+    },
+    "moving_mean_8": {
+      "count": 846611,
+      "finite_count": 846611,
+      "rmse_rpm": 0.3801803994491563,
+      "mae_rpm": 0.2694621781136775,
+      "rmse_rad_per_s": 0.039812398331610085,
+      "negative_predictions": 0,
+      "maximum_absolute_error_rpm": 26.5696625
+    },
+    "ridge_alpha_1": {
+      "count": 846611,
+      "finite_count": 846611,
+      "rmse_rpm": 0.3035179581535653,
+      "mae_rpm": 0.21767620271174115,
+      "rmse_rad_per_s": 0.0317843262522605,
+      "negative_predictions": 11795,
+      "maximum_absolute_error_rpm": 16.75239845411818
+    },
+    "ridge_alpha_100": {
+      "count": 846611,
+      "finite_count": 846611,
+      "rmse_rpm": 0.30356213898151446,
+      "mae_rpm": 0.21774382186566035,
+      "rmse_rad_per_s": 0.03178895285774432,
+      "negative_predictions": 11795,
+      "maximum_absolute_error_rpm": 16.75240550312735
+    },
+    "mlp_residual": {
+      "count": 846611,
+      "finite_count": 846611,
+      "rmse_rpm": 0.23734017270538113,
+      "mae_rpm": 0.15355032186675735,
+      "rmse_rad_per_s": 0.02485420476576527,
+      "negative_predictions": 11775,
+      "maximum_absolute_error_rpm": 16.765762688910577
+    }
+  },
+  "mlp_best_epoch": 38,
+  "epochs_run": 40,
+  "test_metrics": {
+    "persistence": {
+      "all": {
+        "count": 2428381,
+        "finite_count": 2428381,
+        "rmse_rpm": 0.47417836262462776,
+        "mae_rpm": 0.323878987934758,
+        "rmse_rad_per_s": 0.04965584201709225,
+        "negative_predictions": 0,
+        "maximum_absolute_error_rpm": 22.7293
+      },
+      "active_past_history": {
+        "count": 2130,
+        "finite_count": 2130,
+        "rmse_rpm": 2.7951797798698794,
+        "mae_rpm": 1.6733130516431924,
+        "rmse_rad_per_s": 0.29271054206339825,
+        "negative_predictions": 0,
+        "maximum_absolute_error_rpm": 13.4235
+      },
+      "stable_past_history": {
+        "count": 2426251,
+        "finite_count": 2426251,
+        "rmse_rpm": 0.4671011347295948,
+        "mae_rpm": 0.32269432296988054,
+        "rmse_rad_per_s": 0.04891471644499837,
+        "negative_predictions": 0,
+        "maximum_absolute_error_rpm": 22.7293
+      },
+      "actual_next_change_over_2_rpm_reporting_only": {
+        "count": 602,
+        "finite_count": 602,
+        "rmse_rpm": 6.350555774650241,
+        "mae_rpm": 5.21926146179402,
+        "rmse_rad_per_s": 0.6650286455951144,
+        "negative_predictions": 0,
+        "maximum_absolute_error_rpm": 22.7293
+      }
+    },
+    "moving_mean_8": {
+      "all": {
+        "count": 2428381,
+        "finite_count": 2428381,
+        "rmse_rpm": 0.37472723194663005,
+        "mae_rpm": 0.26924899914284245,
+        "rmse_rad_per_s": 0.039241343966119044,
+        "negative_predictions": 0,
+        "maximum_absolute_error_rpm": 27.416725000000003
+      },
+      "active_past_history": {
+        "count": 2130,
+        "finite_count": 2130,
+        "rmse_rpm": 6.586424227292484,
+        "mae_rpm": 4.3387730575117365,
+        "rmse_rad_per_s": 0.6897287321962632,
+        "negative_predictions": 0,
+        "maximum_absolute_error_rpm": 27.416725000000003
+      },
+      "stable_past_history": {
+        "count": 2426251,
+        "finite_count": 2426251,
+        "rmse_rpm": 0.3200932834391534,
+        "mae_rpm": 0.26567637362127616,
+        "rmse_rad_per_s": 0.03352009025719598,
+        "negative_predictions": 0,
+        "maximum_absolute_error_rpm": 22.7293
+      },
+      "actual_next_change_over_2_rpm_reporting_only": {
+        "count": 602,
+        "finite_count": 602,
+        "rmse_rpm": 10.77996546812321,
+        "mae_rpm": 7.798022778239204,
+        "rmse_rad_per_s": 1.128875344020251,
+        "negative_predictions": 0,
+        "maximum_absolute_error_rpm": 27.416725000000003
+      }
+    },
+    "ridge_alpha_1": {
+      "all": {
+        "count": 2428381,
+        "finite_count": 2428381,
+        "rmse_rpm": 0.31146402925891625,
+        "mae_rpm": 0.21971316228245363,
+        "rmse_rad_per_s": 0.03261643687257625,
+        "negative_predictions": 66311,
+        "maximum_absolute_error_rpm": 22.734698454118178
+      },
+      "active_past_history": {
+        "count": 2130,
+        "finite_count": 2130,
+        "rmse_rpm": 3.262548135770226,
+        "mae_rpm": 2.188487948826182,
+        "rmse_rad_per_s": 0.34165324184396056,
+        "negative_predictions": 235,
+        "maximum_absolute_error_rpm": 15.979302568980112
+      },
+      "stable_past_history": {
+        "count": 2426251,
+        "finite_count": 2426251,
+        "rmse_rpm": 0.2962270589188494,
+        "mae_rpm": 0.21798477956552198,
+        "rmse_rad_per_s": 0.031020825069798932,
+        "negative_predictions": 66076,
+        "maximum_absolute_error_rpm": 22.734698454118178
+      },
+      "actual_next_change_over_2_rpm_reporting_only": {
+        "count": 602,
+        "finite_count": 602,
+        "rmse_rpm": 6.454340521169118,
+        "mae_rpm": 5.120736798357519,
+        "rmse_rad_per_s": 0.6758969588357272,
+        "negative_predictions": 63,
+        "maximum_absolute_error_rpm": 22.734698454118178
+      }
+    },
+    "ridge_alpha_100": {
+      "all": {
+        "count": 2428381,
+        "finite_count": 2428381,
+        "rmse_rpm": 0.3115053743137985,
+        "mae_rpm": 0.2197801540180586,
+        "rmse_rad_per_s": 0.03262076651659893,
+        "negative_predictions": 66311,
+        "maximum_absolute_error_rpm": 22.734705503127348
+      },
+      "active_past_history": {
+        "count": 2130,
+        "finite_count": 2130,
+        "rmse_rpm": 3.2617094243807614,
+        "mae_rpm": 2.188007491193493,
+        "rmse_rad_per_s": 0.3415654121926398,
+        "negative_predictions": 235,
+        "maximum_absolute_error_rpm": 15.973401050553116
+      },
+      "stable_past_history": {
+        "count": 2426251,
+        "finite_count": 2426251,
+        "rmse_rpm": 0.296278675541053,
+        "mae_rpm": 0.21805225190562924,
+        "rmse_rad_per_s": 0.031026230349836204,
+        "negative_predictions": 66076,
+        "maximum_absolute_error_rpm": 22.734705503127348
+      },
+      "actual_next_change_over_2_rpm_reporting_only": {
+        "count": 602,
+        "finite_count": 602,
+        "rmse_rpm": 6.453991793936138,
+        "mae_rpm": 5.12098976586857,
+        "rmse_rad_per_s": 0.675860440205286,
+        "negative_predictions": 63,
+        "maximum_absolute_error_rpm": 22.734705503127348
+      }
+    },
+    "mlp_residual": {
+      "all": {
+        "count": 2428381,
+        "finite_count": 2428381,
+        "rmse_rpm": 0.2457512040389953,
+        "mae_rpm": 0.15537392723906088,
+        "rmse_rad_per_s": 0.025735005907325133,
+        "negative_predictions": 66222,
+        "maximum_absolute_error_rpm": 22.748062688910576
+      },
+      "active_past_history": {
+        "count": 2130,
+        "finite_count": 2130,
+        "rmse_rpm": 2.189355208897568,
+        "mae_rpm": 1.1883712337473702,
+        "rmse_rad_per_s": 0.2292687413457049,
+        "negative_predictions": 146,
+        "maximum_absolute_error_rpm": 14.186321885954827
+      },
+      "stable_past_history": {
+        "count": 2426251,
+        "finite_count": 2426251,
+        "rmse_rpm": 0.2371469331341406,
+        "mae_rpm": 0.1544670613530241,
+        "rmse_rad_per_s": 0.02483396876518553,
+        "negative_predictions": 66076,
+        "maximum_absolute_error_rpm": 22.748062688910576
+      },
+      "actual_next_change_over_2_rpm_reporting_only": {
+        "count": 602,
+        "finite_count": 602,
+        "rmse_rpm": 5.116911993118445,
+        "mae_rpm": 3.0975904112190604,
+        "rmse_rad_per_s": 0.5358417708882137,
+        "negative_predictions": 69,
+        "maximum_absolute_error_rpm": 22.748062688910576
+      }
+    }
+  },
+  "recursive_metrics": {
+    "selection": "Origins are chosen from timestamps or past RPM only; every history and all 60 future timestamps must be contiguous.",
+    "forecasting": "Recursive predictions use initial history only; no future measurements or commands are supplied.",
+    "groups": {
+      "uniform_10_minute_origins": {
+        "origin_count": 4074,
+        "models": {
+          "persistence": {
+            "1": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.46584207411862594,
+              "mae_rpm": 0.3163606529209605,
+              "rmse_rad_per_s": 0.04878286792613691,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 4.6529000000000025
+            },
+            "10": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.5963289242016252,
+              "mae_rpm": 0.29873973981344953,
+              "rmse_rad_per_s": 0.06244741891316434,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 18.611599999999996
+            },
+            "30": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.8117532742237978,
+              "mae_rpm": 0.28878718703976286,
+              "rmse_rad_per_s": 0.08500660409429812,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 29.911500000000004
+            },
+            "60": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 1.3877495420997032,
+              "mae_rpm": 0.307092513500244,
+              "rmse_rad_per_s": 0.1453247922161009,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 41.8761
+            }
+          },
+          "moving_mean_8": {
+            "1": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.48928172003313924,
+              "mae_rpm": 0.271598533382423,
+              "rmse_rad_per_s": 0.05123746190639627,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 23.1976
+            },
+            "10": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.6339920946499412,
+              "mae_rpm": 0.2770291970069112,
+              "rmse_rad_per_s": 0.066391496899542,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 30.212152353697263
+            },
+            "30": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.9071435721505179,
+              "mae_rpm": 0.2862205950574446,
+              "rmse_rad_per_s": 0.09499585273397565,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 41.106954304968866
+            },
+            "60": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 1.472547123628324,
+              "mae_rpm": 0.30575641897918143,
+              "rmse_rad_per_s": 0.15420477418851744,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 42.11613051301564
+            }
+          },
+          "ridge_alpha_1": {
+            "1": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.294660764816021,
+              "mae_rpm": 0.21583774384627546,
+              "rmse_rad_per_s": 0.030856803134905377,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 3.82808962225549
+            },
+            "10": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.5086574170372505,
+              "mae_rpm": 0.31773367897279875,
+              "rmse_rad_per_s": 0.053266480151939535,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 13.055710991850354
+            },
+            "30": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.6608588324319093,
+              "mae_rpm": 0.33836630415684166,
+              "rmse_rad_per_s": 0.06920497510093382,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 19.91668046946252
+            },
+            "60": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 1.26725037062852,
+              "mae_rpm": 0.37748992470307186,
+              "rmse_rad_per_s": 0.1327061484875167,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 42.45351154183807
+            }
+          },
+          "ridge_alpha_100": {
+            "1": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.29471427043341686,
+              "mae_rpm": 0.21590279287354966,
+              "rmse_rad_per_s": 0.030862406230056597,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 3.8278074110642777
+            },
+            "10": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.508616490702186,
+              "mae_rpm": 0.3177011300610346,
+              "rmse_rad_per_s": 0.053262194356153626,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 13.054965240364702
+            },
+            "30": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.6610033265617807,
+              "mae_rpm": 0.3382846615210078,
+              "rmse_rad_per_s": 0.06922010649083019,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 19.915065867730874
+            },
+            "60": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 1.2674176853557333,
+              "mae_rpm": 0.37740151243810593,
+              "rmse_rad_per_s": 0.13272366964477839,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 42.45188625711913
+            }
+          },
+          "mlp_residual": {
+            "1": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.2335314355929855,
+              "mae_rpm": 0.15539361846495411,
+              "rmse_rad_per_s": 0.02445535474804004,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 2.5284811154886526
+            },
+            "10": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.4302288064427114,
+              "mae_rpm": 0.2914514297236302,
+              "rmse_rad_per_s": 0.04505345525610424,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 11.179718303325565
+            },
+            "30": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 0.675401925386124,
+              "mae_rpm": 0.38389947319253925,
+              "rmse_rad_per_s": 0.07072792423378163,
+              "negative_predictions": 114,
+              "maximum_absolute_error_rpm": 20.44049193281485
+            },
+            "60": {
+              "count": 4074,
+              "finite_count": 4074,
+              "rmse_rpm": 5.879421788302861,
+              "mae_rpm": 1.4876167494240071,
+              "rmse_rad_per_s": 0.6156916099162678,
+              "negative_predictions": 115,
+              "maximum_absolute_error_rpm": 51.64028432596395
+            }
+          }
+        }
+      },
+      "active_past_history_origins": {
+        "origin_count": 64,
+        "models": {
+          "persistence": {
+            "1": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 6.70861580761775,
+              "mae_rpm": 4.6748890625,
+              "rmse_rad_per_s": 0.7025246045656093,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 12.7588
+            },
+            "10": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 17.465739970470583,
+              "mae_rpm": 12.904060937499999,
+              "rmse_rad_per_s": 1.829008012691333,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 45.8643
+            },
+            "30": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 25.031022883173765,
+              "mae_rpm": 19.343073437500003,
+              "rmse_rad_per_s": 2.6212425867205567,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 62.4818
+            },
+            "60": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 30.910397525883177,
+              "mae_rpm": 24.845328125,
+              "rmse_rad_per_s": 3.2369292595618235,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 65.1406
+            }
+          },
+          "moving_mean_8": {
+            "1": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 9.90431724069921,
+              "mae_rpm": 6.5355408203125,
+              "rmse_rad_per_s": 1.0371776760734457,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 25.8704375
+            },
+            "10": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 19.96717968064209,
+              "mae_rpm": 11.009580552508893,
+              "rmse_rad_per_s": 2.090958166587086,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 56.54184256551387
+            },
+            "30": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 27.837167233555714,
+              "mae_rpm": 17.33916208974111,
+              "rmse_rad_per_s": 2.915101335922971,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 72.9216705638941
+            },
+            "60": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 33.5212286475916,
+              "mae_rpm": 23.10268303417789,
+              "rmse_rad_per_s": 3.510334855285916,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 75.06411229511203
+            }
+          },
+          "ridge_alpha_1": {
+            "1": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 6.5184887288269495,
+              "mae_rpm": 4.7790890521571265,
+              "rmse_rad_per_s": 0.6826145434330204,
+              "negative_predictions": 3,
+              "maximum_absolute_error_rpm": 15.979302568980112
+            },
+            "10": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 17.104074079798185,
+              "mae_rpm": 12.896148830836779,
+              "rmse_rad_per_s": 1.791134449184986,
+              "negative_predictions": 3,
+              "maximum_absolute_error_rpm": 44.81037191270333
+            },
+            "30": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 24.033807753812486,
+              "mae_rpm": 19.40250649966334,
+              "rmse_rad_per_s": 2.5168144625722237,
+              "negative_predictions": 3,
+              "maximum_absolute_error_rpm": 59.508444756791405
+            },
+            "60": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 29.817637297431748,
+              "mae_rpm": 24.771501961815893,
+              "rmse_rad_per_s": 3.1224956760338864,
+              "negative_predictions": 3,
+              "maximum_absolute_error_rpm": 62.542900907396564
+            }
+          },
+          "ridge_alpha_100": {
+            "1": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 6.517743794293007,
+              "mae_rpm": 4.778703502981832,
+              "rmse_rad_per_s": 0.6825365340710458,
+              "negative_predictions": 3,
+              "maximum_absolute_error_rpm": 15.973401050553116
+            },
+            "10": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 17.104266499266508,
+              "mae_rpm": 12.896122631516238,
+              "rmse_rad_per_s": 1.7911545993045892,
+              "negative_predictions": 3,
+              "maximum_absolute_error_rpm": 44.81286856150083
+            },
+            "30": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 24.03542623533487,
+              "mae_rpm": 19.401815987694704,
+              "rmse_rad_per_s": 2.5169839495609136,
+              "negative_predictions": 3,
+              "maximum_absolute_error_rpm": 59.51773421398748
+            },
+            "60": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 29.81965834269339,
+              "mae_rpm": 24.770864023468494,
+              "rmse_rad_per_s": 3.122707319398771,
+              "negative_predictions": 3,
+              "maximum_absolute_error_rpm": 62.55206468710821
+            }
+          },
+          "mlp_residual": {
+            "1": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 5.4568695983080024,
+              "mae_rpm": 3.9640174795615284,
+              "rmse_rad_per_s": 0.5714420480547301,
+              "negative_predictions": 0,
+              "maximum_absolute_error_rpm": 13.128262221383483
+            },
+            "10": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 625.5384192817264,
+              "mae_rpm": 86.69048803064625,
+              "rmse_rad_per_s": 65.50623008512144,
+              "negative_predictions": 15,
+              "maximum_absolute_error_rpm": 5002.218311892277
+            },
+            "30": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 95984040.51686284,
+              "mae_rpm": 11998039.538588364,
+              "rmse_rad_per_s": 10051425.21832138,
+              "negative_predictions": 44,
+              "maximum_absolute_error_rpm": 767872324.1348249
+            },
+            "60": {
+              "count": 64,
+              "finite_count": 64,
+              "rmse_rpm": 5741688374432159.0,
+              "mae_rpm": 717711046804133.8,
+              "rmse_rad_per_s": 601268200543933.1,
+              "negative_predictions": 47,
+              "maximum_absolute_error_rpm": 4.593350699545727e+16
+            }
+          }
+        }
+      }
+    }
+  },
+  "verification": {
+    "no_train_validation_window_overlap": true,
+    "no_cross_gap_windows": true,
+    "no_synthetic_or_interpolated_labels": true,
+    "train_only_normalization": true,
+    "test_mission_scored_only_after_frozen_selection": true,
+    "portable_mlp_max_abs_difference_rpm_on_256_test_windows": 1.4210854715202004e-14
+  },
+  "limitations": [
+    "Two mission histories, not millions of independent experiments; stable quantized speeds dominate.",
+    "Training oversamples windows with changing PAST speed; full validation/test metrics are unweighted and unsampled.",
+    "The export contains measured RPM and time only; start/stop commands and maintenance schedule are unobserved.",
+    "Predicts already controlled rotor behavior. Does not identify motor torque, inertia, hub dynamics, attitude, thrust, or a 100 m crew habitat.",
+    "A derived r*omega^2 radial component at nominal 0.15 m is not an independent acceleration measurement or whole-body exposure measurement.",
+    "No evidence establishes transfer to another radius, controller, artificial-gravity setting, or human spacecraft.",
+    "Primary metrics are unclipped. Negative and unstable recursive predictions must not be used to command hardware.",
+    "No statistical confidence claim follows from the overlapping, autocorrelated windows."
+  ],
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.0",
+    "cpu_threads": 2,
+    "elapsed_seconds_before_plots": 32.4351102870005
+  },
+  "use_decision_after_test": {
+    "supported_experiment": "One-second forecast from eight fresh measured RPM samples",
+    "recursive_forecasting_status": "FAILED: selected MLP can diverge dramatically during active histories",
+    "integration": "Display one-step forecasts only; require fresh measured inputs; keep recursive results as a diagnostic",
+    "does_not_change_frozen_model_selection": true,
+    "physical_limits": "Raw regression output can be negative near stopped states; retain it in metrics, mark it invalid in a physical display, and suppress derived gravity for invalid negative-speed predictions; never use it as a command"
+  }
+}

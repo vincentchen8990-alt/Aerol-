@@ -1,0 +1,12 @@
+radius_m: 100.0
+ring_inertia_kg_m2: 4000000000.0
+hub_inertia_kg_m2: 10000000000.0
+motor_torque_limit_nm: 8000000.0
+motor_power_limit_w: 3000000.0
+motor_slew_nm_s: 800000.0
+bearing_drag_nms: 200000.0
+crew_height_m: 1.75
+mission_duration_s: 1200
+dt_s: 2.0
+peak_thrust_g: 0.8
+target_gravity_g: 1.0

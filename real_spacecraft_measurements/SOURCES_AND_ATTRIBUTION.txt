@@ -1,0 +1,46 @@
+SOURCES AND ATTRIBUTION
+Checked and acquired November 14, 2026.
+
+1. Measured centrifuge RPM
+Otsuki, A., Aoki, Y., and colleagues. ibSLS as a biobank for democratizing access to multi-omics data and biospecimens from spaceflight research. Nature Communications 17, 8007 (2026). Published August 20, 2026.
+https://doi.org/10.1038/s41467-026-76349-y
+https://pmc.ncbi.nlm.nih.gov/articles/PMC13493919/
+Supplementary Data 12 (MHU-1), 13 (MHU-2), 14 (MHU-4), 15 (MHU-5).
+
+The four original publisher ZIP files and two supporting PDFs are included unchanged, with publisher URLs and SHA256 hashes in data/raw/mhu/download_manifest.json. The article's stated license is Creative Commons Attribution-NonCommercial-NoDerivatives 4.0:
+https://creativecommons.org/licenses/by-nc-nd/4.0/
+No new license is asserted over these original materials. This package contains independent engineering analysis of factual measurements; it does not reproduce or adapt the article's prose or relabel its authors' work as ours.
+
+2. Hardware configuration and mission history
+JAXA/Tohoku Medical Megabank, ibSLS mission overview:
+https://ibsls.megabank.tohoku.ac.jp/overview
+Both MHU-1 and MHU-2 list MARS-S, 0.15 m nominal radius and 77 RPM nominal rotation setting. Logs used are 2016 and2017; publication/release year is 2026.
+JAXA program catalogue updated May 27, 2026:
+https://humans-in-space.jaxa.jp/kibouser/subject/tag_10.html
+Later mission listings demonstrate a continuing program, not real-time rotation status.
+CBEF-L facility description:
+https://humans-in-space.jaxa.jp/en/biz-lab/experiment/facility/pm/cbef-l/
+CBEF-L is later equipment; its generic reference radii must not replace the specific MHU-1/2 cage configuration.
+
+3. NASA measured ISS acceleration
+NASA Glenn Principal Investigator Microgravity Services (PIMS):
+https://gipoc.grc.nasa.gov/wp/pims/acceleration-archives/
+https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/acceleration-measurements/
+Data fields:
+https://gipoc.grc.nasa.gov/pims/plots/user/mohan/how2read_pad_binary_files.html
+Timing and continuity rules:
+https://gipoc.grc.nasa.gov/pims/pub/plots/user/mohan/PADprimer.pdf
+Downloaded November 1-11, 2026 daily mams_accel_ossbtmf directories, e.g.:
+https://gipoc.grc.nasa.gov/pims/pub/pad/year2026/month11/day11/mams_accel_ossbtmf/
+All 134 binary/header source pairs, retrieval times, header metadata, SHA256 values and parsing assumptions are recorded in data/raw/pims/source_manifest.json. NASA remains the data source. This package is not a NASA-certified model or endorsed spacecraft controller.
+
+4. NASA host-station geometry
+https://www.nasa.gov/international-space-station/space-station-facts-and-figures/
+Page updated July 16, 2024; published reference dimensions and mass, checked November 14, 2026.
+https://www.nasa.gov/reference/international-space-station/
+Page updated November 27, 2025; explains variation with visiting vehicles and gives different specifically bounded module extents.
+
+5. Design concept examined, not used as measured training evidence
+https://www.nasa.gov/spinsat-overview/
+https://www.nasa.gov/spinsat-engineering/
+NASA's artificial-gravity SpinSat pages publish design configurations. We did not verify a matching flight command/torque/RPM dataset. These specifications were not relabeled as measured operating spacecraft telemetry.

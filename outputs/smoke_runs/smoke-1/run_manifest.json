@@ -1,0 +1,406 @@
+{
+  "run_id": "smoke-1",
+  "status": "completed",
+  "data_type": "SIMULATED_SPACECRAFT_DYNAMICS",
+  "note": "Learned approximation of the analytical spacecraft simulator. Not a human or flight-qualified model.",
+  "start_mode": "resumed from D:\\personalized-gravity-ai\\outputs\\smoke_runs\\smoke-1\\training_state_last.pt after epoch 3",
+  "resume_events": [
+    {
+      "resumed_at": "2026-11-14T02:36:44",
+      "from_epoch": 3,
+      "restored": [
+        "model",
+        "optimizer",
+        "shuffle_generator",
+        "normalisation",
+        "history",
+        "early_stopping_counters"
+      ]
+    }
+  ],
+  "created": "2026-11-14T02:36:40",
+  "config": {
+    "data": {
+      "output_dir": "data/synthetic/dynamics_v2",
+      "seed": 49,
+      "episodes": 500,
+      "steps_per_episode": 120,
+      "dt_values_s": [
+        0.5,
+        1.0,
+        2.0,
+        5.0
+      ],
+      "scenario_mix": {
+        "mission_pid": 0.35,
+        "setpoint_steps": 0.35,
+        "random_torque": 0.3
+      },
+      "max_crew_gravity_g": 3.0,
+      "ranges": {
+        "radius_m": [
+          40.0,
+          400.0
+        ],
+        "ring_inertia_kg_m2": [
+          1000000000.0,
+          10000000000.0
+        ],
+        "hub_inertia_kg_m2": [
+          2000000000.0,
+          30000000000.0
+        ],
+        "bearing_drag_nms": [
+          10000.0,
+          1500000.0
+        ],
+        "motor_torque_limit_nm": [
+          2000000.0,
+          20000000.0
+        ],
+        "motor_power_limit_w": [
+          1000000.0,
+          10000000.0
+        ],
+        "motor_slew_nm_s": [
+          200000.0,
+          4000000.0
+        ]
+      }
+    },
+    "train": {
+      "dataset_dir": "data/synthetic/dynamics_v2",
+      "output_root": "outputs/smoke_runs",
+      "seed": 17,
+      "epochs": 5,
+      "batch_size": 256,
+      "learning_rate": 0.0015,
+      "weight_decay": 0.0001,
+      "early_stopping_patience": 8,
+      "device": "auto",
+      "num_threads": 0,
+      "target_mode": "residual"
+    },
+    "model": {
+      "hidden_width": 64,
+      "hidden_layers": 3,
+      "activation": "silu"
+    },
+    "evaluation": {
+      "rollout_horizons_s": [
+        10,
+        30,
+        60
+      ],
+      "rollout_start_stride_steps": 10
+    }
+  },
+  "config_sources": {
+    "data.output_dir": "file:dynamics.yaml",
+    "data.seed": "file:dynamics.yaml",
+    "data.episodes": "file:dynamics.yaml",
+    "data.steps_per_episode": "file:dynamics.yaml",
+    "data.dt_values_s": "file:dynamics.yaml",
+    "data.scenario_mix": "file:dynamics.yaml",
+    "data.max_crew_gravity_g": "file:dynamics.yaml",
+    "data.ranges.radius_m": "file:dynamics.yaml",
+    "data.ranges.ring_inertia_kg_m2": "file:dynamics.yaml",
+    "data.ranges.hub_inertia_kg_m2": "file:dynamics.yaml",
+    "data.ranges.bearing_drag_nms": "file:dynamics.yaml",
+    "data.ranges.motor_torque_limit_nm": "file:dynamics.yaml",
+    "data.ranges.motor_power_limit_w": "file:dynamics.yaml",
+    "data.ranges.motor_slew_nm_s": "file:dynamics.yaml",
+    "train.dataset_dir": "file:dynamics.yaml",
+    "train.output_root": "command-line",
+    "train.seed": "file:dynamics.yaml",
+    "train.epochs": "command-line",
+    "train.batch_size": "file:dynamics.yaml",
+    "train.learning_rate": "file:dynamics.yaml",
+    "train.weight_decay": "file:dynamics.yaml",
+    "train.early_stopping_patience": "file:dynamics.yaml",
+    "train.device": "file:dynamics.yaml",
+    "train.num_threads": "file:dynamics.yaml",
+    "train.target_mode": "file:dynamics.yaml",
+    "model.hidden_width": "file:dynamics.yaml",
+    "model.hidden_layers": "file:dynamics.yaml",
+    "model.activation": "file:dynamics.yaml",
+    "evaluation.rollout_horizons_s": "file:dynamics.yaml",
+    "evaluation.rollout_start_stride_steps": "file:dynamics.yaml"
+  },
+  "schema": {
+    "schema_version": "dynamics-v2",
+    "data_type": "SIMULATED_SPACECRAFT_DYNAMICS",
+    "features": [
+      {
+        "name": "ring_omega_rad_s",
+        "unit": "rad/s",
+        "physical_scale": 1.0,
+        "description": "current inertial ring angular velocity"
+      },
+      {
+        "name": "hub_omega_rad_s",
+        "unit": "rad/s",
+        "physical_scale": 1.0,
+        "description": "current inertial hub angular velocity"
+      },
+      {
+        "name": "applied_torque_nm",
+        "unit": "N*m",
+        "physical_scale": 10000000.0,
+        "description": "motor torque applied during the previous step (actuator state)"
+      },
+      {
+        "name": "requested_torque_nm",
+        "unit": "N*m",
+        "physical_scale": 10000000.0,
+        "description": "motor torque command for this step"
+      },
+      {
+        "name": "axial_accel_m_s2",
+        "unit": "m/s^2",
+        "physical_scale": 9.80665,
+        "description": "spacecraft axial (thrust) acceleration during this step; feature expressed in g"
+      },
+      {
+        "name": "ring_inertia_kg_m2",
+        "unit": "kg*m^2",
+        "physical_scale": 10000000000.0,
+        "description": "ring moment of inertia"
+      },
+      {
+        "name": "hub_inertia_kg_m2",
+        "unit": "kg*m^2",
+        "physical_scale": 10000000000.0,
+        "description": "hub moment of inertia"
+      },
+      {
+        "name": "bearing_drag_nms",
+        "unit": "N*m*s/rad",
+        "physical_scale": 1000000.0,
+        "description": "bearing drag coefficient on relative ring-hub speed"
+      },
+      {
+        "name": "radius_m",
+        "unit": "m",
+        "physical_scale": 100.0,
+        "description": "crew floor radius"
+      },
+      {
+        "name": "dt_s",
+        "unit": "s",
+        "physical_scale": 1.0,
+        "description": "integration time step"
+      },
+      {
+        "name": "motor_torque_limit_nm",
+        "unit": "N*m",
+        "physical_scale": 10000000.0,
+        "description": "motor torque magnitude limit"
+      },
+      {
+        "name": "motor_power_limit_w",
+        "unit": "W",
+        "physical_scale": 10000000.0,
+        "description": "motor power limit"
+      },
+      {
+        "name": "motor_slew_nm_s",
+        "unit": "N*m/s",
+        "physical_scale": 1000000.0,
+        "description": "motor torque slew-rate limit"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "next_ring_omega_rad_s",
+        "unit": "rad/s",
+        "description": "ring angular velocity after the step"
+      },
+      {
+        "name": "next_hub_omega_rad_s",
+        "unit": "rad/s",
+        "description": "hub angular velocity after the step"
+      },
+      {
+        "name": "crew_radial_m_s2",
+        "unit": "m/s^2",
+        "description": "apparent gravity, radial component at the floor (r*omega_next^2)"
+      },
+      {
+        "name": "crew_tangential_m_s2",
+        "unit": "m/s^2",
+        "description": "apparent gravity, tangential component (-r*alpha_ring)"
+      },
+      {
+        "name": "crew_axial_m_s2",
+        "unit": "m/s^2",
+        "description": "apparent gravity, axial component (-axial_accel)"
+      }
+    ],
+    "target_mode": "residual",
+    "target_definition": "model target = output - reference",
+    "residual_references": {
+      "next_ring_omega_rad_s": "ring_omega_rad_s",
+      "next_hub_omega_rad_s": "hub_omega_rad_s",
+      "crew_radial_m_s2": "radius_m * ring_omega_rad_s**2",
+      "crew_tangential_m_s2": "0",
+      "crew_axial_m_s2": "-axial_accel_m_s2"
+    },
+    "preprocessing": [
+      "feature = raw / physical_scale",
+      "standardise features with training-split mean/std (std==0 -> 1)",
+      "standardise targets with training-split mean/std (std==0 -> 1)"
+    ],
+    "not_a_human_model": true
+  },
+  "architecture": {
+    "class": "gravity_ai.models.dynamics.DynamicsNet",
+    "inputs": 13,
+    "outputs": 5,
+    "hidden_width": 64,
+    "hidden_layers": 3,
+    "activation": "silu",
+    "parameters": 9541
+  },
+  "dataset": {
+    "dir": "D:\\personalized-gravity-ai\\data\\synthetic\\dynamics_smoke",
+    "fingerprint_sha256": "a84fd648b8266ef530b794f2a06a879f92e8517f1eeb5a1dd8da226848eb5b45",
+    "split_manifest_sha256": "f2eb5eb7438272470fa1977e8bdb69381569ea3f4dd5c2e412fbe3f0d608e308",
+    "generation_seed": 49,
+    "split_seed": 49,
+    "split_episode_counts": {
+      "train": 56,
+      "val": 12,
+      "test": 12
+    },
+    "split_row_counts": {
+      "train": 6720,
+      "val": 1440,
+      "test": 1440
+    },
+    "dt_values_trained": [
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ]
+  },
+  "seeds": {
+    "train": 17,
+    "data_generation": 49
+  },
+  "environment": {
+    "python": "3.11.9",
+    "torch": "2.15.0+cpu",
+    "numpy": "2.4.6",
+    "scikit_learn": "1.9.1",
+    "platform": "Windows-10-10.0.26340-SP0",
+    "device": "cpu",
+    "cuda_available": false,
+    "torch_cuda_build": null,
+    "torch_threads": 8,
+    "cpu": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel"
+  },
+  "feature_envelope_train": {
+    "ring_omega_rad_s": [
+      0.06875465586670257,
+      0.5997353273146129
+    ],
+    "hub_omega_rad_s": [
+      -0.39470117210484007,
+      0.18070511850277776
+    ],
+    "applied_torque_nm": [
+      -15480678.97116572,
+      12922610.722072512
+    ],
+    "requested_torque_nm": [
+      -19490641.247311156,
+      17095509.578436445
+    ],
+    "axial_accel_m_s2": [
+      -10.361362543923399,
+      10.361362543923399
+    ],
+    "ring_inertia_kg_m2": [
+      1014555638.100396,
+      9643435606.478573
+    ],
+    "hub_inertia_kg_m2": [
+      2104361556.7748542,
+      28506836445.203415
+    ],
+    "bearing_drag_nms": [
+      10059.075651638566,
+      1465773.8361756906
+    ],
+    "radius_m": [
+      40.86643999531425,
+      380.9888859733947
+    ],
+    "dt_s": [
+      0.5,
+      5.0
+    ],
+    "motor_torque_limit_nm": [
+      2063554.0910791242,
+      19490641.247311156
+    ],
+    "motor_power_limit_w": [
+      1000217.5655903158,
+      9875782.45603827
+    ],
+    "motor_slew_nm_s": [
+      202295.34718770324,
+      3949448.450901586
+    ]
+  },
+  "completed": "2026-11-14T02:36:46",
+  "stop_reason": "epoch_limit",
+  "epochs_completed": 5,
+  "best_epoch": 5,
+  "best_validation_mse_standardized": 0.21205253899097443,
+  "training_elapsed_s": 0.27,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6585363257498968,
+      "validation_loss": 0.606011688709259,
+      "seconds": 0.109,
+      "improved": true
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.3842558818204062,
+      "validation_loss": 0.7431871891021729,
+      "seconds": 0.034,
+      "improved": false
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.2900870720545451,
+      "validation_loss": 0.5673169493675232,
+      "seconds": 0.04,
+      "improved": true
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.21234401833443414,
+      "validation_loss": 0.3749891519546509,
+      "seconds": 0.037,
+      "improved": true
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.1674692500205267,
+      "validation_loss": 0.21205253899097443,
+      "seconds": 0.036,
+      "improved": true
+    }
+  ],
+  "artifacts": {
+    "best_checkpoint": "D:\\personalized-gravity-ai\\outputs\\smoke_runs\\smoke-1\\checkpoint_best.pt",
+    "training_state": "D:\\personalized-gravity-ai\\outputs\\smoke_runs\\smoke-1\\training_state_last.pt",
+    "manifest": "D:\\personalized-gravity-ai\\outputs\\smoke_runs\\smoke-1\\run_manifest.json"
+  }
+}
